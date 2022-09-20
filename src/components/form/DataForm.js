@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import Select from "react-select";
 import NavBar from "../NavBar";
+import RenderUser from "../RenderUser";
 
 import { evaluation, segment } from "./formAuxiliaries";
 
@@ -34,7 +35,7 @@ const DataForm = () => {
     formdata.append("csvFile", csvFile);
 
     axios
-      .post("http://localhost:3001/api/uploadmongo", formdata, {
+      .post("http://localhost:3001/api/evaluations", formdata, {
         headers: { "content-Type": "multipart/form-data" },
       })
       .then((res) => {
@@ -47,7 +48,6 @@ const DataForm = () => {
 
   return (
     <div className="container">
-      <NavBar />
       <h2>Ingresa los datos de la persona a evaluar</h2>
       <form onSubmit={handlesubmit} encType="multipart/form-data" name="form">
         <div>
