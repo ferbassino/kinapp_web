@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Chart from "./Chart";
-import integral from "../auxiliaries/integral";
+import Chart from "../components/Chart";
+
 import { useParams } from "react-router-dom";
 const RenderUser = () => {
   // useparams es un hook de router que captura lo que le pasamos como dinamico en la ruta con /:algo
@@ -13,7 +13,7 @@ const RenderUser = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:3001/api/evaluations/${id}`).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setObjDatos({
         segment: res.data.segment,
         evaluation: res.data.evaluation,
@@ -52,15 +52,13 @@ const RenderUser = () => {
       <h4>Evaluación: {objDatos.evaluation}</h4>
       <h4>Segmento: {objDatos.segment}</h4>
       <button onClick={analizar}>analizar</button>
-      {chartVisible ? (
+      {chartVisible && (
         <Chart
           x={dataObj.xData}
           y={dataObj.yData}
           z={dataObj.zData}
           t={dataObj.time}
         />
-      ) : (
-        <h3>curva</h3>
       )}
     </>
   );
