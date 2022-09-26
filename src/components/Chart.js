@@ -38,40 +38,43 @@ const options = {
   },
 };
 
-const Chart = ({ x, y, z, t }) => {
-  const data = useMemo(function () {
-    let labels = t;
+const Chart = ({ x = [], y = [], z = [], t = [] }) => {
+  const data = useMemo(
+    function () {
+      let labels = t;
 
-    return {
-      datasets: [
-        {
-          label: `Eje x`,
-          tension: 0.3,
-          data: x,
-          borderColor: "blue",
-          backgroundColor: "rgba(3, 11, 252, 0.3)",
-          pointRadius: 1,
-        },
-        {
-          label: `Eje y`,
-          tension: 0.3,
-          data: y,
-          borderColor: "red",
-          backgroundColor: "rgba(247, 2, 2, 0.3)",
-          pointRadius: 1,
-        },
-        {
-          label: `Eje Z`,
-          tension: 0.3,
-          data: z,
-          borderColor: "green",
-          backgroundColor: "rgba(43, 247, 2, 0.3)",
-          pointRadius: 1,
-        },
-      ],
-      labels,
-    };
-  }, []);
+      return {
+        datasets: [
+          {
+            label: `Eje x`,
+            tension: 0.3,
+            data: x,
+            borderColor: "blue",
+            backgroundColor: "rgba(3, 11, 252, 0.3)",
+            pointRadius: 1,
+          },
+          {
+            label: `Eje y`,
+            tension: 0.3,
+            data: y,
+            borderColor: "red",
+            backgroundColor: "rgba(247, 2, 2, 0.3)",
+            pointRadius: 1,
+          },
+          {
+            label: `Eje Z`,
+            tension: 0.3,
+            data: z,
+            borderColor: "green",
+            backgroundColor: "rgba(43, 247, 2, 0.3)",
+            pointRadius: 1,
+          },
+        ],
+        labels,
+      };
+    },
+    [x, y, z, t]
+  );
 
   return <Line data={data} options={options} />;
 };
