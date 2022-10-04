@@ -1,15 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import login from "../../services/login";
-import RenderUser from "../../views/RenderUser";
-import LoginForm from "../LoginForm";
-import { evaluation, segment } from "./formAuxiliaries";
-import Chart from "../Chart";
-import rotationProcess from "../../auxiliaries/rotationProcess";
-import directionAxisDetect from "../../auxiliaries/directionAxisDetect";
-import mainValue from "../../auxiliaries/mainValue";
-import { references } from "../../auxiliaries/references";
+import { evaluation, segment } from "../auxiliaries/formAuxiliaries";
+import Chart from "../components/Chart";
+import rotationProcess from "../auxiliaries/rotationProcess";
+import directionAxisDetect from "../auxiliaries/directionAxisDetect";
+import mainValue from "../auxiliaries/mainValue";
+import { references } from "../auxiliaries/references";
+import date from "../auxiliaries/date";
 
 const DataForm = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +18,6 @@ const DataForm = () => {
   const [archivoCsv, setArchivoCsv] = useState("");
   const [velocityChartVisible, setVelocityChartVisible] = useState(false);
 
-  //efecto para mantener la sesion de usuario
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem(
       "loggedEvaluationAppUser"
@@ -44,15 +41,13 @@ const DataForm = () => {
   };
   const handleFile = (e) => {
     setCsvFile(e.target.files[0]);
-    let reader = new FileReader();
-    reader.readAsText(e.target.files[0]);
-    reader.onload = (e) => {
-      setArchivoCsv(reader.result);
-    };
   };
   const handlesubmit = (e) => {
     e.preventDefault();
     setVelocityChartVisible(true);
+
+    //La interfaz FormData proporciona una manera sencilla de construir un conjunto de parejas clave/valor que representan los campos de un formulario y sus valores, que pueden ser enviados fácilmente con el método XMLHttpRequest.send() (en-US). Utiliza el mismo formato que usaría un formulario si el tipo de codificación fuera "multipart/form-data".
+
     const formdata = new FormData();
     formdata.append("email", email);
     formdata.append("evaluacion", evaluacion);
@@ -60,16 +55,20 @@ const DataForm = () => {
     formdata.append("csvFile", csvFile);
 
     const { token } = user;
-
+    // https://kinapp22.herokuapp.com
+    // http://localhost:3001
     axios
-      .post("http://localhost:3001/api/evaluations", formdata, {
+      .post("https://kinapp22.herokuapp.com/api/evaluations", formdata, {
         headers: {
           "content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        console.log(res.data);
+        setArchivoCsv(res.data.csvFile.csvData);
+        if (res.data.csvFile.csvData) {
+          alert("datos cargados correctamente");
+        }
       })
       .then((err) => {
         console.log(err);
@@ -100,6 +99,7 @@ const DataForm = () => {
   //llamamos a la funcion references para obtener el angulo de referencia, la funcion recibe dos parametros, el segmento y el movimiento principal
   const refAngle = references(segmento, detector.mainMovement);
 
+  const fecha = date(new Date());
   return (
     <div className="container">
       <h2>Ingresa los datos de la persona a evaluar</h2>
@@ -107,21 +107,21 @@ const DataForm = () => {
       <form onSubmit={handlesubmit} encType="multipart/form-data" name="form">
         <div>
           <p>Email</p>
-          <input type={"email"} onChange={handleEmail} />
+          <input type={"email"} onChange={handleEmail} required />
         </div>
 
         <div>
           <p>Evaluación</p>
-          <Select options={evaluation} onChange={handleEvaluacion} />
+          <Select options={evaluation} onChange={handleEvaluacion} required />
         </div>
         <div>
           <p>Segmento</p>
-          <Select options={segment} onChange={handleSegmento} />
+          <Select options={segment} onChange={handleSegmento} required />
         </div>
         <div>
           {/* que hacemos con el archivo csv??? */}
           <p>Archivo .csv</p>
-          <input type={"file"} onChange={handleFile} />
+          <input type={"file"} onChange={handleFile} required />
         </div>
         <br />
         <div>
@@ -133,6 +133,8 @@ const DataForm = () => {
         <div>
           <div>
             <h3>Resumen de análisis</h3>
+            <p>{fecha.fecha}</p>
+            <p>{fecha.hora} hs</p>
             <p>
               Se realizó un movimiento de {detector.mainMovement} del segmento{" "}
               {segmento}, en el plano {detector.planeMovement}, eje{" "}

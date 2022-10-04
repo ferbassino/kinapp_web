@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+// https://kinapp22.herokuapp.com
+// http://localhost:3001
 const SearchEvaluation = () => {
   const [allEvaluations, setAllEvaluations] = useState([]);
   const [emailEvaluation, setEmailEvaluation] = useState("");
   const [busquedaVisible, setBusquedaVisible] = useState(false);
   const [evaluationsArray, setEvaluationsArray] = useState([]);
-
+  const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   useEffect(() => {
-    axios.get("http://localhost:3001/api/evaluations").then((res) => {
+    axios.get("https://kinapp22.herokuapp.com/api/evaluations").then((res) => {
       setAllEvaluations(res.data);
     });
   }, []);
@@ -24,21 +26,26 @@ const SearchEvaluation = () => {
     allEvaluations.map((el) => {
       if (el.email === emailEvaluation) {
         newArray.push(el);
+        setId(el.id);
+        setEmail(el.email);
       }
     });
     setBusquedaVisible(true);
     setEvaluationsArray(newArray);
   };
-
+  // https://kinapp22.herokuapp.com
+  // http://localhost:3001
   const deleteEvaluation = (e) => {
-    const deleteEmailConfirmation = prompt(
-      "¿Está seguro de realizar esta eliminación? Para hacerlo escriba el email de este recurso"
+    const deleteConfirm = window.confirm(
+      "¿Esta seguro que desea eliminar esta evaluación?"
     );
-    if (deleteEmailConfirmation === emailEvaluation) {
-      alert("se va a borrar estas seguro?");
-      //aca hay que llamar a la funcion para eliminar este recurso
+    if (deleteConfirm) {
+      axios
+        .delete(`https://kinapp22.herokuapp.com/api/evaluations/${id}`)
+        .then((res) => {
+          alert(`la evaluación de ${email} ha sido eliminada`);
+        });
     } else {
-      alert("el email no corresponde");
     }
   };
 
@@ -56,6 +63,9 @@ const SearchEvaluation = () => {
         <ol>
           {evaluationsArray.map((el) => (
             <li key={el.id}>
+              {" "}
+              {new Date(el.date).toLocaleDateString()}
+              {"  "}
               {el.email}, Evaluation: {el.evaluation}, Segment: {el.segment}
               <button onClick={goToEvaluation}>
                 <Link to={`/renderuser/${el.id}`} className="nav-link">

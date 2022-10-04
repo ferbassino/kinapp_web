@@ -3,7 +3,7 @@ import login from "../services/login";
 import LoginForm from "../components/LoginForm";
 import NavBar from "../components/NavBar";
 import Home from "./Home";
-import DataForm from "../components/form/DataForm";
+import DataForm from "./DataForm";
 import RenderUser from "./RenderUser";
 import RenderAllEvaluation from "./RenderAllEvaluation";
 import SearchEvaluation from "./SearchEvaluation";
@@ -36,7 +36,7 @@ const Main = () => {
         username,
         password,
       });
-      console.log(user);
+
       setUser(user);
       //guardamos el token en el local storage
 

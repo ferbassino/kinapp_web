@@ -6,22 +6,29 @@ import rotationProcess from "../auxiliaries/rotationProcess";
 import directionAxisDetect from "../auxiliaries/directionAxisDetect";
 import mainValue from "../auxiliaries/mainValue";
 import { references } from "../auxiliaries/references";
+import date from "../auxiliaries/date";
+
+// https://kinapp22.herokuapp.com
+// http://localhost:3001
+
 const RenderUser = () => {
   // useparams es un hook de router que captura lo que le pasamos como dinamico en la ruta con /:algo
   const { id } = useParams();
   const [objDatos, setObjDatos] = useState({});
-  const [chartVisible, setChartvisible] = useState(false);
-  const [archivoCsv, setArchivoCsv] = useState("");
+  const [dateObj, setDateObj] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/evaluations/${id}`).then((res) => {
-      setObjDatos({
-        segment: res.data.segment,
-        evaluation: res.data.evaluation,
-        email: res.data.email,
-        file: res.data.csvFile.csvData,
+    axios
+      .get(`https://kinapp22.herokuapp.com/api/evaluations/${id}`)
+      .then((res) => {
+        setObjDatos({
+          date: res.data.date,
+          segment: res.data.segment,
+          evaluation: res.data.evaluation,
+          email: res.data.email,
+          file: res.data.csvFile.csvData,
+        });
       });
-    });
   }, []);
   const { file } = objDatos;
 
@@ -41,10 +48,12 @@ const RenderUser = () => {
   );
   const refAngle = references(objDatos.segment, detector.mainMovement);
 
+  const fecha = date(objDatos.date);
+
   return (
     <>
       <h2>Evaluación biomecánica</h2>
-      <h2>Tus datos</h2>
+      <h2>Datos</h2>
       <h4>Email: {objDatos.email}</h4>
       <h4>Evaluación: {objDatos.evaluation}</h4>
       <h4>Segmento: {objDatos.segment}</h4>
@@ -52,7 +61,9 @@ const RenderUser = () => {
 
       <div>
         <div>
-          <h3>Resumen de análisis</h3>
+          <h3>Tu análisis</h3>
+          <p>{fecha.fecha}</p>
+          <p>{fecha.hora} hs</p>
           <p>
             Se realizó un movimiento de {detector.mainMovement} del segmento{" "}
             {objDatos.segment}, en el plano {detector.planeMovement}, eje{" "}
