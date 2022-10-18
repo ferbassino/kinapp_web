@@ -18,17 +18,15 @@ const RenderUser = () => {
   const [dateObj, setDateObj] = useState({});
 
   useEffect(() => {
-    axios
-      .get(`https://kinapp22.herokuapp.com/api/evaluations/${id}`)
-      .then((res) => {
-        setObjDatos({
-          date: res.data.date,
-          segment: res.data.segment,
-          evaluation: res.data.evaluation,
-          email: res.data.email,
-          file: res.data.csvFile.csvData,
-        });
+    axios.get(`http://localhost:3001/api/evaluations/${id}`).then((res) => {
+      setObjDatos({
+        date: res.data.date,
+        segment: res.data.segment,
+        evaluation: res.data.evaluation,
+        email: res.data.email,
+        file: res.data.csvFile.csvData,
       });
+    });
   }, []);
   const { file } = objDatos;
 

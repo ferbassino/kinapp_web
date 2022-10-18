@@ -25,23 +25,25 @@ const NavBar = ({ handleLogout }) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link
-                  to="/dataform"
-                  className="nav-link active"
-                  aria-current="page"
-                >
-                  Análisis
+                {/* utilizamos link to para que refresque solo el componente y no toda la pagina */}
+                <Link to="/modulo1" className="nav-link" aria-current="page">
+                  Módulo 1
                 </Link>
               </li>
 
               <li className="nav-item">
-                <Link to="/searchevaluation" className="nav-link">
-                  Buscar evaluación
+                <Link to="/modulo2" className="nav-link">
+                  Modulo 2
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/renderall" className="nav-link">
-                  Todas las evaluaciones
+                <Link to="/modulo3" className="nav-link">
+                  Modulo 3
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/test" className="nav-link">
+                  Tests
                 </Link>
               </li>
             </ul>

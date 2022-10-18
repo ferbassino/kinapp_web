@@ -55,7 +55,7 @@ const Chart = ({ x = [], y = [], z = [], t = [] }) => {
           },
           {
             label: `Eje y`,
-            tension: 0.3,
+            tension: 0.5,
             data: y,
             borderColor: "red",
             backgroundColor: "rgba(247, 2, 2, 0.3)",
