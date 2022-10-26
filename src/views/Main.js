@@ -71,7 +71,7 @@ const Main = () => {
     <div>
       {user ? (
         <>
-          <NavBar handleLogout={handleLogout} />
+          <NavBar handleLogout={handleLogout} name={user.name} />
           <Routes>
             {/* en Route definimos el path que es la url, el elemento que se el componente y la palabnra "exact" */}
             <Route path="/" element={<Home />} exact></Route>

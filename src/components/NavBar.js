@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = ({ handleLogout }) => {
+const NavBar = ({ handleLogout, name }) => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -9,7 +9,10 @@ const NavBar = ({ handleLogout }) => {
           <a className="navbar-brand" href="/">
             kinapp
           </a>
-          <button onClick={handleLogout}>Cerrar sesión</button>
+          <p className="navbar-brand">¡Hola {name}!</p>
+          <button onClick={handleLogout} className="btn btn-light">
+            Cerrar sesión
+          </button>
           <button
             className="navbar-toggler"
             type="button"
