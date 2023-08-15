@@ -1,26 +1,27 @@
 import React from "react";
-
+import icon from "../views/landing/assets/icon.png";
 const LoginForm = ({
   handleLogin,
-  username,
+  email,
   password,
-  handleUsername,
+  handleEmail,
   handlePassword,
 }) => {
   return (
     <>
-      <nav className="navbar bg-light">
+      <nav className="navbar">
         <div className="container">
-          <h2 className="navbar-brand">kinapp</h2>
+          <img src={icon} alt="icon" width={40} height={40} className="mx-4" />
+          <h2 className="navbar-brand ">kinApp</h2>
           <form className="d-flex row" role="search" onSubmit={handleLogin}>
             <input
               className="form-control m-2 col-sm "
               aria-label="Search"
               type="text"
-              value={username}
-              name="Username"
-              placeholder="Username"
-              onChange={handleUsername}
+              value={email}
+              name="email"
+              placeholder="email"
+              onChange={handleEmail}
               required
             />
             <input
@@ -35,7 +36,7 @@ const LoginForm = ({
             />
 
             <button className="btn btn-outline-success m-2  col">
-              Ingresar
+              Sign in
             </button>
           </form>
         </div>

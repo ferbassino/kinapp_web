@@ -4,23 +4,66 @@ import LoginForm from "../components/LoginForm";
 import NavBar from "../components/NavBar";
 import Home from "./Home";
 import Error from "./Error";
-import Modulo1 from "./Modulo1";
-import RenderUser from "./RenderUser";
-import Modulo3 from "./Modulo3";
-import Modulo2 from "./Modulo2";
+import Client from "./bronze/Client";
+
+import Admin from "./admin/Admin";
 //use history nos permite decirle donde queremos que comience a navegar el cliente
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Test from "./Test";
+import Kinapp from "./Kinapp";
+import Landing from "./landing/Landing";
+import Reader from "./reader/Reader";
+import Editor from "./Editor";
+import OverView from "./admin/Overview";
+import Users from "./admin/Users";
+import Clients from "./admin/Clients";
+import Motion from "./admin/Motion";
+import AdminRoutes from "../components/utils/AdminRoutes";
+import ReaderRoutes from "../components/utils/ReaderRoutes";
+import EditorRoutes from "../components/utils/EditorRoutes";
+import ClientRoutes from "../components/utils/ClientRoutes";
+import ReaderOverView from "./reader/ReaderOverview";
+import ReaderNavigation from "./reader/ReaderNavigation";
+import ReaderClients from "./reader/ReaderClients";
+import ReaderMotion from "./reader/ReaderMotion";
+import ClientView from "../components/ClientView";
+import ReaderClient from "./reader/ReaderClient";
+import ReaderMotions from "./reader/ReaderMotions";
+import BronzeProfile from "./bronze/BronzeProfile";
+import Aside from "../components/Aside";
+import useScreenSize from "../auxiliaries/sizeScreen";
+import DropdownComp from "../components/DropDown";
+import Footer from "../components/Footer";
+import JornadasVistaMov from "../components/JornadasVistaMov";
 
 const Main = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
+  const [userName, setUserName] = useState("");
+  const [roles, setRoles] = useState("");
+  const [admin, setAdmin] = useState(false);
+  const [reader, setReader] = useState(false);
+  const [editor, setEditor] = useState(false);
+  const [bronze, setBronze] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  //vamos a usar usenavigate para redireccionar programaticamente
+  const [colapseVisible, setColapseVisible] = useState(false);
+  const [asideVisible, setAsideVisible] = useState(false);
+
   const navigate = useNavigate();
 
-  //utilizamos un efecto para leer el local storage, lo guardamos en loggedUserJson, y si este existe, o sea si hay algo guardado con ese nombre en el local storage, guardamos ese objeto en user y cambiamos el estado de user con setUser(user). el local storage tiene el objeto loggedEvaluationAppUser si lo habiamos seteado cuando llamamos a la funcion login y el usuario existia, esa funcion nos devuelve el username y el token
+  const { width } = useScreenSize();
+
+  useEffect(() => {
+    if (width > 768) {
+      setAsideVisible(true);
+      setColapseVisible(false);
+    }
+    if (width < 768) {
+      setAsideVisible(false);
+      setColapseVisible(true);
+    }
+  }, [width]);
+
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem(
       "loggedEvaluationAppUser"
@@ -28,78 +71,194 @@ const Main = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
+      setRoles(user.roles);
+      setUserName(user.userName);
+
+      if (user.roles === "admin") setAdmin(true);
+      if (user.roles === "reader") setReader(true);
+      if (user.roles === "editor") setEditor(true);
+      if (user.roles === "bronze") setBronze(true);
     }
   }, []);
+
   const handleLogout = () => {
     setUser(null);
+    setAdmin(false);
+    setReader(false);
+    setEditor(false);
+    setBronze(false);
+    setRoles("");
+
     window.localStorage.removeItem("loggedEvaluationAppUser");
   };
 
-  //funcion del logeo
-
   const handleLogin = async (e) => {
     e.preventDefault();
-    //enviamos a la funcion login como parametros, el username y el password, que es la funcion que hace la peticion al servidor y guardamos lo que retorna en user
+
     try {
-      const user = await login({
-        username,
+      const data = await login({
+        email,
         password,
       });
-      //login retorna el user y el token que se generaron en el servidor una vez que se validó que el usuario existe en la base de datos
-      setUser(user);
 
-      //guardamos el user en el local storage para mantener la sesion, a setItem le damos dos parametros, el nombre de lo que vamos a guardar, y el objeto que gardamos pasado a string, en este caso el objeto user que trae el username y el token
+      setRoles(data.roles);
+      setUser(data);
+      setUserName(data.userName);
+      if (data.roles === "admin") setAdmin(true);
+      if (data.roles === "reader") setReader(true);
+      if (data.roles === "editor") setEditor(true);
+      if (data.roles === "bronze") setBronze(true);
+
+      if (!data) {
+        setErrorMessage("wrong credentials");
+        alert("wrong username or password");
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 5000);
+        return;
+      }
 
       window.localStorage.setItem(
         "loggedEvaluationAppUser",
-        JSON.stringify(user)
+        JSON.stringify(data)
       );
-      //seteamos username y password para que se limpie el formulario
-      setUsername("");
+
+      setEmail("");
       setPassword("");
-      //hacemos que navegue al home luego de autenticarse
       navigate("/");
     } catch (error) {
       setErrorMessage("wrong credentials");
-      alert("nombre de usurio o contraseña incorrectos");
+      alert("wrong username or password");
       setTimeout(() => {
         setErrorMessage(null);
       }, 5000);
     }
   };
+
   return (
-    <div>
+    <>
       {user ? (
-        <>
-          <NavBar handleLogout={handleLogout} name={user.name} />
-          <Routes>
-            {/* en Route definimos el path que es la url, el elemento que se el componente y la palabnra "exact" */}
-            <Route path="/" element={<Home />} exact></Route>
-            {/* vamos a manejar el error de la ruta que tiene react router dom */}
-            <Route path="*" element={<Error />}></Route>
-            <Route path="/modulo1" element={<Modulo1 />} exact></Route>
-            {/* acá definimos una ruta dinamica para decirle que le vamos a pasar un parametro por la url */}
-            <Route
-              path="/renderuser/:id"
-              element={<RenderUser />}
-              exact
-            ></Route>
-            <Route path="/modulo3" element={<Modulo3 />} exact></Route>
-            <Route path="/modulo2" element={<Modulo2 />} exact></Route>
-            <Route path="/test" element={<Test />} exact></Route>
-            {/* las rutas se pueden anidar, o sea que dentro de una ruta se pone otra ruta, en el path de la ruta anidada es lo que se agrega a la ruta madre, atencion va si la "/" pero tambien hay que usar un hook que se llama outlet, y se coloca dabajo del lo que se renderiza en el return en el componente */}
-          </Routes>
-        </>
+        <div className="column">
+          <div>
+            <NavBar
+              handleLogout={handleLogout}
+              userName={userName}
+              roles={roles}
+            />
+          </div>
+          <div style={{ height: 57, backgroundColor: "#fff" }}></div>
+          <div className="row">
+            {asideVisible ? (
+              <>
+                <div className="col-md-3 position-fixed">
+                  <Aside />
+                </div>
+                <div className="col-md-3"></div>
+              </>
+            ) : null}
+
+            <div className="col-md-9">
+              {colapseVisible ? <DropdownComp /> : null}
+              <Routes>
+                <Route path="/" element={<Home />} exact></Route>
+                <Route path="/kinapp" element={<Kinapp />} exact></Route>
+                <Route
+                  path="/jorn/movement"
+                  element={<JornadasVistaMov />}
+                  exact
+                ></Route>
+
+                <Route element={<AdminRoutes admin={admin} />}>
+                  <Route path="/admin" element={<Admin />} exact></Route>
+                  <Route
+                    path="/admin/overview"
+                    element={<OverView />}
+                    exact
+                  ></Route>
+                  <Route path="/admin/users" element={<Users />} exact></Route>
+                  <Route
+                    path="/admin/clients"
+                    element={<Clients />}
+                    exact
+                  ></Route>
+                  <Route
+                    path="/admin/motion"
+                    element={<Motion />}
+                    exact
+                  ></Route>
+                </Route>
+                <Route element={<ReaderRoutes reader={reader} />}>
+                  <Route path="/reader" element={<Reader />} exact></Route>
+                  <Route
+                    path="/reader/overview"
+                    element={<ReaderOverView />}
+                    exact
+                  ></Route>
+                  <Route
+                    path="/reader/navigation"
+                    element={<ReaderNavigation />}
+                    exact
+                  ></Route>
+                  <Route
+                    path="/reader/clients"
+                    element={<ReaderClients />}
+                    exact
+                  ></Route>
+                  <Route
+                    path="/reader/motion"
+                    element={<ReaderMotion />}
+                    exact
+                  ></Route>
+                  <Route
+                    path="/reader/motions"
+                    element={<ReaderMotions />}
+                    exact
+                  ></Route>
+                  <Route
+                    path="/reader/client"
+                    element={<ReaderClient />}
+                    exact
+                  ></Route>
+                </Route>
+                <Route element={<ClientRoutes bronze={bronze} />}>
+                  <Route path="/client" element={<Client />} exact></Route>
+                  <Route
+                    path="/bronze/profile"
+                    element={<BronzeProfile />}
+                    exact
+                  ></Route>
+                </Route>
+                <Route path="*" element={<Error />}></Route>
+
+                {/* acá definimos una ruta dinamica para decirle que le vamos a pasar un parametro por la url */}
+                {/* <Route
+                  path="/renderuser/:id"
+                  element={<RenderUser />}
+                  exact
+                ></Route> */}
+                <Route element={<EditorRoutes editor={editor} />}>
+                  <Route path="/editor" element={<Editor />} exact></Route>
+                </Route>
+              </Routes>
+              <Footer />
+            </div>
+          </div>
+        </div>
       ) : (
-        <LoginForm
-          username={username}
-          password={password}
-          handleLogin={handleLogin}
-          handleUsername={(e) => setUsername(e.target.value)}
-          handlePassword={(e) => setPassword(e.target.value)}
-        />
+        <>
+          <div className="container  text-center">
+            <LoginForm
+              email={email}
+              password={password}
+              handleLogin={handleLogin}
+              handleEmail={(e) => setEmail(e.target.value)}
+              handlePassword={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <Landing />
+        </>
       )}
-    </div>
+    </>
   );
 };
 

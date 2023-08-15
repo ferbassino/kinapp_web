@@ -2,7 +2,7 @@ import Main from "./views/Main";
 
 function App() {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid   ">
       <Main />
     </div>
   );

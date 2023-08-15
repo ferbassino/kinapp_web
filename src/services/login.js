@@ -1,12 +1,34 @@
 import axios from "axios";
-// https://kinapp22.herokuapp.com
-// http://localhost:3001
-const baseUrl = "https://kinapp22.herokuapp.com/api/login";
-//la funcion login hace la peticion post al servidor, recibe dos parametros, la url y las credenciales, las credenciales vienen como username y password que se envia para validarlo en el servidor con la base de datos y crear un token. en la respuesta viene el username y el token
-const login = async (credentials) => {
-  const { data } = await axios.post(baseUrl, credentials);
+import client from "../api/client";
 
-  return data;
+const login = async (credentials) => {
+  try {
+    const { email, password } = credentials;
+
+    const { data } = await client.post("/sign-in", {
+      email,
+      password,
+    });
+    if (data.success) {
+      return data.user;
+    } else {
+      const res = await client.post("/api/client", {
+        email,
+        password,
+      });
+
+      if (res.data.success) {
+        const obj = res.data.client;
+        return obj;
+      } else {
+        return data.messagge;
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  //
 };
 
 export default login;
