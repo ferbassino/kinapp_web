@@ -105,7 +105,7 @@ const Jornadas = () => {
 
   return (
     <div className="container">
-      <h2 className="mt-3">Analysis with kinapp mobile application</h2>
+      <h2 className="mt-3">Kinapp mobile application</h2>
 
       {testsVisibles ? (
         <>
