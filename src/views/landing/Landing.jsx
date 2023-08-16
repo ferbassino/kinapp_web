@@ -21,30 +21,41 @@ import hero from "./assets/hero.png";
 function Landing() {
   return (
     <div>
-      <Navbar expand="lg" className="bg-body-tertiary bg-light  ">
-        <Container className="">
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#environment">
-                <h4 className="text-primary">Environment</h4>
-              </Nav.Link>
-              <Nav.Link href="#possibility">
-                <h4 className="text-primary">Possibility</h4>
-              </Nav.Link>
-              <Nav.Link href="#web">
-                <h4 className="text-primary">web</h4>
-              </Nav.Link>
-              <Nav.Link href="#events">
-                <h4 className="text-primary">Events</h4>
-              </Nav.Link>
-              <Nav.Link href="#contact">
-                <h4 className="text-primary">Contact</h4>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <Container>
+        <Navbar
+          expand="lg"
+          className="bg-body-tertiary   "
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(36,31,0,1) 0%, rgba(226,117,96,1) 0%, rgba(255,183,0,0.6279761904761905) 100%)",
+            borderRadius: 20,
+          }}
+        >
+          <Container className="">
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="#environment">
+                  <h4 style={{ color: "#042c54" }}>Environment</h4>
+                </Nav.Link>
+                <Nav.Link href="#possibility">
+                  <h4 style={{ color: "#042c54" }}>Possibility</h4>
+                </Nav.Link>
+                <Nav.Link href="#web">
+                  <h4 style={{ color: "#042c54" }}>web</h4>
+                </Nav.Link>
+                <Nav.Link href="#events">
+                  <h4 style={{ color: "#042c54" }}>Events</h4>
+                </Nav.Link>
+                <Nav.Link href="#contact">
+                  <h4 style={{ color: "#042c54" }}>Contact</h4>
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </Container>
+
       <header style={{ paddingLeft: 0 }} className="my-5">
         <div
           className="p-5 text-center bg-image"
@@ -55,7 +66,12 @@ function Landing() {
         >
           <div
             className="mask"
-            style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(36,31,0,1) 0%, rgba(226,117,96,1) 0%, rgba(255,183,0,0.6279761904761905) 100%)",
+              borderRadius: 20,
+              height: "100%",
+            }}
           >
             <div className="d-flex justify-content-center align-items-center h-100">
               <div className="text-white">
@@ -73,7 +89,7 @@ function Landing() {
           <Row>
             <Row id="environment" className="my-5">
               <Col sm={6}>
-                <h1 className="text-primary">
+                <h1 style={{ color: "#042c54" }}>
                   Obtain infinite data with this powerful tool
                 </h1>
               </Col>
@@ -85,12 +101,22 @@ function Landing() {
                 </h4>
               </Col>
             </Row>
-            <Row className="my-5 bg-light">
+            <Row
+              className="my-5"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(36,31,0,1) 0%, rgba(226,117,96,1) 0%, rgba(255,183,0,0.6279761904761905) 100%)",
+                padding: 20,
+                borderRadius: 20,
+              }}
+            >
               <Col sm className="my-2">
                 <Card style={{ width: "18rem" }}>
                   <Card.Img variant="top" src={movileApp} />
                   <Card.Body>
-                    <Card.Title className="text-primary">Mobile app</Card.Title>
+                    <Card.Title style={{ color: "#042c54" }}>
+                      Mobile app
+                    </Card.Title>
                     <Card.Text className="text-secondary">
                       With the mobile application you can capture body movements
                       or the movement of different elements mobilized by it.
@@ -102,7 +128,9 @@ function Landing() {
                 <Card style={{ width: "18rem" }}>
                   <Card.Img variant="top" src={webApp} />
                   <Card.Body>
-                    <Card.Title className="text-primary">Web app</Card.Title>
+                    <Card.Title style={{ color: "#042c54" }}>
+                      Web app
+                    </Card.Title>
                     <Card.Text className="text-secondary">
                       In the web application we can view the data stored in the
                       database and access specific documentation.
@@ -114,7 +142,7 @@ function Landing() {
                 <Card style={{ width: "18rem" }}>
                   <Card.Img variant="top" src={umico} />
                   <Card.Body>
-                    <Card.Title className="text-primary">UMICO</Card.Title>
+                    <Card.Title style={{ color: "#042c54" }}>UMICO</Card.Title>
                     <Card.Text className="text-secondary">
                       Umico is an inertial device that captures angular velocity
                       and positional acceleration with bluetooth connection for
@@ -127,7 +155,7 @@ function Landing() {
                 <Card style={{ width: "18rem" }}>
                   <Card.Img variant="top" src={dataBase} />
                   <Card.Body>
-                    <Card.Title className="text-primary">
+                    <Card.Title style={{ color: "#042c54" }}>
                       Database storage
                     </Card.Title>
                     <Card.Text className="text-secondary">
@@ -140,19 +168,28 @@ function Landing() {
             </Row>
             <Row className="my-5 " id="possibility">
               <Col sm={6}>
-                <img src={anyWhere} className="img-fluid shadow-4" alt="..." />
-              </Col>
-              <Col sm={6}>
-                <h1 className="text-primary">
+                <h1 style={{ color: "#042c54" }}>
                   Movile app, the possibility of evaluating anywhere. With the
                   mobile application you can obtain data on the movement quickly
                   and easily with storage in the database.
                 </h1>
               </Col>
+              <Col sm={6}>
+                <img src={anyWhere} className="img-fluid shadow-4" alt="..." />
+              </Col>
             </Row>
-            <Row className="my-5 bg-light" id="web">
+            <Row
+              className="my-5"
+              id="web"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(36,31,0,1) 0%, rgba(226,117,96,1) 0%, rgba(255,183,0,0.6279761904761905) 100%)",
+                padding: 20,
+                borderRadius: 20,
+              }}
+            >
               <Col sm={5}>
-                <h1 className="text-primary">
+                <h1 style={{ color: "#042c54" }}>
                   Web application gives us the possibility to analyze the data
                   in a more complete way
                 </h1>
@@ -206,7 +243,9 @@ function Landing() {
             </Row>
             <Col className="my-5" id="events">
               <Col>
-                <h1 className="text-primary">Find out about upcoming events</h1>
+                <h1 className="my-5" style={{ color: "#042c54" }}>
+                  Find out about upcoming events
+                </h1>
               </Col>
               <Row>
                 <Col>
@@ -218,7 +257,7 @@ function Landing() {
                   </Col>
                   <Col>
                     <h6 className="text-secondary">
-                      Descargá la aplicación kinApp para poder evaluar aquí
+                      Proximamente podras descargar la aplicación aqui
                     </h6>
                   </Col>
                 </Col>
@@ -235,10 +274,20 @@ function Landing() {
         </Container>
       </main>
 
-      <footer className="my-5 bg-light" id="contact">
+      <footer
+        className="my-5 "
+        id="contact"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(36,31,0,1) 0%, rgba(226,117,96,1) 0%, rgba(255,183,0,0.6279761904761905) 100%)",
+          padding: 20,
+          borderRadius: 20,
+          height: "100%",
+        }}
+      >
         <Container>
           <Row>
-            <h4 className="text-primary">
+            <h4 style={{ color: "#042c54" }}>
               Follow us on Instagram, send an email or a message to receive more
               information
             </h4>
