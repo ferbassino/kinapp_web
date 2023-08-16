@@ -1,2 +1,2 @@
-GET https://kinapp-api.vercel.app/
+GET https://kinapp-api.vercel.app/api/imudata
 
