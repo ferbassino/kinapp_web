@@ -1,5 +1,5 @@
 import React from "react";
-import { dropAnalysis } from "../auxiliaries/caida";
+import dropAnalysis from "../auxiliaries/caida";
 import Header from "./Header";
 import SubTitle from "./SubTitle";
 import Title from "./Title";

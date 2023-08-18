@@ -1,6 +1,6 @@
 const numbers = require("numbers");
 
-exports.dropAnalysis = (accZ, accT) => {
+const dropAnalysis = (accZ, accT) => {
   const mode = numbers.statistic.mode(accZ);
   const max = Math.max(...accZ);
   const min = Math.min(...accZ);
@@ -46,3 +46,5 @@ exports.dropAnalysis = (accZ, accT) => {
 
   return { zFiltered, tFiltered, tCaida, altura };
 };
+
+export default dropAnalysis;
