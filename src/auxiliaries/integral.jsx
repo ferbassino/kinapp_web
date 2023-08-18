@@ -1,15 +1,32 @@
-// la integral recibe dos paramatros, el arreglo y el intervalo, retorna un arreglo que es la integral del arreglo del parametro
+exports.integral = (arrayATraslacion, accInterval, accT) => {
+  const integral = [];
+  let count = 0;
+  for (let i = 0; i < arrayATraslacion.length - 1; i++) {
+    count +=
+      ((Number(arrayATraslacion[i]) + Number(arrayATraslacion[i + 1])) *
+        (accT[i + 1] - accT[i])) /
+      2;
 
-const integral = (array = [], interval = 0, initialCount = 0) => {
-  let count = initialCount;
-  const halfInterval = interval / 2;
-  const arrayIntegral = [];
-  for (let i = 0; i < array.length; i++) {
-    count += (array[i] + array[i + 1]) * halfInterval;
-    arrayIntegral.push(count);
+    integral.push(count);
   }
 
-  return arrayIntegral;
+  return integral;
 };
+exports.countIntegral = (arrayVTraslacion, accInterval, accT) => {
+  const arrayVNegativa = [];
+  const arrayDTraslacion = [];
+  let distancia = 0;
+  for (let i = 0; i < arrayVTraslacion.length - 1; i++) {
+    if (arrayVTraslacion[i] < 0) {
+      arrayVNegativa.push(arrayVTraslacion[i]);
+    }
+    distancia +=
+      ((Number(arrayVTraslacion[i]) + Number(arrayVTraslacion[i + 1])) *
+        (accT[i + 1] - accT[i])) /
+      2;
 
-export default integral;
+    arrayDTraslacion.push(Number(distancia.toFixed(3)));
+  }
+
+  return { arrayDTraslacion, distancia };
+};

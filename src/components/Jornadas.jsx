@@ -65,6 +65,7 @@ const Jornadas = () => {
       if (data) {
         setTestsVisibles(true);
       }
+
       setAllTests(data.imuDatas);
     } catch (error) {
       console.log(error);

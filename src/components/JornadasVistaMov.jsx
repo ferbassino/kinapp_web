@@ -8,17 +8,28 @@ import { getClients } from "../services/clients";
 import { useEffect } from "react";
 import { getDate, getHour } from "../auxiliaries/getDate";
 
+import TranslationView from "./TranslationView";
+import SubTitle2 from "./Subtitle2";
+
 const JornadasVistaMov = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { imuData } = location.state;
-  console.log("datatest", imuData);
+  const { accX, accY, accZ, accT, testTime, mass } = imuData;
+
+  const [translationVisible, setTraslationVisible] = useState(false);
+  console.log(imuData);
+
   const [sampleRate, setSampleRate] = useState(0);
 
   useEffect(() => {
     const samR = imuData.testTime / 1000 / imuData.accT.length;
     setSampleRate(samR);
   });
+
+  if (imuData.name === "traslacion") {
+    setTraslationVisible(true);
+  }
 
   return (
     <div className="container">
@@ -70,19 +81,25 @@ const JornadasVistaMov = () => {
           </tr>
         </tbody>
       </Table>
+      <Header title={"Datos crudos del dispositivo"} />
 
-      <Header title={"Charts"} />
       <Chart
-        x={imuData.accX}
+        x={accX}
         xName="aceleración en x"
         xColor="red"
-        y={imuData.accY}
+        y={accY}
         yName="aceleración en y"
         yColor="green"
-        z={imuData.accZ}
+        z={accZ}
         zName="aceleración en z"
         zColor="blue"
-        t={imuData.accT}
+        t={accT}
+      />
+      <TranslationView
+        accY={accY}
+        accT={accT}
+        masa={mass}
+        testTime={testTime}
       />
     </div>
   );
