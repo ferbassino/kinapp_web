@@ -9,27 +9,41 @@ import { useEffect } from "react";
 import { getDate, getHour } from "../auxiliaries/getDate";
 
 import TranslationView from "./TranslationView";
-import SubTitle2 from "./Subtitle2";
+import FallView from "./FallView";
+import RotacionView from "./RotacionView";
+import JumpView from "./JumpView";
 
 const JornadasVistaMov = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { imuData } = location.state;
+  console.log(imuData);
   const { accX, accY, accZ, accT, testTime, mass } = imuData;
 
   const [translationVisible, setTraslationVisible] = useState(false);
-  console.log(imuData);
-
+  const [fallVisible, setFallVisible] = useState(false);
+  const [rotacionVisible, setRotacionVisible] = useState(false);
+  const [jumpVisible, setJumpVisible] = useState(false);
   const [sampleRate, setSampleRate] = useState(0);
 
   useEffect(() => {
     const samR = imuData.testTime / 1000 / imuData.accT.length;
     setSampleRate(samR);
   });
-
-  if (imuData.name === "traslacion") {
-    setTraslationVisible(true);
-  }
+  useEffect(() => {
+    if (imuData.name === "translation") {
+      setTraslationVisible(true);
+    }
+    if (imuData.name === "fall") {
+      setFallVisible(true);
+    }
+    if (imuData.name === "rotacion") {
+      setRotacionVisible(true);
+    }
+    if (imuData.name === "jump") {
+      setJumpVisible(true);
+    }
+  }, []);
 
   return (
     <div className="container">
@@ -95,12 +109,31 @@ const JornadasVistaMov = () => {
         zColor="blue"
         t={accT}
       />
-      <TranslationView
-        accY={accY}
-        accT={accT}
-        masa={mass}
-        testTime={testTime}
-      />
+      {translationVisible ? (
+        <>
+          <TranslationView
+            accY={accY}
+            accT={accT}
+            masa={mass}
+            testTime={testTime}
+          />
+        </>
+      ) : null}
+      {fallVisible ? (
+        <>
+          <FallView accZ={accZ} accT={accT} />
+        </>
+      ) : null}
+      {rotacionVisible ? (
+        <>
+          <RotacionView accY={accY} accZ={accZ} accT={accT} />
+        </>
+      ) : null}
+      {jumpVisible ? (
+        <>
+          <JumpView accY={accY} testTime={testTime} masa={mass} accT={accT} />
+        </>
+      ) : null}
     </div>
   );
 };
