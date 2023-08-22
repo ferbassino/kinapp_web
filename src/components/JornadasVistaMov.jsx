@@ -16,8 +16,8 @@ import JumpView from "./JumpView";
 const JornadasVistaMov = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { imuData } = location.state;
-  console.log(imuData);
+  const { imuData, selectMovement } = location.state;
+  console.log(selectMovement, "en jornadas view");
   const { accX, accY, accZ, accT, testTime, mass } = imuData;
 
   const [translationVisible, setTraslationVisible] = useState(false);

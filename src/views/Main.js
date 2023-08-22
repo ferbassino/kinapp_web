@@ -48,6 +48,7 @@ const Main = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [colapseVisible, setColapseVisible] = useState(false);
   const [asideVisible, setAsideVisible] = useState(false);
+  const [selectMovement, setSelectMovement] = useState("");
 
   const navigate = useNavigate();
 
@@ -135,6 +136,10 @@ const Main = () => {
     }
   };
 
+  const handleSearch = (e) => {
+    setSelectMovement(e);
+  };
+
   return (
     <>
       {user ? (
@@ -151,7 +156,7 @@ const Main = () => {
             {asideVisible ? (
               <>
                 <div className="col-md-3 position-fixed">
-                  <Aside />
+                  <Aside handleSearch={handleSearch} />
                 </div>
                 <div className="col-md-3"></div>
               </>
@@ -160,7 +165,11 @@ const Main = () => {
             <div className="col-md-9">
               {colapseVisible ? <DropdownComp /> : null}
               <Routes>
-                <Route path="/" element={<Home />} exact></Route>
+                <Route
+                  path="/"
+                  element={<Home selectMov={selectMovement} />}
+                  exact
+                ></Route>
                 <Route path="/kinapp" element={<Kinapp />} exact></Route>
                 <Route
                   path="/jorn/movement"

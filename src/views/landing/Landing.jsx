@@ -250,13 +250,13 @@ function Landing() {
               <Row>
                 <Col>
                   <Col>
-                    <h4 className="text-secondary">
+                    <h4 style={{ color: "#042c54" }}>
                       El día Jueves 28/09/2023 realizaremos un taller de
                       análisis biomecánico con unidades inerciales.
                     </h4>
                   </Col>
                   <Col>
-                    <h6 className="text-secondary">
+                    <h6 style={{ color: "#042c54" }}>
                       Proximamente podras descargar la aplicación aqui
                     </h6>
                   </Col>

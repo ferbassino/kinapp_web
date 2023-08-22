@@ -8,79 +8,64 @@ import { Button } from "react-bootstrap";
 import { integral } from "./gyroAuxiliaries/integral";
 import { rotationProcess } from "../auxiliaries/rotationprocess";
 import { getDate, getHour } from "../auxiliaries/getDate";
+import LoadingKinapp from "./LoadingKinapp";
 
 async function getTest(id) {
   try {
     const res = await client.get(`/api/test/${id}`);
     const data = res.data;
+
     return data;
   } catch (error) {
     console.log(error);
   }
 }
 
-const Jornadas = () => {
+const Jornadas = ({ selectMovement }) => {
   const navigate = useNavigate();
   const [testsVisibles, setTestsVisibles] = useState(false);
   const [allTests, setAllTests] = useState([]);
   const [dataObj, setDataObj] = useState({});
   const [visible, setVisible] = useState(false);
   const [buttonsVisibles, setButtonsVisibles] = useState(false);
-  const [accX, setAccX] = useState([]);
-  const [accY, setAccY] = useState([]);
-  const [accZ, setAccZ] = useState([]);
-  const [testTime, setTestTime] = useState(0);
-  const [accTime, setAccTime] = useState([]);
-  const [velX, setVelX] = useState([]);
-  const [velY, setVelY] = useState([]);
-  const [velZ, setVelZ] = useState([]);
-  const [velAbsXF, setVelAbsXF] = useState([]);
-  const [sinX, setSinX] = useState([]);
-  const [cosX, setCosX] = useState([]);
-  const [accYF, setAccYF] = useState([]);
-  const [accZF, setAccZF] = useState([]);
-  const [normAcc, setNormAcc] = useState([]);
-  const [tanAcc, setTanAcc] = useState([]);
-  const [angX, setAngX] = useState([]);
-  const [xChart, setXchart] = useState([]);
-  const [yChart, setYchart] = useState([]);
-  const [zChart, setZchart] = useState([]);
-  const [iChart, setIchart] = useState([]);
-  const [jChart, setJchart] = useState([]);
-  const [kChart, setKchart] = useState([]);
-  const [filteredTime, setFilteredTime] = useState([]);
-  const [normRadio, setNormRadio] = useState([]);
-  const [powVelX, setPowVelX] = useState([]);
-  const [normAcc9, setNormAcc9] = useState([]);
-  const [tanAcc9, setTanAcc9] = useState([]);
-  const [tanRadio, setTanRadio] = useState([]);
-  const [accAngX, setAccAngX] = useState([]);
+  const [loadingVisible, setLoadingVisible] = useState(false);
 
   async function getTests() {
     try {
+      setLoadingVisible(true);
       const res = await client.get("/api/imudata");
 
       const data = res.data;
+      console.log(res.data.imuDatas);
+      if (selectMovement !== "") {
+        const newData = data.imuDatas.filter(
+          (el) => el.name === selectMovement
+        );
+        setAllTests(newData);
+        console.log(newData);
+      } else {
+        setAllTests(data.imuDatas);
+      }
 
       if (data) {
         setTestsVisibles(true);
+        setLoadingVisible(false);
       }
-
-      setAllTests(data.imuDatas);
     } catch (error) {
+      setLoadingVisible(false);
       console.log(error);
     }
   }
 
   useEffect(() => {
     getTests();
-  }, [testsVisibles]);
+  }, [testsVisibles, selectMovement]);
 
   const handleTest = async (el) => {
     try {
       const res = await client.get(`/api/imudata/${el._id}`);
       const { imuData } = res.data;
-      navigate("/jorn/movement", { state: { imuData } });
+      navigate("/jorn/movement", { state: { imuData, selectMovement } });
       setVisible(true);
     } catch (error) {
       console.log(error);
@@ -107,49 +92,57 @@ const Jornadas = () => {
   return (
     <div className="container">
       <h2 className="mt-3">Kinapp mobile application</h2>
-
-      {testsVisibles ? (
+      {loadingVisible ? (
+        <div className="text-center my-5">
+          <LoadingKinapp />
+          <h3 className="text-center my-5">Cargando evaluaciones...</h3>
+        </div>
+      ) : (
         <>
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Movimiento</th>
-                <th scope="col">Identificador</th>
-                <th scope="col">Dia</th>
-                <th scope="col">Hora</th>
-                <th scope="col">Seleccionar / Eliminar</th>
-              </tr>
-            </thead>
+          {testsVisibles ? (
+            <>
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Movimiento</th>
+                    <th scope="col">Identificador</th>
+                    <th scope="col">Dia</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Seleccionar / Eliminar</th>
+                  </tr>
+                </thead>
 
-            {allTests.map((el) => (
-              <tbody key={el._id}>
-                <tr>
-                  <td>{el.name}</td>
-                  <td>{el.identifier}</td>
-                  <td>{getDate(el.date)}</td>
-                  <td>{getHour(el.date)}</td>
-                  <td>
-                    <Button
-                      variant="primary"
-                      className="m-2 "
-                      onClick={() => handleTest(el)}
-                    >
-                      select
-                    </Button>
-                    <Button
-                      variant="primary"
-                      className="m-2 "
-                      onClick={() => handleDelete(el)}
-                    >
-                      delete
-                    </Button>
-                  </td>
-                </tr>
-              </tbody>
-            ))}
-          </table>
+                {allTests.map((el) => (
+                  <tbody key={el._id}>
+                    <tr>
+                      <td>{el.name}</td>
+                      <td>{el.identifier}</td>
+                      <td>{getDate(el.date)}</td>
+                      <td>{getHour(el.date)}</td>
+                      <td>
+                        <Button
+                          variant="primary"
+                          className="m-2 "
+                          onClick={() => handleTest(el)}
+                        >
+                          select
+                        </Button>
+                        <Button
+                          variant="primary"
+                          className="m-2 "
+                          onClick={() => handleDelete(el)}
+                        >
+                          delete
+                        </Button>
+                      </td>
+                    </tr>
+                  </tbody>
+                ))}
+              </table>
+            </>
+          ) : null}
         </>
-      ) : null}
+      )}
 
       {buttonsVisibles ? (
         <>

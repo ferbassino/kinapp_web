@@ -6,20 +6,24 @@ const DropdownComp = () => {
   return (
     <>
       <DropdownButton
-        className=" bg-dark navbar-dark  "
+        className=" bg-dark navbar-dark mt-5 "
         as={ButtonGroup}
         // key={variant}
         id={`dropdown-variants-secondary`}
         variant="secondary"
-        title="en esta página"
+        title="Seleccionar evaluación"
       >
-        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-        <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-        <Dropdown.Item eventKey="3" active>
-          Active Item
-        </Dropdown.Item>
+        <Dropdown.Item eventKey="1">Todos</Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+        <Dropdown.Item eventKey="2">Traslación</Dropdown.Item>
+        <Dropdown.Item eventKey="3">Caída libre</Dropdown.Item>
+        <Dropdown.Item eventKey="4">Salto</Dropdown.Item>
+        <Dropdown.Item eventKey="5">Rotación</Dropdown.Item>
+        <Dropdown.Item eventKey="5"></Dropdown.Item>
+
+        {/* <Dropdown.Item eventKey="3" active>
+          Active Item
+        </Dropdown.Item> */}
       </DropdownButton>
     </>
   );
