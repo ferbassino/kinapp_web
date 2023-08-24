@@ -7,17 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { getClients } from "../services/clients";
 const MotionsView = ({ dataTest, email }) => {
   const navigate = useNavigate();
-  console.log("datatest", dataTest);
+
   const date = new Date(dataTest.date);
   const arrayLl = dataTest.arrayLl;
   const testTime = dataTest.testTime;
   const arrayTime = getArrayTestTime(arrayLl, testTime);
-  console.log("velx", dataTest.velX);
-  console.log("accz", dataTest.arrayLl);
-  console.log("acc", dataTest.arrayAp);
+
   const handleEmail = async (email) => {
     // const email = e.target.value;
-    console.log(email);
 
     const data = await getClients();
     const clients = data.clients;

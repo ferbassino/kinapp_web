@@ -13,11 +13,11 @@ import FallView from "./FallView";
 import RotacionView from "./RotacionView";
 import JumpView from "./JumpView";
 
-const JornadasVistaMov = () => {
+const JornadasVistaMov = ({ imuData, view }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { imuData, selectMovement } = location.state;
-  console.log(selectMovement, "en jornadas view");
+  // const { imuData, view } = location.state;
+
   const { accX, accY, accZ, accT, testTime, mass } = imuData;
 
   const [translationVisible, setTraslationVisible] = useState(false);

@@ -1,42 +1,51 @@
 import React, { useState } from "react";
 
 const Aside = (props) => {
-  const { handleSearch } = props;
+  const { handleSearch, userName } = props;
   const [value, setValue] = useState("");
-  console.log(value);
+
   return (
     <div className="vh-100  ">
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Seleccionar Movimiento</th>
+            <th scope="col">General</th>
           </tr>
         </thead>
         <tbody>
-          <tr onClick={() => handleSearch("all")}>
-            <td>Todos los movimientos</td>
+          <tr onClick={() => handleSearch("introduction")}>
+            <td>Introducción</td>
           </tr>
-          <tr onClick={() => handleSearch("unspecific")}>
-            <td>Movimientos inespecíficos</td>
+          <tr onClick={() => handleSearch("deviceUse")}>
+            <td>Uso del dispositivo</td>
+          </tr>
+          <tr onClick={() => handleSearch("statistics")}>
+            <td>Estadísticas</td>
+          </tr>
+          <tr onClick={() => handleSearch("documentation")}>
+            <td>Documentación</td>
           </tr>
         </tbody>
       </table>
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Movimientos de traslación</th>
+            <th scope="col">Área de {userName}</th>
           </tr>
         </thead>
         <tbody>
-          <tr onClick={() => handleSearch("translation")}>
-            <td>Traslación</td>
+          <tr onClick={() => handleSearch("home")}>
+            <td>Home</td>
           </tr>
 
-          <tr onClick={() => handleSearch("fall")}>
-            <td>Caida libre</td>
+          <tr onClick={() => handleSearch("tests")}>
+            <td>Evaluaciones</td>
           </tr>
-          <tr onClick={() => handleSearch("jump")}>
-            <td>Salto</td>
+          <tr onClick={() => handleSearch("apps")}>
+            <td>Apps</td>
+          </tr>
+          <tr onClick={() => handleSearch("userStatistics")}>
+            <td>Estadisticas</td>
           </tr>
         </tbody>
       </table>
@@ -44,12 +53,12 @@ const Aside = (props) => {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Movimientos de rotación</th>
+            <th scope="col">Otros</th>
           </tr>
         </thead>
         <tbody>
-          <tr onClick={() => handleSearch("rotacion")}>
-            <td>Rotación</td>
+          <tr onClick={() => handleSearch("jornadas")}>
+            <td>Jornadas</td>
           </tr>
           {/* <tr>
             <td>opcion 2</td>

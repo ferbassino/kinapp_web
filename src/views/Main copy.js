@@ -48,8 +48,7 @@ const Main = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [colapseVisible, setColapseVisible] = useState(false);
   const [asideVisible, setAsideVisible] = useState(false);
-  const [selectView, setSelectView] = useState("");
-
+  const [selectMovement, setSelectMovement] = useState("");
   const navigate = useNavigate();
 
   const { width } = useScreenSize();
@@ -101,7 +100,7 @@ const Main = () => {
         email,
         password,
       });
-
+      console.log(data);
       setRoles(data.roles);
       setUser(data);
       setUserName(data.userName);
@@ -137,7 +136,7 @@ const Main = () => {
   };
 
   const handleSearch = (e) => {
-    setSelectView(e);
+    setSelectMovement(e);
   };
 
   return (
@@ -156,7 +155,7 @@ const Main = () => {
             {asideVisible ? (
               <>
                 <div className="col-md-3 position-fixed">
-                  <Aside handleSearch={handleSearch} userName={userName} />
+                  <Aside handleSearch={handleSearch} />
                 </div>
                 <div className="col-md-3"></div>
               </>
@@ -167,7 +166,7 @@ const Main = () => {
               <Routes>
                 <Route
                   path="/"
-                  element={<Home selectedView={selectView} />}
+                  element={<Home selectMov={selectMovement} />}
                   exact
                 ></Route>
                 <Route path="/kinapp" element={<Kinapp />} exact></Route>

@@ -10,6 +10,9 @@ import { rotationProcess } from "../auxiliaries/rotationprocess";
 import { getDate, getHour } from "../auxiliaries/getDate";
 import LoadingKinapp from "./LoadingKinapp";
 
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import JornadasVistaMov from "./JornadasVistaMov";
+
 async function getTest(id) {
   try {
     const res = await client.get(`/api/test/${id}`);
@@ -21,7 +24,7 @@ async function getTest(id) {
   }
 }
 
-const Jornadas = ({ selectMovement }) => {
+const Jornadas = ({ view }) => {
   const navigate = useNavigate();
   const [testsVisibles, setTestsVisibles] = useState(false);
   const [allTests, setAllTests] = useState([]);
@@ -29,6 +32,9 @@ const Jornadas = ({ selectMovement }) => {
   const [visible, setVisible] = useState(false);
   const [buttonsVisibles, setButtonsVisibles] = useState(false);
   const [loadingVisible, setLoadingVisible] = useState(false);
+  const [mov, setMov] = useState("");
+  const [selectedTestVisible, setSelectedTestVisible] = useState(false);
+  const [imuData, setImuData] = useState([]);
 
   async function getTests() {
     try {
@@ -36,13 +42,10 @@ const Jornadas = ({ selectMovement }) => {
       const res = await client.get("/api/imudata");
 
       const data = res.data;
-      console.log(res.data.imuDatas);
-      if (selectMovement !== "") {
-        const newData = data.imuDatas.filter(
-          (el) => el.name === selectMovement
-        );
+
+      if (mov !== "") {
+        const newData = data.imuDatas.filter((el) => el.name === mov);
         setAllTests(newData);
-        console.log(newData);
       } else {
         setAllTests(data.imuDatas);
       }
@@ -59,13 +62,15 @@ const Jornadas = ({ selectMovement }) => {
 
   useEffect(() => {
     getTests();
-  }, [testsVisibles, selectMovement]);
+  }, [testsVisibles, view, mov]);
 
   const handleTest = async (el) => {
     try {
       const res = await client.get(`/api/imudata/${el._id}`);
       const { imuData } = res.data;
-      navigate("/jorn/movement", { state: { imuData, selectMovement } });
+      setImuData(imuData);
+      setSelectedTestVisible(true);
+      // navigate("/jorn/movement", { state: { imuData, view } });
       setVisible(true);
     } catch (error) {
       console.log(error);
@@ -88,7 +93,10 @@ const Jornadas = ({ selectMovement }) => {
     setVisible(true);
   };
   // const fecha = date(new Date());
-
+  const selectMov = (e) => {
+    setSelectedTestVisible(false);
+    setMov(e.target.value);
+  };
   return (
     <div className="container">
       <h2 className="mt-3">Kinapp mobile application</h2>
@@ -101,44 +109,72 @@ const Jornadas = ({ selectMovement }) => {
         <>
           {testsVisibles ? (
             <>
-              <table className="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Movimiento</th>
-                    <th scope="col">Identificador</th>
-                    <th scope="col">Dia</th>
-                    <th scope="col">Hora</th>
-                    <th scope="col">Seleccionar / Eliminar</th>
-                  </tr>
-                </thead>
+              <ButtonGroup size="lg" className="mb-2">
+                <Button value={""} onClick={(e) => selectMov(e)}>
+                  Todas
+                </Button>
+                <Button value={"inespecifico"} onClick={(e) => selectMov(e)}>
+                  Inespecíficas
+                </Button>
+                <Button value={"translation"} onClick={(e) => selectMov(e)}>
+                  Traslación
+                </Button>
+                <Button value={"rotacion"} onClick={(e) => selectMov(e)}>
+                  Rotación
+                </Button>
+                <Button value={"fall"} onClick={(e) => selectMov(e)}>
+                  Caída
+                </Button>
+                <Button value={"jump"} onClick={(e) => selectMov(e)}>
+                  Salto
+                </Button>
+              </ButtonGroup>
+              {selectedTestVisible ? (
+                <>
+                  <JornadasVistaMov imuData={imuData} view={view} />
+                </>
+              ) : (
+                <>
+                  <table className="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Movimiento</th>
+                        <th scope="col">Identificador</th>
+                        <th scope="col">Dia</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Seleccionar / Eliminar</th>
+                      </tr>
+                    </thead>
 
-                {allTests.map((el) => (
-                  <tbody key={el._id}>
-                    <tr>
-                      <td>{el.name}</td>
-                      <td>{el.identifier}</td>
-                      <td>{getDate(el.date)}</td>
-                      <td>{getHour(el.date)}</td>
-                      <td>
-                        <Button
-                          variant="primary"
-                          className="m-2 "
-                          onClick={() => handleTest(el)}
-                        >
-                          select
-                        </Button>
-                        <Button
-                          variant="primary"
-                          className="m-2 "
-                          onClick={() => handleDelete(el)}
-                        >
-                          delete
-                        </Button>
-                      </td>
-                    </tr>
-                  </tbody>
-                ))}
-              </table>
+                    {allTests.map((el) => (
+                      <tbody key={el._id}>
+                        <tr>
+                          <td>{el.name}</td>
+                          <td>{el.identifier}</td>
+                          <td>{getDate(el.date)}</td>
+                          <td>{getHour(el.date)}</td>
+                          <td>
+                            <Button
+                              variant="primary"
+                              className="m-2 "
+                              onClick={() => handleTest(el)}
+                            >
+                              select
+                            </Button>
+                            <Button
+                              variant="primary"
+                              className="m-2 "
+                              onClick={() => handleDelete(el)}
+                            >
+                              delete
+                            </Button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    ))}
+                  </table>
+                </>
+              )}
             </>
           ) : null}
         </>
@@ -154,17 +190,7 @@ const Jornadas = ({ selectMovement }) => {
           </Button>
         </>
       ) : null}
-      {visible ? (
-        <div>
-          <div className="mt-3">
-            <Chart />
-          </div>
-        </div>
-      ) : (
-        <div className="mt-5">
-          <h5>Results will be displayed below...</h5>
-        </div>
-      )}
+
       <hr className="row m-4" />
       <div className="row mb-5 text-center">
         <p className="col">curso.biomecanica.imu@gmail.com</p>
