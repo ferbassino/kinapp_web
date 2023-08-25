@@ -191,7 +191,6 @@ const Jornadas = ({ view }) => {
         </>
       ) : null}
 
-      <hr className="row m-4" />
       <div className="row mb-5 text-center">
         <p className="col">curso.biomecanica.imu@gmail.com</p>
       </div>

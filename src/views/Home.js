@@ -8,8 +8,9 @@ import Documentation from "./general/Documentation";
 import Statistics from "./general/Statistics";
 import DeviceUse from "./general/DeviceUse";
 import Introduction from "./general/Introduction";
+import ZoneHome from "./zoneOf/ZoneHome";
 
-const Home = ({ selectedView }) => {
+const Home = ({ selectedView, userName }) => {
   const [view, setView] = useState("");
   useEffect(() => {
     setView(selectedView);
@@ -17,6 +18,11 @@ const Home = ({ selectedView }) => {
 
   return (
     <>
+      {!view || view === "home" ? (
+        <>
+          <ZoneHome view={view} userName={userName} />
+        </>
+      ) : null}
       {view === "jornadas" ? (
         <>
           <Jornadas view={view} />

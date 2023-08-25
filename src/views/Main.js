@@ -34,6 +34,7 @@ import useScreenSize from "../auxiliaries/sizeScreen";
 import DropdownComp from "../components/DropDown";
 import Footer from "../components/Footer";
 import JornadasVistaMov from "../components/JornadasVistaMov";
+import Loading from "../components/Loading";
 
 const Main = () => {
   const [email, setEmail] = useState("");
@@ -49,6 +50,7 @@ const Main = () => {
   const [colapseVisible, setColapseVisible] = useState(false);
   const [asideVisible, setAsideVisible] = useState(false);
   const [selectView, setSelectView] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -95,7 +97,7 @@ const Main = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const data = await login({
         email,
@@ -127,9 +129,12 @@ const Main = () => {
       setEmail("");
       setPassword("");
       navigate("/");
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       setErrorMessage("wrong credentials");
       alert("wrong username or password");
+
       setTimeout(() => {
         setErrorMessage(null);
       }, 5000);
@@ -142,116 +147,128 @@ const Main = () => {
 
   return (
     <>
-      {user ? (
-        <div className="column">
-          <div>
-            <NavBar
-              handleLogout={handleLogout}
-              userName={userName}
-              roles={roles}
-            />
-          </div>
-          <div style={{ height: 57, backgroundColor: "#fff" }}></div>
-          <div className="row">
-            {asideVisible ? (
-              <>
-                <div className="col-md-3 position-fixed">
-                  <Aside handleSearch={handleSearch} userName={userName} />
-                </div>
-                <div className="col-md-3"></div>
-              </>
-            ) : null}
+      {loading ? (
+        <>
+          <Loading />
+        </>
+      ) : (
+        <>
+          {user ? (
+            <div className="column">
+              <div>
+                <NavBar
+                  handleLogout={handleLogout}
+                  userName={userName}
+                  roles={roles}
+                />
+              </div>
+              <div style={{ height: 57, backgroundColor: "#fff" }}></div>
+              <div className="row">
+                {asideVisible ? (
+                  <>
+                    <div className="col-md-3 position-fixed">
+                      <Aside handleSearch={handleSearch} userName={userName} />
+                    </div>
+                    <div className="col-md-3"></div>
+                  </>
+                ) : null}
 
-            <div className="col-md-9">
-              {colapseVisible ? <DropdownComp /> : null}
-              <Routes>
-                <Route
-                  path="/"
-                  element={<Home selectedView={selectView} />}
-                  exact
-                ></Route>
-                <Route path="/kinapp" element={<Kinapp />} exact></Route>
-                <Route
-                  path="/jorn/movement"
-                  element={<JornadasVistaMov />}
-                  exact
-                ></Route>
-                {/* --------- ADMIN ----------- */}
-                <Route element={<AdminRoutes admin={admin} />}>
-                  <Route path="/admin" element={<Admin />} exact></Route>
-                  <Route
-                    path="/admin/overview"
-                    element={<OverView />}
-                    exact
-                  ></Route>
-                  <Route path="/admin/users" element={<Users />} exact></Route>
-                  <Route
-                    path="/admin/clients"
-                    element={<Clients />}
-                    exact
-                  ></Route>
-                  <Route
-                    path="/admin/motion"
-                    element={<Motion />}
-                    exact
-                  ></Route>
-                </Route>
-                {/* --------- READER ----------- */}
-                <Route element={<ReaderRoutes reader={reader} />}>
-                  <Route path="/reader" element={<Reader />} exact></Route>
-                  <Route
-                    path="/reader/overview"
-                    element={<ReaderOverView />}
-                    exact
-                  ></Route>
-                  <Route
-                    path="/reader/navigation"
-                    element={<ReaderNavigation />}
-                    exact
-                  ></Route>
-                  <Route
-                    path="/reader/clients"
-                    element={<ReaderClients />}
-                    exact
-                  ></Route>
-                  <Route
-                    path="/reader/motion"
-                    element={<ReaderMotion />}
-                    exact
-                  ></Route>
-                  <Route
-                    path="/reader/motions"
-                    element={<ReaderMotions />}
-                    exact
-                  ></Route>
-                  <Route
-                    path="/reader/client"
-                    element={<ReaderClient />}
-                    exact
-                  ></Route>
-                </Route>
-                {/* --------- CLIENT BRONZE ----------- */}
-                <Route element={<ClientRoutes bronze={bronze} />}>
-                  <Route path="/client" element={<Client />} exact></Route>
-                  <Route
-                    path="/bronze/profile"
-                    element={<BronzeProfile />}
-                    exact
-                  ></Route>
-                </Route>
-                <Route path="*" element={<Error />}></Route>
+                <div className="col-md-9">
+                  {colapseVisible ? <DropdownComp /> : null}
+                  <Routes>
+                    <Route
+                      path="/"
+                      element={
+                        <Home selectedView={selectView} userName={userName} />
+                      }
+                      exact
+                    ></Route>
+                    <Route path="/kinapp" element={<Kinapp />} exact></Route>
+                    <Route
+                      path="/jorn/movement"
+                      element={<JornadasVistaMov />}
+                      exact
+                    ></Route>
+                    {/* --------- ADMIN ----------- */}
+                    <Route element={<AdminRoutes admin={admin} />}>
+                      <Route path="/admin" element={<Admin />} exact></Route>
+                      <Route
+                        path="/admin/overview"
+                        element={<OverView />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/admin/users"
+                        element={<Users />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/admin/clients"
+                        element={<Clients />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/admin/motion"
+                        element={<Motion />}
+                        exact
+                      ></Route>
+                    </Route>
+                    {/* --------- READER ----------- */}
+                    <Route element={<ReaderRoutes reader={reader} />}>
+                      <Route path="/reader" element={<Reader />} exact></Route>
+                      <Route
+                        path="/reader/overview"
+                        element={<ReaderOverView />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/reader/navigation"
+                        element={<ReaderNavigation />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/reader/clients"
+                        element={<ReaderClients />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/reader/motion"
+                        element={<ReaderMotion />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/reader/motions"
+                        element={<ReaderMotions />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/reader/client"
+                        element={<ReaderClient />}
+                        exact
+                      ></Route>
+                    </Route>
+                    {/* --------- CLIENT BRONZE ----------- */}
+                    <Route element={<ClientRoutes bronze={bronze} />}>
+                      <Route path="/client" element={<Client />} exact></Route>
+                      <Route
+                        path="/bronze/profile"
+                        element={<BronzeProfile />}
+                        exact
+                      ></Route>
+                    </Route>
+                    <Route path="*" element={<Error />}></Route>
 
-                {/* acá definimos una ruta dinamica para decirle que le vamos a pasar un parametro por la url */}
-                {/* <Route
+                    {/* acá definimos una ruta dinamica para decirle que le vamos a pasar un parametro por la url */}
+                    {/* <Route
                   path="/renderuser/:id"
                   element={<RenderUser />}
                   exact
                 ></Route> */}
-                {/* --------- EDITOR ----------- */}
-                <Route element={<EditorRoutes editor={editor} />}>
-                  <Route path="/editor" element={<Editor />} exact></Route>
-                </Route>
-                {/* <Route
+                    {/* --------- EDITOR ----------- */}
+                    <Route element={<EditorRoutes editor={editor} />}>
+                      <Route path="/editor" element={<Editor />} exact></Route>
+                    </Route>
+                    {/* <Route
                   path="/editor/overview"
                   element={<EditorOverView />}
                   exact
@@ -276,23 +293,25 @@ const Main = () => {
                   element={<EditorMotions />}
                   exact
                 ></Route> */}
-              </Routes>
-              <Footer />
+                  </Routes>
+                  <Footer />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      ) : (
-        <>
-          <div className="container  text-center">
-            <LoginForm
-              email={email}
-              password={password}
-              handleLogin={handleLogin}
-              handleEmail={(e) => setEmail(e.target.value)}
-              handlePassword={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <Landing />
+          ) : (
+            <>
+              <div className="container  text-center">
+                <LoginForm
+                  email={email}
+                  password={password}
+                  handleLogin={handleLogin}
+                  handleEmail={(e) => setEmail(e.target.value)}
+                  handlePassword={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <Landing />
+            </>
+          )}
         </>
       )}
     </>
