@@ -174,7 +174,12 @@ const Main = () => {
                 ) : null}
 
                 <div className="col-md-9">
-                  {colapseVisible ? <DropdownComp /> : null}
+                  {colapseVisible ? (
+                    <DropdownComp
+                      handleSearch={handleSearch}
+                      userName={userName}
+                    />
+                  ) : null}
                   <Routes>
                     <Route
                       path="/"

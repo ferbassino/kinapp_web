@@ -100,7 +100,7 @@ const Main = () => {
         email,
         password,
       });
-      console.log(data);
+
       setRoles(data.roles);
       setUser(data);
       setUserName(data.userName);
