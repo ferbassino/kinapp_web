@@ -6,7 +6,8 @@ import dashBoardImage from "../../assets/images/dashboard-modern.png";
 import clients from "../../assets/images/images.png";
 import motion from "../../assets/images/motion.png";
 
-const EditorNavigation = () => {
+const EditorNavigation = (view, userName) => {
+  console.log(view, "view en editorNavigator");
   return (
     <div className="container">
       <h2 className="m-3">Navigation</h2>

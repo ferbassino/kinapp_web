@@ -6,9 +6,11 @@ import Title from "./Title";
 import SubTitle from "./SubTitle";
 import SubTitle2 from "./Subtitle2";
 import { useEffect } from "react";
+import repsAnalisis from "../auxiliaries/repsAnalisis";
 
 const TranslationView = ({ accY = [], accT = [], testTime = 0, masa = 0 }) => {
   const [dinamicaVisible, setDinamicaVisible] = useState(false);
+  const { arrayReps } = repsAnalisis(accY, accT, masa, testTime);
 
   useEffect(() => {
     if (masa !== 0) {
@@ -52,6 +54,7 @@ const TranslationView = ({ accY = [], accT = [], testTime = 0, masa = 0 }) => {
         xName={"Aceleración ´y´"}
         t={arrayTTraslacion}
       />
+
       <Title text="Aceleración, velocidad y posición" />
       <Chart
         x={arrayATraslacion}
@@ -84,6 +87,8 @@ const TranslationView = ({ accY = [], accT = [], testTime = 0, masa = 0 }) => {
       <SubTitle text="Distancia [m]" value={distanciaProp.toFixed(2)} />
       <br />
       <br />
+      <Title text="Traslación múltiple" />
+      <Chart x={arrayReps} xColor={"#fa020f"} xName={"reps ´y´"} t={accT} />
       {dinamicaVisible ? (
         <>
           <Header title="Dinámica" />

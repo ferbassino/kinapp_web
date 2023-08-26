@@ -174,17 +174,16 @@ const Main = () => {
                 ) : null}
 
                 <div className="col-md-9">
-                  {colapseVisible ? (
-                    <DropdownComp
-                      handleSearch={handleSearch}
-                      userName={userName}
-                    />
-                  ) : null}
+                  {colapseVisible ? <DropdownComp /> : null}
                   <Routes>
                     <Route
                       path="/"
                       element={
-                        <Home selectedView={selectView} userName={userName} />
+                        <Home
+                          selectedView={selectView}
+                          userName={userName}
+                          editor={editor}
+                        />
                       }
                       exact
                     ></Route>
