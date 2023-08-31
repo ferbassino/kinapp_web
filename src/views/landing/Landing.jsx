@@ -9,7 +9,7 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
-import axis from "./assets/axis2.png";
+
 import movileApp from "./assets/movile_app.jpeg";
 import webApp from "./assets/web_app.png";
 import umico from "./assets/umico.png";
@@ -17,8 +17,24 @@ import dataBase from "./assets/database.png";
 import anyWhere from "./assets/anywhere.png";
 import jornadas from "./assets/jornadas.png";
 import hero from "./assets/hero.png";
+import cap_1 from "./assets/cap_1.jpeg";
+import cap_2 from "./assets/cap_2.jpeg";
+import cap_3 from "./assets/cap_3.jpeg";
+import logo from "../../logo.svg";
+import icon from "./assets/icon.png";
+import apkImage from "./assets/apk_image.jpeg";
 
+const apkUrl = "https://kinapp-web.vercel.app/kinapp.apk";
 function Landing() {
+  const downloadApkUrl = (apkUrl) => {
+    const fileName = apkUrl.split("/").pop();
+    const aTag = document.createElement("a");
+    aTag.href = apkUrl;
+    aTag.setAttribute("download", fileName);
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+  };
   return (
     <div>
       <Container>
@@ -75,11 +91,25 @@ function Landing() {
           >
             <div className="d-flex justify-content-center align-items-center h-100">
               <div className="text-white">
-                <h1 className="mb-3  ">kinApp</h1>
-                <h4 className="mb-3">
+                <h1
+                  className="mb-3"
+                  style={{ color: "#030029", fontSize: 50, fontWeight: "bold" }}
+                >
+                  kinApp
+                </h1>
+                <h4
+                  className="mb-3"
+                  style={{ color: "#030029", fontSize: 30, fontWeight: "bold" }}
+                >
                   Let's take biomechanical analysis to next level with kinApp
                 </h4>
               </div>
+              <img
+                src={logo}
+                className="App-logo"
+                alt="logo"
+                style={{ position: "absolute", zIndex: -1 }}
+              />
             </div>
           </div>
         </div>
@@ -248,7 +278,14 @@ function Landing() {
                 </h1>
               </Col>
               <Row>
-                <Col>
+                <Col sm={6}>
+                  <img
+                    src={jornadas}
+                    className="img-fluid shadow-4"
+                    alt="..."
+                  />
+                </Col>
+                <Col sm={6}>
                   <Col>
                     <h4 style={{ color: "#042c54" }}>
                       El día Jueves 28/09/2023 realizaremos un taller de
@@ -256,18 +293,50 @@ function Landing() {
                     </h4>
                   </Col>
                   <Col>
-                    <h6 style={{ color: "#042c54" }}>
-                      Proximamente podras descargar la aplicación aqui
-                    </h6>
+                    <h5 style={{ color: "#042c54", marginTop: "3rem" }}>
+                      Clik sobre la imagen para descargar apk 👇
+                    </h5>
+                    <div
+                      style={{
+                        cursor: "pointer",
+                        width: "8rem",
+                        alignContent: "center",
+                        justifyItems: "center",
+                      }}
+                    >
+                      <img
+                        style={{ borderRadius: 20, margin: "3rem" }}
+                        src={apkImage}
+                        className="img-fluid shadow-4"
+                        alt="..."
+                        onClick={() => {
+                          downloadApkUrl(apkUrl);
+                        }}
+                      />
+                    </div>
                   </Col>
                 </Col>
-                <Col>
+                <h5 style={{ color: "#042c54", margin: "1rem" }}>Capturas:</h5>
+                <Row>
                   <img
-                    src={jornadas}
+                    src={cap_1}
                     className="img-fluid shadow-4"
                     alt="..."
+                    style={{ width: "12rem", margin: "2rem" }}
                   />
-                </Col>
+                  <img
+                    src={cap_2}
+                    className="img-fluid shadow-4"
+                    alt="..."
+                    style={{ width: "12rem", margin: "2rem" }}
+                  />
+                  <img
+                    src={cap_3}
+                    className="img-fluid shadow-4"
+                    alt="..."
+                    style={{ width: "12rem", margin: "2rem" }}
+                  />
+                </Row>
               </Row>
             </Col>
           </Row>

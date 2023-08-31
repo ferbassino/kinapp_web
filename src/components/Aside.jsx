@@ -38,6 +38,9 @@ const Aside = (props) => {
             <td>Home</td>
           </tr>
 
+          <tr onClick={() => handleSearch("clients")}>
+            <td>Clientes</td>
+          </tr>
           <tr onClick={() => handleSearch("tests")}>
             <td>Evaluaciones</td>
           </tr>

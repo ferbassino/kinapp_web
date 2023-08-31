@@ -10,18 +10,35 @@ import DeviceUse from "./general/DeviceUse";
 import Introduction from "./general/Introduction";
 import ZoneHome from "./zoneOf/ZoneHome";
 import Editor from "./editor/Editor";
-
-const Home = ({ selectedView, userName, editor }) => {
-  const [view, setView] = useState("");
+import Reader from "./reader/Reader";
+import ReaderClients from "./reader/ReaderClients";
+import ReaderMotions from "./reader/ReaderMotions";
+const Home = ({ selectedView, userName, roles }) => {
+  const [view, setView] = useState("home");
   useEffect(() => {
     setView(selectedView);
   }, [selectedView]);
-
+  console.log(roles, "roles en home");
   return (
     <>
-      {!view || (view === "home" && editor) ? (
+      {view === "home" && roles === "editor" ? (
         <>
           <Editor view={view} userName={userName} />
+        </>
+      ) : null}
+      {view === "home" && roles === "reader" ? (
+        <>
+          <Reader view={view} userName={userName} />
+        </>
+      ) : null}
+      {view === "clients" && roles === "reader" ? (
+        <>
+          <ReaderClients view={view} userName={userName} />
+        </>
+      ) : null}
+      {view === "tests" && roles === "reader" ? (
+        <>
+          <ReaderMotions view={view} userName={userName} />
         </>
       ) : null}
       {view === "jornadas" ? (

@@ -5,6 +5,7 @@ import Chart from "./Chart";
 import getArrayTestTime from "../auxiliaries/getArrayTestTime";
 import { useNavigate } from "react-router-dom";
 import { getClients } from "../services/clients";
+
 const MotionsView = ({ dataTest, email }) => {
   const navigate = useNavigate();
 
@@ -21,11 +22,10 @@ const MotionsView = ({ dataTest, email }) => {
 
     const searchedClient = clients.find((client) => client.email === email);
 
-    if (searchedClient) {
-      const id = searchedClient._id;
-
-      navigate("/reader/client", { state: { userId: id } });
-    }
+    // if (searchedClient) {
+    //   const id = searchedClient._id;
+    //   navigate("/reader/client", { state: { userId: id } });
+    // }
   };
   return (
     <div className="container">

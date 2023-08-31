@@ -26,7 +26,7 @@ import ReaderNavigation from "./reader/ReaderNavigation";
 import ReaderClients from "./reader/ReaderClients";
 import ReaderMotion from "./reader/ReaderMotion";
 import ClientView from "../components/ClientView";
-import ReaderClient from "./reader/ReaderClient";
+
 import ReaderMotions from "./reader/ReaderMotions";
 import BronzeProfile from "./bronze/BronzeProfile";
 import Aside from "../components/Aside";
@@ -182,7 +182,7 @@ const Main = () => {
                         <Home
                           selectedView={selectView}
                           userName={userName}
-                          editor={editor}
+                          roles={roles}
                         />
                       }
                       exact
@@ -214,40 +214,6 @@ const Main = () => {
                       <Route
                         path="/admin/motion"
                         element={<Motion />}
-                        exact
-                      ></Route>
-                    </Route>
-                    {/* --------- READER ----------- */}
-                    <Route element={<ReaderRoutes reader={reader} />}>
-                      <Route path="/reader" element={<Reader />} exact></Route>
-                      <Route
-                        path="/reader/overview"
-                        element={<ReaderOverView />}
-                        exact
-                      ></Route>
-                      <Route
-                        path="/reader/navigation"
-                        element={<ReaderNavigation />}
-                        exact
-                      ></Route>
-                      <Route
-                        path="/reader/clients"
-                        element={<ReaderClients />}
-                        exact
-                      ></Route>
-                      <Route
-                        path="/reader/motion"
-                        element={<ReaderMotion />}
-                        exact
-                      ></Route>
-                      <Route
-                        path="/reader/motions"
-                        element={<ReaderMotions />}
-                        exact
-                      ></Route>
-                      <Route
-                        path="/reader/client"
-                        element={<ReaderClient />}
                         exact
                       ></Route>
                     </Route>

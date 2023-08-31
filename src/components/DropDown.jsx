@@ -38,6 +38,9 @@ const DropdownComp = (props) => {
         <Dropdown.Item eventKey="5" onClick={() => handleSearch("home")}>
           Home
         </Dropdown.Item>
+        <Dropdown.Item eventKey="6" onClick={() => handleSearch("clients")}>
+          Clientes
+        </Dropdown.Item>
         <Dropdown.Item eventKey="6" onClick={() => handleSearch("tests")}>
           Evaluaciones
         </Dropdown.Item>

@@ -9,6 +9,7 @@ import { getDate, getHour } from "../auxiliaries/getDate";
 import { Button } from "react-bootstrap";
 import Select from "react-select";
 import ModalComponent from "./ModalComponent";
+import MotionsView from "./MotionsView";
 
 const ClientView = ({ id }) => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const ClientView = ({ id }) => {
   const [arrayDataTests, setArrayDataTests] = useState([]);
   const [editRole, setEditRole] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [testVisible, setTestVisible] = useState(false);
 
   // modal
   const [show, setShow] = useState(false);
@@ -48,18 +50,18 @@ const ClientView = ({ id }) => {
     }
 
     setArrayDataTests(arrayDataT);
+    console.log(arrayDataT);
   };
 
   const handleTest = (el) => {
-    navigate("/reader/motion", { state: { el, email: clientData.email } });
+    setTestVisible(true);
+    // navigate("/reader/motion", { state: { el, email: clientData.email } });
   };
 
   const handleDelete = async () => {
     try {
       setShow(true);
 
-      console.log("shoow", show);
-      console.log("confirmdelete", confirmDelete);
       if (confirmDelete) {
         navigate("/reader/clients");
       }
@@ -129,7 +131,7 @@ const ClientView = ({ id }) => {
             <tr>
               <td>6</td>
               <td>physical activity level</td>
-              <td>{clientData.size / 100} m</td>
+              <td>{clientData.pALevel}</td>
             </tr>
             <tr onClick={handleRole}>
               <td>7</td>
@@ -164,37 +166,43 @@ const ClientView = ({ id }) => {
             </tr>
           </tbody>
         </Table>
-
-        <Header title={`${clientData.email} tests`} />
-
-        <div className="col">
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">
-                  {/* <img src={logo} className="App-logo" alt="logo" /> */}
-                </th>
-                <th scope="col">Date</th>
-                <th scope="col">Hour</th>
-                <th scope="col">Segment</th>
-                <th scope="col">movement</th>
-                <th scope="col">side</th>
-              </tr>
-            </thead>
-            <tbody>
-              {arrayDataTests.map((el, index) => (
-                <tr key={index} onClick={() => handleTest(el)}>
-                  <td>{index + 1}</td>
-                  <td>{getDate(el.date)}</td>
-                  <td>{getHour(el.date)}</td>
-                  <td>{el.segment}</td>
-                  <td>{el.motion}</td>
-                  {el.side ? <td>{el.side}</td> : <td>-</td>}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {testVisible ? (
+          <>
+            <MotionsView />
+          </>
+        ) : (
+          <>
+            <Header title={`${clientData.email} tests`} />
+            <div className="col">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      {/* <img src={logo} className="App-logo" alt="logo" /> */}
+                    </th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Hour</th>
+                    <th scope="col">Segment</th>
+                    <th scope="col">movement</th>
+                    <th scope="col">side</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {arrayDataTests.map((el, index) => (
+                    <tr key={index} onClick={() => handleTest(el)}>
+                      <td>{index + 1}</td>
+                      <td>{getDate(el.date)}</td>
+                      <td>{getHour(el.date)}</td>
+                      <td>{el.segment}</td>
+                      <td>{el.motion}</td>
+                      {el.side ? <td>{el.side}</td> : <td>-</td>}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </div>
       <ModalComponent
         title="Delete client"
