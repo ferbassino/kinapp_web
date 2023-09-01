@@ -372,9 +372,20 @@ function Landing() {
             </h4>
           </Row>
           <Row>
-            <Col className="text-secondary">Instagram: kinapp.dev</Col>
-            <Col className="text-secondary">kinappbiomechanics@gmail.com</Col>
-            <Col className="text-secondary">WhatsApp: +54 9 11 5806 0332</Col>
+            <Col>
+              <div>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://instagram.com/kinapp.dev?utm_source=qr&igshid=ZDc4ODBmNjlmNQ%3D%3D"
+                >
+                  Instagram: kinapp.dev
+                </a>
+              </div>
+            </Col>
+
+            <Col>kinappbiomechanics@gmail.com</Col>
+            <Col>WhatsApp: +54 9 11 5806 0332</Col>
           </Row>
         </Container>
       </footer>
