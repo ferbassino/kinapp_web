@@ -308,7 +308,7 @@ function Landing() {
                   </Col>
                 </Col>
                 <h5 style={{ color: "#042c54", margin: "1rem" }}>Capturas:</h5>
-                <Row>
+                <Row style={{ textAlign: "center", justifyContent: "center" }}>
                   <img
                     src={cap_2}
                     className="img-fluid shadow-4"
