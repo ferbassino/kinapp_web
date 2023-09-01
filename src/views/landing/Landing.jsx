@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Nav,
-  Navbar,
-  NavDropdown,
-  Row,
-  Col,
-  Card,
-  Button,
-} from "react-bootstrap";
+import { Container, Nav, Navbar, Row, Col, Card } from "react-bootstrap";
 
 import movileApp from "./assets/movile_app.jpeg";
 import webApp from "./assets/web_app.png";
@@ -20,6 +11,9 @@ import hero from "./assets/hero.png";
 import cap_1 from "./assets/cap_1.jpeg";
 import cap_2 from "./assets/cap_2.jpeg";
 import cap_3 from "./assets/cap_3.jpeg";
+import cap_4 from "./assets/cap_4.jpeg";
+import cap_5 from "./assets/cap_5.jpeg";
+import cap_6 from "./assets/cap_6.jpeg";
 import logo from "../../logo.svg";
 import icon from "./assets/icon.png";
 import apkImage from "./assets/apk_image.jpeg";
@@ -287,54 +281,70 @@ function Landing() {
                 </Col>
                 <Col sm={6}>
                   <Col>
-                    <h4 style={{ color: "#042c54" }}>
+                    <h4 style={{ color: "#042c54", margin: "0.3rem" }}>
                       El día Jueves 28/09/2023 realizaremos un taller de
                       análisis biomecánico con unidades inerciales.
                     </h4>
                   </Col>
-                  <Col>
+                  <Col style={{ textAlign: "center" }}>
                     <h5 style={{ color: "#042c54", marginTop: "3rem" }}>
                       Clik sobre la imagen para descargar apk 👇
                     </h5>
-                    <div
+
+                    <img
                       style={{
+                        borderRadius: 20,
+                        margin: "3rem",
                         cursor: "pointer",
                         width: "8rem",
-                        alignContent: "center",
-                        justifyItems: "center",
                       }}
-                    >
-                      <img
-                        style={{ borderRadius: 20, margin: "3rem" }}
-                        src={apkImage}
-                        className="img-fluid shadow-4"
-                        alt="..."
-                        onClick={() => {
-                          downloadApkUrl(apkUrl);
-                        }}
-                      />
-                    </div>
+                      src={apkImage}
+                      className="img-fluid shadow-4"
+                      alt="..."
+                      onClick={() => {
+                        downloadApkUrl(apkUrl);
+                      }}
+                    />
                   </Col>
                 </Col>
                 <h5 style={{ color: "#042c54", margin: "1rem" }}>Capturas:</h5>
                 <Row>
                   <img
-                    src={cap_1}
-                    className="img-fluid shadow-4"
-                    alt="..."
-                    style={{ width: "12rem", margin: "2rem" }}
-                  />
-                  <img
                     src={cap_2}
                     className="img-fluid shadow-4"
                     alt="..."
-                    style={{ width: "12rem", margin: "2rem" }}
+                    style={{ width: "12rem", margin: "0.3rem" }}
+                  />
+                  <img
+                    src={cap_1}
+                    className="img-fluid shadow-4"
+                    alt="..."
+                    style={{ width: "12rem", margin: "0.3rem" }}
+                  />
+                  <img
+                    src={cap_5}
+                    className="img-fluid shadow-4"
+                    alt="..."
+                    style={{ width: "12rem", margin: "0.3rem" }}
                   />
                   <img
                     src={cap_3}
                     className="img-fluid shadow-4"
                     alt="..."
-                    style={{ width: "12rem", margin: "2rem" }}
+                    style={{ width: "12rem", margin: "0.3rem" }}
+                  />
+
+                  <img
+                    src={cap_6}
+                    className="img-fluid shadow-4"
+                    alt="..."
+                    style={{ width: "12rem", margin: "0.3rem" }}
+                  />
+                  <img
+                    src={cap_4}
+                    className="img-fluid shadow-4"
+                    alt="..."
+                    style={{ width: "12rem", margin: "0.3rem" }}
                   />
                 </Row>
               </Row>
