@@ -36,13 +36,9 @@ const ReaderMotions = () => {
             allUserT.push(el);
           }
         });
-        // console.log(allUserT);
 
-        // console.log("allusert", allUserT);
-        // console.log("allclients", allClients);
         let all = [];
         for (let i = 0; i < allClients.length; i++) {
-          //   console.log("allclients", allClients[i]._id);
           allUserT.map((el, index) => {
             if (el.clientId[0] === allClients[i]._id) {
               all.push({ ...allUserT[i], email: allClients[i].email });

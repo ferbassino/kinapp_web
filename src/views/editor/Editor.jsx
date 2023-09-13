@@ -2,7 +2,6 @@ import React from "react";
 import EditorNavigation from "./EditorNavigation";
 
 const Editor = (view, userName) => {
-  console.log(view, "view en editor");
   return (
     <div className="container">
       <h2 className="m-3">Editor Zone</h2>

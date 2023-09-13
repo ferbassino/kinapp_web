@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function deviceUse() {
+export default function DeviceUse() {
   return (
     <div>
       <h1>Uso del dispositivo</h1>

@@ -102,13 +102,12 @@ export const rotationProcess = (data = {}) => {
   //   integramos para obtener el array de angulos en redianes
 
   const arrayXAngleRad = integral(velXF, interval, initialAngleAcc);
-  console.log("initial", initialAngleAcc);
+
   arrayXAngleRad.pop();
 
   //   derivamos parta obtener la aceleracion angular
 
   const accAngX = derivada(velXF, interval);
-  //   console.log(accAngX);
 
   // seno y coseno del angulo
   const xAngleSin = [];
@@ -154,13 +153,8 @@ export const rotationProcess = (data = {}) => {
   });
 
   // const tanRadio = [];
-  console.log("tanradio.lengy antyes", tanRadio0.length);
-  console.log(Math.max(...tanRadio0));
 
   const tanRadio = deleteTenMaxMin(tanRadio0);
-
-  console.log(Math.max(...tanRadio));
-  console.log("tanradio.lengy despues", tanRadio.length);
 
   velXF.map((el, index) => {
     if (
@@ -178,9 +172,6 @@ export const rotationProcess = (data = {}) => {
   // const tanRadioMean = numbers.statistic.mean(tanRadio);
   const tanRadioMode = numbers.statistic.mean(tanRadio);
   const promRadio = (normRadioMode + tanRadioMode) / 2;
-
-  console.log("promedio", promRadio.toFixed(2));
-  // console.log("radio tangencial", tanRadio);
 
   const modeArrayNorm = [];
   const modeArrayTan = [];

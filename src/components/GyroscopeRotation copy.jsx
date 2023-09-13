@@ -139,7 +139,6 @@ const GyroscopeRotation = () => {
       const data = res.data;
       setTestsVisibles(false);
       setButtonsVisibles(false);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }

@@ -15,7 +15,7 @@ export const dataProcess = (accArray = [], testTime = 0) => {
       accT.push(Number(accCount.toFixed(3)));
     }
   });
-
+  console.log("acct en data process", accT);
   return {
     accX,
     accY,

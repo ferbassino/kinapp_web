@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 import Home from "./Home";
 import Error from "./Error";
 import Client from "./bronze/Client";
-
+import Introduction from "./general/Introduction";
 import Admin from "./admin/Admin";
 //use history nos permite decirle donde queremos que comience a navegar el cliente
 import { Routes, Route, useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ import ReaderNavigation from "./reader/ReaderNavigation";
 import ReaderClients from "./reader/ReaderClients";
 import ReaderMotion from "./reader/ReaderMotion";
 import ClientView from "../components/ClientView";
-
+import { Navigate } from "react-router-dom";
 import ReaderMotions from "./reader/ReaderMotions";
 import BronzeProfile from "./bronze/BronzeProfile";
 import Aside from "../components/Aside";
@@ -35,8 +35,19 @@ import DropdownComp from "../components/DropDown";
 import Footer from "../components/Footer";
 import JornadasVistaMov from "../components/JornadasVistaMov";
 import Loading from "../components/Loading";
-
+import { useNav } from "../navZustand";
+import Jornadas from "../components/Jornadas";
+import DeviceUse from "./general/DeviceUse";
+import Statistics from "./general/Statistics";
+import Documentation from "./general/Documentation";
+import EditorClients from "./editor/EditorClients";
+import EditorClient from "./editor/EditorClient";
+import EditorMotion from "./editor/EditorMotion";
+import EditorMotions from "./editor/EditorMotions";
+import EditorStatistics from "./editor/EditorStatistics";
 const Main = () => {
+  const { navOption } = useNav();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
@@ -141,10 +152,6 @@ const Main = () => {
     }
   };
 
-  const handleSearch = (e) => {
-    setSelectView(e);
-  };
-
   return (
     <>
       {loading ? (
@@ -167,14 +174,16 @@ const Main = () => {
                 {asideVisible ? (
                   <>
                     <div className="col-md-3 position-fixed">
-                      <Aside handleSearch={handleSearch} userName={userName} />
+                      <Aside userName={userName} roles={roles} />
                     </div>
                     <div className="col-md-3"></div>
                   </>
                 ) : null}
 
                 <div className="col-md-9">
-                  {colapseVisible ? <DropdownComp /> : null}
+                  {colapseVisible ? (
+                    <DropdownComp userName={userName} roles={roles} />
+                  ) : null}
                   <Routes>
                     <Route
                       path="/"
@@ -187,10 +196,30 @@ const Main = () => {
                       }
                       exact
                     ></Route>
+                    <Route
+                      path="/introduction"
+                      element={<Introduction />}
+                      exact
+                    ></Route>
+                    <Route
+                      path="/deviceUse"
+                      element={<DeviceUse />}
+                      exact
+                    ></Route>
+                    <Route
+                      path="/statistics"
+                      element={<Statistics />}
+                      exact
+                    ></Route>
+                    <Route
+                      path="/documentation"
+                      element={<Documentation />}
+                      exact
+                    ></Route>
                     <Route path="/kinapp" element={<Kinapp />} exact></Route>
                     <Route
-                      path="/jorn/movement"
-                      element={<JornadasVistaMov />}
+                      path="/jornadas"
+                      element={<Jornadas />}
                       exact
                     ></Route>
                     {/* --------- ADMIN ----------- */}
@@ -234,35 +263,74 @@ const Main = () => {
                   element={<RenderUser />}
                   exact
                 ></Route> */}
-                    {/* --------- EDITOR ----------- */}
+                    {/* --------- Reader ----------- */}
+                    <Route element={<ReaderRoutes reader={reader} />}>
+                      <Route path="/reader" element={<Reader />} exact></Route>
+                      <Route
+                        path="/reader/overview"
+                        element={<ReaderOverView />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/reader/navigation"
+                        element={<ReaderNavigation />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/reader/clients"
+                        element={<ReaderClients />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/reader/motion"
+                        element={<ReaderMotion />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/reader/motions"
+                        element={<ReaderMotions />}
+                        exact
+                      ></Route>
+                    </Route>
+                    {/* --------- Reader ----------- */}
                     <Route element={<EditorRoutes editor={editor} />}>
                       <Route path="/editor" element={<Editor />} exact></Route>
+                      {/* <Route
+                        path="/editor/overview"
+                        element={<EditorOverView />}
+                        exact
+                      ></Route> */}
+                      {/* <Route
+                        path="/editor/navigation"
+                        element={<EditorNavigation />}
+                        exact
+                      ></Route> */}
+                      <Route
+                        path="/editor/clients"
+                        element={<EditorClients />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/editor/client"
+                        element={<EditorClient />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/editor/motion"
+                        element={<EditorMotion />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/editor/motions"
+                        element={<EditorMotions user={user} />}
+                        exact
+                      ></Route>
+                      <Route
+                        path="/editor/statistics"
+                        element={<EditorStatistics user={user} />}
+                        exact
+                      ></Route>
                     </Route>
-                    {/* <Route
-                  path="/editor/overview"
-                  element={<EditorOverView />}
-                  exact
-                ></Route>
-                <Route
-                  path="/editor/navigation"
-                  element={<EditorNavigation />}
-                  exact
-                ></Route>
-                <Route
-                  path="/editor/clients"
-                  element={<EditorClients />}
-                  exact
-                ></Route>
-                <Route
-                  path="/editor/motion"
-                  element={<EditorMotion />}
-                  exact
-                ></Route>
-                <Route
-                  path="/editor/motions"
-                  element={<EditorMotions />}
-                  exact
-                ></Route> */}
                   </Routes>
                   <Footer />
                 </div>

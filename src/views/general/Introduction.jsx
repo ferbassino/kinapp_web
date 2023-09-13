@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function introduction() {
+export default function Introduction() {
   return (
     <div>
       <h1>Introducción</h1>

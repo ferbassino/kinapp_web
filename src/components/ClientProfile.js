@@ -119,9 +119,7 @@ const ClientProfile = () => {
   };
 
   const saveAntec = () => {
-    console.log("antecedentes length", antecedentes.length);
     if (antecedentes.length === 0) {
-      console.log("entra en diagnostico");
       setDiagnostico(antecedente);
       setAntecedentes(antecedentes.concat(antecedente));
       setDiagnosticoVisible(true);
@@ -136,8 +134,7 @@ const ClientProfile = () => {
       setTreatment(false);
     } else if (antecedentes.length === 1) {
       const newAnt = antecedentes.filter((el) => el.id !== 1);
-      console.log("el supusesto puto array filtrado", newAnt);
-      console.log("entra en antecedente");
+
       setAntecedentes(newAnt.concat(antecedente));
       setAntecedentVisible(true);
       setToogleButtonAnt(false);
@@ -150,7 +147,6 @@ const ClientProfile = () => {
       setTx(false);
       setTreatment(false);
     } else {
-      console.log("entra si el array es mayor a 1");
       setAntecedentes(antecedentes.concat(antecedente));
       setAntecedentVisible(true);
       setToogleButtonAnt(false);

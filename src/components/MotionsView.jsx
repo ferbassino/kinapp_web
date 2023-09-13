@@ -5,6 +5,8 @@ import Chart from "./Chart";
 import getArrayTestTime from "../auxiliaries/getArrayTestTime";
 import { useNavigate } from "react-router-dom";
 import { getClients } from "../services/clients";
+import { Button } from "react-bootstrap";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 const MotionsView = ({ dataTest, email }) => {
   const navigate = useNavigate();
@@ -27,9 +29,30 @@ const MotionsView = ({ dataTest, email }) => {
     //   navigate("/reader/client", { state: { userId: id } });
     // }
   };
+
+  const selectMov = (e) => {
+    // setSelectedTestVisible(false);
+    // setMov(e.target.value);
+  };
   return (
     <div className="container">
       <Header title={"test data"} />
+      <ButtonGroup size="lg" className="mb-2">
+        <Button value={""} onClick={(e) => selectMov(e)}>
+          Todas
+        </Button>
+
+        <Button value={"translation"} onClick={(e) => selectMov(e)}>
+          Traslación
+        </Button>
+        <Button value={"rotacion"} onClick={(e) => selectMov(e)}>
+          Rotación
+        </Button>
+
+        <Button value={"jump"} onClick={(e) => selectMov(e)}>
+          Salto
+        </Button>
+      </ButtonGroup>
       <Table striped bordered hover>
         <thead>
           <tr>

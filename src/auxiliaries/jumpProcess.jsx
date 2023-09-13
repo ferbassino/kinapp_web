@@ -111,7 +111,7 @@ export default function jumpProcess(accY, testTime, masa, accT) {
   const arrayT0Vuelo = [];
   const arrayY0Amort = [];
   const arrayT0Amort = [];
-  console.log(accT);
+
   arrayY0.forEach((el, index) => {
     if (index > index1 && index < index6) {
       arrayY0F.push(Number(el.toFixed(2)));

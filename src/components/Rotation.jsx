@@ -58,7 +58,6 @@ const Rotation = () => {
     try {
       const res = await client.get("api/imudata");
       const data = res.data;
-      console.log(data);
 
       if (data) {
         setTestsVisibles(true);
@@ -154,7 +153,6 @@ const Rotation = () => {
       const data = res.data;
       setTestsVisibles(false);
       setButtonsVisibles(false);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }

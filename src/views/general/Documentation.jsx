@@ -1,7 +1,6 @@
 import React from "react";
 
 function Documentation({ view }) {
-  console.log("view en documentation", view);
   return (
     <div>
       <h1>Documentación</h1>

@@ -1,5 +1,5 @@
 import React from "react";
-import MotionsView from "../../components/MotionsView";
+import MotionView from "../../components/MotionView";
 import { useLocation } from "react-router-dom";
 const EditorMotion = () => {
   const location = useLocation();
@@ -8,7 +8,7 @@ const EditorMotion = () => {
 
   return (
     <div className="container">
-      <MotionsView dataTest={el} email={email} />
+      <MotionView dataTest={el} email={email} />
     </div>
   );
 };

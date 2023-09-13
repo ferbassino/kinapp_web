@@ -96,9 +96,7 @@ export const integral = (data = {}) => {
     // derivada
 
     arrayVelXDerivadaRaw.push((velX[i + 1] - velX[i]) / interval);
-    console.log(velX[i + 1], velX[i], interval);
-    console.log(arrayVelXDerivadaRaw);
-    console.log("------------------");
+
     cosInX.push(Math.cos(countVelXRad));
     sinInX.push(Math.sin(countVelXRad));
 
@@ -135,9 +133,6 @@ export const integral = (data = {}) => {
   for (let i = 0; i < arrayVelXDerivada.length - 1; i++) {
     arrayAccTanRadio.push(filteredArrayAccTan[i] / arrayVelXDerivada[i]);
   }
-  // console.log("velocidad angular en x", velX);
-  // console.log("aceleracion angular", arrayVelXDerivada);
-  // console.log("aceleracion tangencial ", tanYAcc);
 
   for (let i = 0; i < filterArrayVelX.length - 1; i++) {
     if (pow[i] > filteredCentYAcc[i] && filteredCentYAcc[i] > 0) {

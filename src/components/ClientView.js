@@ -9,7 +9,7 @@ import { getDate, getHour } from "../auxiliaries/getDate";
 import { Button } from "react-bootstrap";
 import Select from "react-select";
 import ModalComponent from "./ModalComponent";
-import MotionsView from "./MotionsView";
+import MotionView from "./MotionView";
 
 const ClientView = ({ id }) => {
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ const ClientView = ({ id }) => {
   const [age, setAge] = useState(0);
   const [role, setRole] = useState("");
   const [arrayDataTests, setArrayDataTests] = useState([]);
+  const [dataTest, setDataTest] = useState([]);
   const [editRole, setEditRole] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [testVisible, setTestVisible] = useState(false);
@@ -36,6 +37,7 @@ const ClientView = ({ id }) => {
   const getClient = async () => {
     const { clients } = await getClients();
     const clientD = clients.find((el) => el._id === id);
+
     setClientData(clientD);
     setAge(getAge(clientD.birthDate));
 
@@ -50,12 +52,13 @@ const ClientView = ({ id }) => {
     }
 
     setArrayDataTests(arrayDataT);
-    console.log(arrayDataT);
   };
 
   const handleTest = (el) => {
+    const id = el._id;
+    const res = arrayDataTests.find((el) => el._id === id);
+    setDataTest(res);
     setTestVisible(true);
-    // navigate("/reader/motion", { state: { el, email: clientData.email } });
   };
 
   const handleDelete = async () => {
@@ -85,7 +88,6 @@ const ClientView = ({ id }) => {
       roles: role,
     });
 
-    console.log("result", result.data.updatedClient.roles);
     setEditRole(false);
   };
 
@@ -93,7 +95,6 @@ const ClientView = ({ id }) => {
     <>
       <div className="container">
         <Header title="Client information" />
-
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -123,16 +124,7 @@ const ClientView = ({ id }) => {
               <td>Size</td>
               <td>{clientData.size / 100} m</td>
             </tr>
-            <tr>
-              <td>5</td>
-              <td>weight</td>
-              <td>{clientData.size / 100} m</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>physical activity level</td>
-              <td>{clientData.pALevel}</td>
-            </tr>
+
             <tr onClick={handleRole}>
               <td>7</td>
               <td>Role</td>
@@ -166,9 +158,10 @@ const ClientView = ({ id }) => {
             </tr>
           </tbody>
         </Table>
+
         {testVisible ? (
           <>
-            <MotionsView />
+            <MotionView dataTest={dataTest} />
           </>
         ) : (
           <>
@@ -177,14 +170,10 @@ const ClientView = ({ id }) => {
               <table className="table table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">
-                      {/* <img src={logo} className="App-logo" alt="logo" /> */}
-                    </th>
+                    <th scope="col">Index</th>
                     <th scope="col">Date</th>
                     <th scope="col">Hour</th>
-                    <th scope="col">Segment</th>
-                    <th scope="col">movement</th>
-                    <th scope="col">side</th>
+                    <th scope="col">test</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -193,9 +182,7 @@ const ClientView = ({ id }) => {
                       <td>{index + 1}</td>
                       <td>{getDate(el.date)}</td>
                       <td>{getHour(el.date)}</td>
-                      <td>{el.segment}</td>
-                      <td>{el.motion}</td>
-                      {el.side ? <td>{el.side}</td> : <td>-</td>}
+                      <td>{el.motionType}</td>
                     </tr>
                   ))}
                 </tbody>
