@@ -7,6 +7,8 @@ import { getHour, getDate } from "../../auxiliaries/getDate";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import getCurrentUserTests from "../../auxiliaries/getCurrentUserTests";
+import getClientWithId from "../../auxiliaries/getClientwithId";
 
 const EditorMotions = ({ user }) => {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ const EditorMotions = ({ user }) => {
   const [noDataMessage, setNoDataMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [mov, setMov] = useState("allTests");
-
+  const [clientData, setClientData] = useState([]);
   useEffect(() => {
     getAllTests();
   }, [mov]);
@@ -26,21 +28,23 @@ const EditorMotions = ({ user }) => {
     setLoading(true);
 
     try {
-      const { data } = await getTests();
+      const allCurrentUserTests = await getCurrentUserTests(user);
 
-      if (data.motionTests.length === 0) {
+      if (allCurrentUserTests.length === 0) {
         setNoData(true);
         setNoDataMessage("no evaluation data found");
       }
 
       if (mov === "allTests") {
-        setAllUserTests(data.motionTests);
+        setAllUserTests(allCurrentUserTests);
         setLoading(false);
       } else {
         setLoading(true);
-        const newData = data.motionTests.filter(
-          (el) => el.motionType === mov && el.userId[0] === user.id
+
+        const newData = allCurrentUserTests.filter(
+          (el) => el.motionType === mov
         );
+
         if (newData.length === 0) {
           setLoading(false);
           setNoData(true);
@@ -56,8 +60,12 @@ const EditorMotions = ({ user }) => {
     }
   };
 
-  const handleTest = (el) => {
-    navigate("/editor/motion", { state: { el, email: el.email } });
+  const handleTest = async (el) => {
+    const id = el.clientId[0];
+
+    const clientData = await getClientWithId(id);
+
+    navigate("/editor/motion", { state: { el, clientData } });
   };
   const selectMov = (e) => {
     setMov(e.target.value);
@@ -95,7 +103,11 @@ const EditorMotions = ({ user }) => {
               </>
             ) : (
               <>
-                {mov === "allTests" ? <h2>{mov}</h2> : <h2>Type: {mov}</h2>}
+                {mov === "allTests" ? (
+                  <h2>{`${mov}: ${allUserTests.length}`}</h2>
+                ) : (
+                  <h2>{`Type: ${mov} ${allUserTests.length}`}</h2>
+                )}
                 <table className="table table-hover">
                   <thead>
                     <tr>

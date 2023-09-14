@@ -13,6 +13,7 @@ import Editor from "./editor/Editor";
 import Reader from "./reader/Reader";
 import ReaderClients from "./reader/ReaderClients";
 import ReaderMotions from "./reader/ReaderMotions";
+import Admin from "./admin/Admin";
 const Home = ({ selectedView, userName, roles }) => {
   const [view, setView] = useState("home");
   useEffect(() => {
@@ -21,7 +22,21 @@ const Home = ({ selectedView, userName, roles }) => {
 
   return (
     <>
-      <Reader view={view} userName={userName} />
+      {roles === "reader" ? (
+        <>
+          <Reader view={view} userName={userName} />
+        </>
+      ) : null}
+      {roles === "editor" ? (
+        <>
+          <Editor view={view} userName={userName} />
+        </>
+      ) : null}
+      {roles === "admin" ? (
+        <>
+          <Admin view={view} userName={userName} />
+        </>
+      ) : null}
     </>
   );
 };
