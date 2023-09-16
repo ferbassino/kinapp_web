@@ -59,6 +59,7 @@ const MotionView = ({ dataTest = [] }) => {
         <tbody>
           <tr>
             <td>📝</td>
+
             <td>Type</td>
             <td>{dataTest.motionType}</td>
           </tr>
