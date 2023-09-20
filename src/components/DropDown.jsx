@@ -30,7 +30,7 @@ const DropdownComp = (props) => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/deviceUse" className="nav-link">
+            <Link to="/deviceuse" className="nav-link">
               Device use
             </Link>
           </li>
