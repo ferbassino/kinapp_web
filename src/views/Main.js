@@ -45,6 +45,7 @@ import EditorClient from "./editor/EditorClient";
 import EditorMotion from "./editor/EditorMotion";
 import EditorMotions from "./editor/EditorMotions";
 import EditorStatistics from "./editor/EditorStatistics";
+import DeviceUseJump from "./general/DeviceUseJump";
 const Main = () => {
   const { navOption } = useNav();
 
@@ -202,8 +203,13 @@ const Main = () => {
                       exact
                     ></Route>
                     <Route
-                      path="/deviceUse"
+                      path="/deviceuse"
                       element={<DeviceUse />}
+                      exact
+                    ></Route>
+                    <Route
+                      path="/deviceuse/jump"
+                      element={<DeviceUseJump />}
                       exact
                     ></Route>
                     <Route

@@ -20,6 +20,12 @@ const JornadasVistaMov = ({ imuData, view }) => {
 
   const { accX, accY, accZ, accT, testTime, mass } = imuData;
 
+  const accYsinG = [];
+
+  accY.map((el) => accYsinG.push((el - 1) * 9.81));
+
+  const accYsinGMax = Math.max(...accYsinG);
+
   const [translationVisible, setTraslationVisible] = useState(false);
   const [fallVisible, setFallVisible] = useState(false);
   const [rotacionVisible, setRotacionVisible] = useState(false);
@@ -107,6 +113,19 @@ const JornadasVistaMov = ({ imuData, view }) => {
         z={accZ}
         zName="aceleración en z"
         zColor="blue"
+        t={accT}
+      />
+      <h1>Aceleración maxima: {accYsinGMax.toFixed(2)} m/s2</h1>
+      <Chart
+        // x={accX}
+        // xName="aceleración en x"
+        // xColor="red"
+        y={accYsinG}
+        yName="aceleración en y"
+        yColor="green"
+        // z={accZ}
+        // zName="aceleración en z"
+        // zColor="blue"
         t={accT}
       />
       {translationVisible ? (
