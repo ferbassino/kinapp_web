@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Nav, Navbar, Row, Col, Card } from "react-bootstrap";
-
 import movileApp from "./assets/movile_app.jpeg";
 import webApp from "./assets/web_app.png";
 import umico from "./assets/umico.png";
@@ -17,9 +16,13 @@ import cap_6 from "./assets/cap_6.jpeg";
 import logo from "../../logo.svg";
 import icon from "./assets/icon.png";
 import apkImage from "./assets/apk_image.jpeg";
+import { useTranslation } from "react-i18next";
+import Select from "react-select";
 
 const apkUrl = "https://kinapp-web.vercel.app/kinapp.apk";
+
 function Landing() {
+  const [t, i18n] = useTranslation("global");
   const downloadApkUrl = (apkUrl) => {
     const fileName = apkUrl.split("/").pop();
     const aTag = document.createElement("a");
@@ -29,6 +32,11 @@ function Landing() {
     aTag.click();
     aTag.remove();
   };
+
+  const options = [
+    { value: "en", label: "English" },
+    { value: "es", label: "Spanish" },
+  ];
   return (
     <div>
       <Container>
@@ -44,22 +52,52 @@ function Landing() {
           <Container className="">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#environment">
-                  <h4 style={{ color: "#042c54" }}>Environment</h4>
+              <Nav>
+                <Nav.Link href="#environment" className="mx-3">
+                  <h4 style={{ color: "#042c54" }}>
+                    {t("landing.nav.environment")}
+                  </h4>
                 </Nav.Link>
-                <Nav.Link href="#possibility">
-                  <h4 style={{ color: "#042c54" }}>Possibility</h4>
+                <Nav.Link href="#possibility" className="mx-3">
+                  <h4 style={{ color: "#042c54" }}>
+                    {t("landing.nav.possibility")}
+                  </h4>
                 </Nav.Link>
-                <Nav.Link href="#web">
-                  <h4 style={{ color: "#042c54" }}>web</h4>
+                <Nav.Link href="#web" className="mx-3">
+                  <h4 style={{ color: "#042c54" }}>{t("landing.nav.web")}</h4>
                 </Nav.Link>
-                <Nav.Link href="#events">
-                  <h4 style={{ color: "#042c54" }}>Events</h4>
+                <Nav.Link href="#events" className="mx-3">
+                  <h4 style={{ color: "#042c54" }}>
+                    {t("landing.nav.events")}
+                  </h4>
                 </Nav.Link>
-                <Nav.Link href="#contact">
-                  <h4 style={{ color: "#042c54" }}>Contact</h4>
+                <Nav.Link href="#contact" className="mx-3">
+                  <h4 style={{ color: "#042c54" }}>
+                    {t("landing.nav.contact")}
+                  </h4>
                 </Nav.Link>
+                <Nav
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <h4 style={{ color: "#042c54" }}>
+                    {t("landing.nav.language")}:
+                  </h4>
+                </Nav>
+                <Nav
+                  style={{
+                    marginLeft: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Select
+                    options={options}
+                    onChange={(e) => i18n.changeLanguage(e.value)}
+                  />
+                </Nav>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -95,7 +133,7 @@ function Landing() {
                   className="mb-3"
                   style={{ color: "#030029", fontSize: 30, fontWeight: "bold" }}
                 >
-                  Let's take biomechanical analysis to next level with kinApp
+                  {t("landing.header.subTitle")}
                 </h4>
               </div>
               <img
@@ -114,14 +152,12 @@ function Landing() {
             <Row id="environment" className="my-5">
               <Col sm={6}>
                 <h1 style={{ color: "#042c54" }}>
-                  Obtain infinite data with this powerful tool
+                  {t("landing.environment.title")}
                 </h1>
               </Col>
               <Col sm={6} className="text-justify">
                 <h4 className="text-secondary">
-                  kinapp is a resource environment for biomechanical analysis
-                  which includes mobile applications, web applications, inertial
-                  devices (UMICO) and database storage.
+                  {t("landing.environment.subTitle")}
                 </h4>
               </Col>
             </Row>
@@ -139,11 +175,10 @@ function Landing() {
                   <Card.Img variant="top" src={movileApp} />
                   <Card.Body>
                     <Card.Title style={{ color: "#042c54" }}>
-                      Mobile app
+                      {t("landing.environment.mobileAppTitle")}
                     </Card.Title>
                     <Card.Text className="text-secondary">
-                      With the mobile application you can capture body movements
-                      or the movement of different elements mobilized by it.
+                      {t("landing.environment.mobileAppText")}
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -153,11 +188,10 @@ function Landing() {
                   <Card.Img variant="top" src={webApp} />
                   <Card.Body>
                     <Card.Title style={{ color: "#042c54" }}>
-                      Web app
+                      {t("landing.environment.webAppTitle")}
                     </Card.Title>
                     <Card.Text className="text-secondary">
-                      In the web application we can view the data stored in the
-                      database and access specific documentation.
+                      {t("landing.environment.webAppText")}
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -166,11 +200,11 @@ function Landing() {
                 <Card style={{ width: "18rem" }}>
                   <Card.Img variant="top" src={umico} />
                   <Card.Body>
-                    <Card.Title style={{ color: "#042c54" }}>UMICO</Card.Title>
+                    <Card.Title style={{ color: "#042c54" }}>
+                      {t("landing.environment.umicoTitle")}
+                    </Card.Title>
                     <Card.Text className="text-secondary">
-                      Umico is an inertial device that captures angular velocity
-                      and positional acceleration with bluetooth connection for
-                      pc.
+                      {t("landing.environment.umicoText")}
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -180,11 +214,10 @@ function Landing() {
                   <Card.Img variant="top" src={dataBase} />
                   <Card.Body>
                     <Card.Title style={{ color: "#042c54" }}>
-                      Database storage
+                      {t("landing.environment.dataBaseTitle")}
                     </Card.Title>
                     <Card.Text className="text-secondary">
-                      Store all your records in the database to have them
-                      available at any time.
+                      {t("landing.environment.dataBaseText")}
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -193,9 +226,7 @@ function Landing() {
             <Row className="my-5 " id="possibility">
               <Col sm={6}>
                 <h1 style={{ color: "#042c54" }}>
-                  Movile app, the possibility of evaluating anywhere. With the
-                  mobile application you can obtain data on the movement quickly
-                  and easily with storage in the database.
+                  {t("landing.possibility.text")}
                 </h1>
               </Col>
               <Col sm={6}>
@@ -214,52 +245,48 @@ function Landing() {
             >
               <Col sm={5}>
                 <h1 style={{ color: "#042c54" }}>
-                  Web application gives us the possibility to analyze the data
-                  in a more complete way
+                  {t("landing.web.webTitle")}
                 </h1>
               </Col>
               <Col sm={7}>
                 <Row className="my-2">
                   <Col>
-                    <h4>Analysis of data</h4>
+                    <h4>{t("landing.web.dataAnalysisTitle")}</h4>
                   </Col>
                   <Col>
                     <h6 className="text-secondary">
-                      The visualization of the data obtained with the devices is
-                      observed in a more complete way.
+                      {t("landing.web.dataAnalysisText")}
                     </h6>
                   </Col>
                 </Row>
                 <Row className="my-2">
                   <Col>
-                    <h4>Database access</h4>
+                    <h4>{t("landing.web.dataBaseTitle")}</h4>
                   </Col>
                   <Col>
                     <h6 className="text-secondary">
-                      Specific filters can be applied to requests to the
-                      database.
+                      {t("landing.web.dataBaseText")}
                     </h6>
                   </Col>
                 </Row>
                 <Row className="my-2">
                   <Col>
-                    <h4>Access to documentation</h4>
+                    <h4>{t("landing.web.docsTitle")}</h4>
                   </Col>
                   <Col>
                     <h6 className="text-secondary">
-                      Detailed documentation on different biomechanical and
-                      anatomo-functional contents.
+                      {t("landing.web.docsText")}
                     </h6>
                   </Col>
                 </Row>
                 <Row className="my-2">
                   <Col>
-                    <h4>Statistics analysis</h4>
+                    <h4>{t("landing.web.statisticsTitle")}</h4>
                   </Col>
 
                   <Col>
                     <h6 className="text-secondary">
-                      on the data obtained in all evaluations.
+                      {t("landing.web.statisticsText")}
                     </h6>
                   </Col>
                 </Row>
@@ -268,7 +295,7 @@ function Landing() {
             <Col className="my-5" id="events">
               <Col>
                 <h1 className="my-5" style={{ color: "#042c54" }}>
-                  Find out about upcoming events
+                  {t("landing.events.title")}
                 </h1>
               </Col>
               <Row>
@@ -283,12 +310,15 @@ function Landing() {
                   <Col>
                     <h4 style={{ color: "#042c54", margin: "0.3rem" }}>
                       El día Jueves 28/09/2023 realizaremos un taller de
-                      análisis biomecánico con unidades inerciales.
+                      análisis biomecánico con unidades inerciales en la ᙭᙭᙭IV
+                      edición de las jornadas de Estudiantes de Kinesiología y
+                      fisiatría de la Universidad de Buenos Aires.
                     </h4>
                   </Col>
                   <Col style={{ textAlign: "center" }}>
                     <h5 style={{ color: "#042c54", marginTop: "3rem" }}>
-                      Clik sobre la imagen para descargar apk 👇
+                      Clik sobre la imagen para descargar apk que vamos a
+                      utilizar en el taller 👇
                     </h5>
 
                     <img
@@ -366,10 +396,7 @@ function Landing() {
       >
         <Container>
           <Row>
-            <h4 style={{ color: "#042c54" }}>
-              Follow us on Instagram, send an email or a message to receive more
-              information
-            </h4>
+            <h4 style={{ color: "#042c54" }}> {t("landing.footer.title")}</h4>
           </Row>
           <Row>
             <Col>

@@ -1,0 +1,50 @@
+{
+    "landing":{
+        "header":{
+            "title":"kinApp",
+            "subTitle": "Let's take biomechanical analysis to next level with kinApp"
+        },
+        "nav":{
+            "environment": "Environment",
+            "possibility":"Possibility",
+            "web":"web",
+            "events":"Events",
+            "contact":"Contact",
+            "language":"Language"
+        },
+        "environment":{
+            "title":"Obtain infinite data with this powerful tool",
+            "subTitle":"kinapp is a resource environment for biomechanical analysis which includes mobile applications, web applications, inertial devices (UMICO) and database storage.",
+            "mobileAppTitle":"Mobile app",
+            "mobileAppText":"With the mobile application you can capture body movements or the movement of different elements mobilized by it.",
+            "webAppTitle":"Web app",
+            "webAppText":"In the web application we can view the data stored in the database and access specific documentation.",
+            "umicoTitle":"UMICO",
+            "umicoText":"Umico is an inertial device that captures angular velocity and positional acceleration with bluetooth connection for pc.",
+            "dataBaseTitle":"Database storage",
+            "dataBaseText":"Store all your records in the database to have them available at any time."
+
+        },
+        "possibility":{
+            "text":"Movile app, the possibility of evaluating anywhere. With the mobile application you can obtain data on the movement quickly and easily with storage in the database."
+        },
+        "web":{
+            "webTitle":"Web application gives us the possibility to analyze the data in a more complete way",
+            "dataAnalysisTitle":"Analysis of data",
+            "dataAnalysisText":"The visualization of the data obtained with the devices is observed in a more complete way.",
+            "dataBaseTitle":"Database access",
+            "dataBaseText":"Specific filters can be applied to requests to the database.",
+            "docsTitle":"Access to documentation",
+            "docsText":"Detailed documentation on different biomechanical and anatomo-functional contents.",
+            "statisticsTitle":"Statistics analysis",
+            "statisticsText":"Statistics of your evaluations and of all evaluations of the environment."
+
+        },
+        "events":{
+            "title":"Find out about upcoming events"
+        },
+        "footer":{
+            "title":"Follow us on Instagram, send an email or a message to receive more information"
+        }
+    }
+}

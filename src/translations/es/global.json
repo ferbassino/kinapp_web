@@ -1,0 +1,50 @@
+{
+    "landing":{
+        "header":{
+            "title":"kinApp",
+            "subTitle": "Lleva el análisis biomecánico al siguiente nivel con kinApp"
+        },
+        "nav":{
+            "environment": "Entorno",
+            "possibility":"Posibilidades",
+            "web":"web",
+            "events":"Eventos",
+            "contact":"Contacto",
+            "language":"Lenguage"
+        },
+        "environment":{
+            "title":"Obtiene infinidad de datos con esta poderosa herramienta",
+            "subTitle":"kinApp es un entorno de análisis biomecánico que incluye aplicaciones móviles, aplicación web, dispositivos inerciales (UMICO) y almacenamiento en la nube.",
+            "mobileAppTitle":"Aplicaciones móviles",
+            "mobileAppText":"Con las aplicaciones móviles de kinApp podrás capturar variables cinématicas y dinámicas de diferentes movimientos corporales.",
+            "webAppTitle":"Aplicación Web",
+            "webAppText":"En la aplicación web podrás visualizar los datos capturados por las aplicaciones móviles y ademas acceder a estadísticas y documentación.",
+            "umicoTitle":"UMICO",
+            "umicoText":"Umico es una unidad inercial independiente desarrollada por nuestro equipo con la cual podrás obtener datos similares a los de las aplicaciones móviles.",
+            "dataBaseTitle":"Almacenamiento",
+            "dataBaseText":"Los datos se pueden almacenar en la base de datos y ser requeridos en cualquier momento."
+
+        },
+        "possibility":{
+            "text":"La aplicación móvil tendrás la posibilidad de evaluar en cualquier lado, guardar los datos en la nube y visualizarlos en cualquier momento."
+        },
+        "web":{
+            "webTitle":"La aplicación web te da la posibilidad de analizar los datos de una manera mas completa",
+            "dataAnalysisTitle":"Análisis de datos",
+            "dataAnalysisText":"Visualiza los datos en un entorno amigable con tablas y gráficos.",
+            "dataBaseTitle":"Acceso a la nube",
+            "dataBaseText":"Establece filtros para obtener datos específicos.",
+            "docsTitle":"Documentación",
+            "docsText":"Accede a documentación de análisis biomecánico y anatomo-funcional.",
+            "statisticsTitle":"Estadisticas",
+            "statisticsText":"Accede a las estadísticas de todo el entorno."
+
+        },"events":{
+            "title":"Encuentra los siguientes eventos aquí"
+        },
+        "footer":{
+            "title":"Síguenos en Instagram, envíanos un email o un whatsapp para recibir mas información."
+        }
+    }
+    
+}

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import icon from "../views/landing/assets/icon.png";
+import { Form } from "react-bootstrap";
 
 const NavBar = ({ handleLogout, userName = "", roles }) => {
   return (
@@ -71,6 +72,11 @@ const NavBar = ({ handleLogout, userName = "", roles }) => {
           <button onClick={handleLogout} className="btn btn-light col-md-2">
             Salir
           </button>
+          <Form.Select aria-label="Default select example">
+            <option>Language</option>
+            <option>English</option>
+            <option>Spanish</option>
+          </Form.Select>
         </div>
       </div>
     </nav>
