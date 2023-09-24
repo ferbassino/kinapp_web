@@ -1,0 +1,41 @@
+.general-body{
+    background-color: #efefef;
+    
+}
+
+.container{
+    padding: 1rem
+}
+/* rgba(27,27,51,1)
+#1b1b33
+
+
+
+rgba(226,117,96,1)
+#e27560 */
+.header {
+    background-color: #1b1b33;
+     color:#e27560 ;
+     padding: 3rem 2rem;
+      text-align: center;
+    
+}
+
+
+
+.section-header{
+    background-color: #1b1b33;
+    color:#e27560 ;
+    padding: 2rem 2rem;
+      text-align: center;
+}
+h3 {
+padding: 1rem;
+
+}
+h4{
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: justify;
+}
