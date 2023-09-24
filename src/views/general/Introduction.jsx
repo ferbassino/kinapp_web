@@ -1,23 +1,31 @@
 import React from "react";
-
+import { useTranslation } from "react-i18next";
 export default function Introduction() {
+  const [t, i18n] = useTranslation("global");
+
   return (
     <div>
-      <h1>Introducción</h1>
-      <h2>
-        Why do we use it? It is a long established fact that a reader will be
-      </h2>
-      <h4>
-        distracted by the readable content of a page when looking at its layout.
-        The point of using Lorem Ipsum is that it has a more-or-less normal
-        distribution of letters, as opposed to using 'Content here, content
-        here', making it look like readable English. Many desktop publishing
-        packages and web page editors now use Lorem Ipsum as their default model
-        text, and a search for 'lorem ipsum' will uncover many web sites still
-        in their infancy. Various versions have evolved over the years,
-        sometimes by accident, sometimes on purpose (injected humour and the
-        like).
-      </h4>
+      <h1>{t("introduction.title")}</h1>
+      <h2>{t("introduction.subTitle")}</h2>
+      <h3>{t("introduction.mainOverview")}</h3>
+      <h4>{t("introduction.mainOverviewP1")}</h4>
+      <h2>{t("introduction.subTitle2")}</h2>
+      <h3>{t("introduction.deviceUseTitle")}</h3>
+      <h4>{t("introduction.deviceUseP1")}</h4>
+      <h3>{t("introduction.statisticsTitle")}</h3>
+      <h4>{t("introduction.statisticsP1")}</h4>
+      <h3>{t("introduction.documentationTitle")}</h3>
+      <h4>{t("introduction.documentationP1")}</h4>
+      <h2>{t("introduction.mainOverview2")}</h2>
+      <h4>{t("introduction.mainOverview2P1")}</h4>
+      <h3>{t("introduction.userHomeTitle")}</h3>
+      <h4>{t("introduction.userHomeP1")}</h4>
+      <h3>{t("introduction.clientTitle")}</h3>
+      <h4>{t("introduction.clientP1")}</h4>
+      <h3>{t("introduction.testsTitle")}</h3>
+      <h4>{t("introduction.testsP1")}</h4>
+      <h3>{t("introduction.userStatisticsTitle")}</h3>
+      <h4>{t("introduction.userStatisticsP1")}</h4>
     </div>
   );
 }

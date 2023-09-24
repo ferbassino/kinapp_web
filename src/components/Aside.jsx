@@ -1,50 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { useNav } from "../navZustand";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const Aside = (props) => {
+  const [t, i18n] = useTranslation("global");
   const { userName, roles } = props;
-  const {
-    navOption,
-    goToIntroduction,
-    goToDeviceUse,
-    goToStatistics,
-    goToDocumentation,
-    goToHome,
-    goToClients,
-    goToTests,
-    goToApps,
-    goToUserStatistics,
-    goToJornadas,
-  } = useNav();
 
   return (
     <div className="vh-100  ">
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">General</th>
+            <th scope="col">{t("aside.general")}</th>
           </tr>
         </thead>
       </table>
       <ul>
         <li className="nav-item">
           <Link to="/introduction" className="nav-link">
-            introduction
+            {t("aside.introduction")}
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/deviceuse" className="nav-link">
-            Device use
+            {t("aside.deviceUse")}
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/statistics" className="nav-link">
-            Statistics
+            {t("aside.statistics")}
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/documentation" className="nav-link">
-            Documentation
+            {t("aside.documentation")}
           </Link>
         </li>
       </ul>
@@ -54,29 +43,31 @@ const Aside = (props) => {
           <table className="table table-hover">
             <thead>
               <tr>
-                <th scope="col">Área de {userName}</th>
+                <th scope="col">
+                  {t("aside.zone")} {userName}
+                </th>
               </tr>
             </thead>
           </table>
           <ul>
             <li className="nav-item">
               <Link to="/reader" className="nav-link">
-                Home
+                {t("aside.home")}
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/reader/clients" className="nav-link">
-                Clients
+                {t("aside.clients")}
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/reader/motions" className="nav-link">
-                Tests
+                {t("aside.tests")}
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/reader/statistics" className="nav-link">
-                Statistics
+                {t("aside.userStatistics")}
               </Link>
             </li>
           </ul>
@@ -87,14 +78,16 @@ const Aside = (props) => {
           <table className="table table-hover">
             <thead>
               <tr>
-                <th scope="col">Área de {userName}</th>
+                <th scope="col">
+                  {t("aside.zone")} {userName}
+                </th>
               </tr>
             </thead>
           </table>
           <ul>
             <li className="nav-item">
               <Link to="/admin" className="nav-link">
-                Home
+                {t("aside.home")}
               </Link>
             </li>
             <li className="nav-item">
@@ -104,18 +97,18 @@ const Aside = (props) => {
             </li>
             <li>
               <Link to="/admin/clients" className="nav-link">
-                Clients
+                {t("aside.clients")}
               </Link>
             </li>
 
             <li className="nav-item">
               <Link to="/admin/motions" className="nav-link">
-                Tests
+                {t("aside.tests")}
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/admin/statistics" className="nav-link">
-                Statistics
+                {t("aside.userStatistics")}
               </Link>
             </li>
           </ul>
@@ -126,31 +119,33 @@ const Aside = (props) => {
           <table className="table table-hover">
             <thead>
               <tr>
-                <th scope="col">Área de {userName}</th>
+                <th scope="col">
+                  {t("aside.zone")} {userName}
+                </th>
               </tr>
             </thead>
           </table>
           <ul>
             <li className="nav-item">
               <Link to="/editor" className="nav-link">
-                Home
+                {t("aside.home")}
               </Link>
             </li>
 
             <li>
               <Link to="/editor/clients" className="nav-link">
-                Clients
+                {t("aside.clients")}
               </Link>
             </li>
 
             <li className="nav-item">
               <Link to="/editor/motions" className="nav-link">
-                Tests
+                {t("aside.tests")}
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/editor/statistics" className="nav-link">
-                Statistics
+                {t("aside.userStatistics")}
               </Link>
             </li>
           </ul>
@@ -160,14 +155,14 @@ const Aside = (props) => {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Otros</th>
+            <th scope="col">{t("aside.others")}</th>
           </tr>
         </thead>
       </table>
       <ul>
         <li className="nav-item">
           <Link to="/jornadas" className="nav-link">
-            Jornadas
+            {t("aside.jornadas")}
           </Link>
         </li>
       </ul>

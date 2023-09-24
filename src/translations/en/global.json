@@ -46,5 +46,50 @@
         "footer":{
             "title":"Follow us on Instagram, send an email or a message to receive more information"
         }
+    },
+    "userNavBar":{
+        "logOut":"Logout"
+    },
+    "aside":{
+        "general":"General", 
+        "introduction":"Web application guide",
+        "deviceUse":"Mobile applications guide",
+        "statistics":"Statistics",
+        "documentation":"Documentation",
+        "zone":"zone of ",
+        "home":"Home",
+        "clients":"Clients",
+        "tests":"Tests",
+        "userStatistics":"Statistics",
+        "others":"Others",
+        "jornadas":"Jornadas"
+    },
+    "introduction":{
+        "title":"How to use the web application?",
+        "subTitle":"Here you will find everything related to navigation and the interpretation of the different views",
+        "mainOverview":"General characteristics",
+        "mainOverviewP1":"In the side menu on the left we find two main sections: the general one, and the user area.",
+        "subTitle2":"General section:",
+        "deviceUseTitle":"Mobile application guide",
+        "deviceUseP1":"The kinApp environment includes several mobile applications (Jump, Vector, Artro, etc.), and each of these presents specific instructions to evaluate. This section presents the correct ways to place the devices either on a body segment or on some other element that it moves.",
+        "statisticsTitle":"General statistics",
+        "statisticsP1":"The analysis environment includes the storage of the database of the performance evaluated by the mobile applications. These data include kinematic variables that can be consulted in a general way in this section.",
+        "documentationTitle":"Documentation",
+        "documentationP1":"Finally, in the general section, we find the documentation where all the anatomical, anatomical-functional, mathematical, physical, mechanical, biomechanical and technological foundations used in the kinApp environment are exposed.",
+        "mainOverview2":"User zone",
+        "mainOverview2P1":"In this section you will find everything related to the particular evaluations of each user.",
+        "userHomeTitle":"User home",
+        "userHomeP1":"Here is an overview of the utilities of each user.",
+        "clientTitle":"Clients",
+        "clientP1":"In this section we find everything related to the evaluated clients: email, age, weight, height, evaluations carried out, etc. You can perform specific searches, update some of this data as well as enter each of the evaluations. ",
+        "testsTitle":"Tests",
+        "testsP1":"In tests you will find all the tests carried out by the user. These are listed but can also be filtered according to the type of evaluation. By clicking on each one you can enter your analysis and you can also access the data of the client who carried it out. ",
+        "userStatisticsTitle":"User statistics",
+        "userStatisticsP1":"Finally, in this user section there are statistics regarding the total evaluations made by the user."
+    
     }
+    
 }
+
+
+

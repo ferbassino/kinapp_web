@@ -17,7 +17,7 @@ import logo from "../../logo.svg";
 import icon from "./assets/icon.png";
 import apkImage from "./assets/apk_image.jpeg";
 import { useTranslation } from "react-i18next";
-import Select from "react-select";
+import SelectLanguage from "../../components/SelectLanguage";
 
 const apkUrl = "https://kinapp-web.vercel.app/kinapp.apk";
 
@@ -33,10 +33,6 @@ function Landing() {
     aTag.remove();
   };
 
-  const options = [
-    { value: "en", label: "English" },
-    { value: "es", label: "Spanish" },
-  ];
   return (
     <div>
       <Container>
@@ -51,54 +47,31 @@ function Landing() {
         >
           <Container className="">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav>
-                <Nav.Link href="#environment" className="mx-3">
-                  <h4 style={{ color: "#042c54" }}>
-                    {t("landing.nav.environment")}
-                  </h4>
-                </Nav.Link>
-                <Nav.Link href="#possibility" className="mx-3">
-                  <h4 style={{ color: "#042c54" }}>
-                    {t("landing.nav.possibility")}
-                  </h4>
-                </Nav.Link>
-                <Nav.Link href="#web" className="mx-3">
-                  <h4 style={{ color: "#042c54" }}>{t("landing.nav.web")}</h4>
-                </Nav.Link>
-                <Nav.Link href="#events" className="mx-3">
-                  <h4 style={{ color: "#042c54" }}>
-                    {t("landing.nav.events")}
-                  </h4>
-                </Nav.Link>
-                <Nav.Link href="#contact" className="mx-3">
-                  <h4 style={{ color: "#042c54" }}>
-                    {t("landing.nav.contact")}
-                  </h4>
-                </Nav.Link>
-                <Nav
-                  style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <h4 style={{ color: "#042c54" }}>
-                    {t("landing.nav.language")}:
-                  </h4>
-                </Nav>
-                <Nav
-                  style={{
-                    marginLeft: 5,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Select
-                    options={options}
-                    onChange={(e) => i18n.changeLanguage(e.value)}
-                  />
-                </Nav>
-              </Nav>
+            <Navbar.Collapse
+              id="basic-navbar-nav"
+              className="d-flex justify-content-between"
+            >
+              <Nav.Link href="#environment" className="mx-3">
+                <h4 style={{ color: "#042c54" }}>
+                  {t("landing.nav.environment")}
+                </h4>
+              </Nav.Link>
+              <Nav.Link href="#possibility" className="mx-3">
+                <h4 style={{ color: "#042c54" }}>
+                  {t("landing.nav.possibility")}
+                </h4>
+              </Nav.Link>
+              <Nav.Link href="#web" className="mx-3">
+                <h4 style={{ color: "#042c54" }}>{t("landing.nav.web")}</h4>
+              </Nav.Link>
+              <Nav.Link href="#events" className="mx-3">
+                <h4 style={{ color: "#042c54" }}>{t("landing.nav.events")}</h4>
+              </Nav.Link>
+              <Nav.Link href="#contact" className="mx-3">
+                <h4 style={{ color: "#042c54" }}>{t("landing.nav.contact")}</h4>
+              </Nav.Link>
+
+              <SelectLanguage />
             </Navbar.Collapse>
           </Container>
         </Navbar>

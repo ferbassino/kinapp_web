@@ -16,7 +16,7 @@
             "title":"Obtiene infinidad de datos con esta poderosa herramienta",
             "subTitle":"kinApp es un entorno de análisis biomecánico que incluye aplicaciones móviles, aplicación web, dispositivos inerciales (UMICO) y almacenamiento en la nube.",
             "mobileAppTitle":"Aplicaciones móviles",
-            "mobileAppText":"Con las aplicaciones móviles de kinApp podrás capturar variables cinématicas y dinámicas de diferentes movimientos corporales.",
+            "mobileAppText":"Con las aplicaciones móviles de kinApp podrás capturar variables cinemáticas y dinámicas de diferentes movimientos corporales.",
             "webAppTitle":"Aplicación Web",
             "webAppText":"En la aplicación web podrás visualizar los datos capturados por las aplicaciones móviles y ademas acceder a estadísticas y documentación.",
             "umicoTitle":"UMICO",
@@ -24,27 +24,70 @@
             "dataBaseTitle":"Almacenamiento",
             "dataBaseText":"Los datos se pueden almacenar en la base de datos y ser requeridos en cualquier momento."
 
+
         },
         "possibility":{
-            "text":"La aplicación móvil tendrás la posibilidad de evaluar en cualquier lado, guardar los datos en la nube y visualizarlos en cualquier momento."
+            "text":"Con la aplicación móvil tendrás la posibilidad de evaluar en cualquier lado, guardar los datos en la nube y visualizarlos en cualquier momento."
         },
         "web":{
-            "webTitle":"La aplicación web te da la posibilidad de analizar los datos de una manera mas completa",
+            "webTitle":"La aplicación web te da la posibilidad de analizar los datos de una manera más completa",
             "dataAnalysisTitle":"Análisis de datos",
             "dataAnalysisText":"Visualiza los datos en un entorno amigable con tablas y gráficos.",
             "dataBaseTitle":"Acceso a la nube",
             "dataBaseText":"Establece filtros para obtener datos específicos.",
             "docsTitle":"Documentación",
             "docsText":"Accede a documentación de análisis biomecánico y anatomo-funcional.",
-            "statisticsTitle":"Estadisticas",
+            "statisticsTitle":"Estadísticas",
             "statisticsText":"Accede a las estadísticas de todo el entorno."
+
 
         },"events":{
             "title":"Encuentra los siguientes eventos aquí"
         },
         "footer":{
-            "title":"Síguenos en Instagram, envíanos un email o un whatsapp para recibir mas información."
+            "title":"Síguenos en Instagram, envíanos un email o un whatsapp para recibir más información."
         }
+    },
+    "userNavBar":{
+        "logOut":"Salir"
+    },
+    "aside":{
+        "general":"General",
+        "introduction":"Guia kinApp web",
+        "deviceUse":"Guia aplicaciones móviles",
+        "statistics":"Estadísticas",
+        "documentation":"Documentación",
+        "zone":"zona de ",
+        "home":"Home",
+        "clients":"Clientes",
+        "tests":"Tests",
+        "userStatistics":"Tus estadísticas",
+        "others":"Otros",
+        "jornadas":"Jornadas"
+    },
+    "introduction":{
+        "title":"¿Cómo utilizar la aplicación web?",
+        "subTitle":"Aquí vas a encontrar todo lo relacionado con la navegación y la interpretación de las diferentes vistas",
+        "mainOverview":"Características generales",
+        "mainOverviewP1":"En el menú lateral de la izquierda encontramos dos secciones principales: la general, y la zona del usuario.",
+        "subTitle2":"sección General:",
+        "deviceUseTitle":"Guia de aplicaciones móviles",
+        "deviceUseP1":"El entorno kinApp incluye varias aplicaciones móviles (Jump, Vector, Artro, etc.), y cada una de estas presenta instrucciones específicas para poder evaluar. En esta sección se presentan las maneras correctas de colocar los dispositivos ya sea sobre un segmento corporal o sobre algún otro elemento que este desplace",
+        "statisticsTitle":"Estadísticas generales",
+        "statisticsP1":"El entorno de análisis incluye el almacenamiento de la base de datos del rendimiento evaluado por las aplicaciones móviles. Esos datos incluyen variables cinemáticas que pueden ser consultadas de manera general en esta sección.",
+        "documentationTitle":"Documentación",
+        "documentationP1":"Finalmente, en la sección general, encontramos la documentación dónde se exponen todos los fundamentos anatómicos, anatomo-funcionales, matemáticos, físicos, mecánicos, biomecánicos y tecnológicos utilizados en el entorno kinApp.",
+        "mainOverview2":"Zona del usuario",
+        "mainOverview2P1":"En esta sección se encuentra todo lo relacionado con las evaluaciones particulares de cada usuario.",
+        "userHomeTitle":"Home del usuario",
+        "userHomeP1":"Aquí se presenta un paneo de las utilidades de cada usuario",
+        "clientTitle":"Clientes",
+        "clientP1":"En esta sección encontramos todo lo referente a los clientes evaluados: email, edad, peso, talla, evaluaciones realizadas, etc. Se pueden realizar búsquedas específicas, actualización de alguno de estos datos como así también ingresar a cada una de las evaluaciones. ",
+        "testsTitle":"Tests",
+        "testsP1":"En tests se encuentran todos los tests realizados por el usuario. Estos se encuentran listados pero también se pueden filtrar según el tipo de evaluación. Haciendo clic en cada uno se puede ingresar a su análisis y también se puede acceder a los datos del cliente que lo realizó. ",
+        "userStatisticsTitle":"Estadísticas del usuario",
+        "userStatisticsP1":"Finalmente en esta sección del usuario se encuentran las estadísticas con respecto al total de evaluaciones realizadas por el usuario."
+   
     }
-    
+   
 }

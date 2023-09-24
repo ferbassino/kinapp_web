@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 // import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import icon from "../views/landing/assets/icon.png";
-import { Form } from "react-bootstrap";
 
+import SelectLanguage from "./SelectLanguage";
+import { useTranslation } from "react-i18next";
 const NavBar = ({ handleLogout, userName = "", roles }) => {
+  const [t, i18n] = useTranslation("global");
   return (
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark fixed-top ">
       <div className="container-fluid">
@@ -70,13 +72,9 @@ const NavBar = ({ handleLogout, userName = "", roles }) => {
             </li>
           </ul>
           <button onClick={handleLogout} className="btn btn-light col-md-2">
-            Salir
+            {t("userNavBar.logOut")}
           </button>
-          <Form.Select aria-label="Default select example">
-            <option>Language</option>
-            <option>English</option>
-            <option>Spanish</option>
-          </Form.Select>
+          <SelectLanguage className=" col-md-2" />
         </div>
       </div>
     </nav>
