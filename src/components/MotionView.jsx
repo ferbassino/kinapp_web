@@ -106,13 +106,13 @@ const MotionView = ({ dataTest = [] }) => {
         maxY={maxY}
         minY={minY}
         x={accX}
-        xName="aceleración en x"
+        xName="a-x"
         xColor="red"
         y={accY}
-        yName="aceleración en y"
+        yName="a-y"
         yColor="green"
         z={accZ}
-        zName="aceleración en z"
+        zName="a-z"
         zColor="blue"
         t={accT}
       />

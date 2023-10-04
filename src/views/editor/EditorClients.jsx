@@ -93,58 +93,57 @@ function EditorClients() {
       {errorMessage ? (
         <h4 className="text-danger text-center m-3">{errorMessage}</h4>
       ) : null}
-      <div className="row p-2">
-        <div className="col-md-4">
-          <div className="card p-2">
-            <input
-              className="form-control mb-2"
-              placeholder="email"
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
 
-            <button
-              className="btn btn-primary"
-              onClick={(e) => handleEmail(e)}
-              value={email}
-            >
-              enter an setEmail
-            </button>
-          </div>
+      <div className="col-md-6 mx-auto my-4">
+        <div className="card p-2">
+          <input
+            className="form-control mb-2"
+            placeholder="email"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+
+          <button
+            className="btn btn-primary"
+            onClick={(e) => handleEmail(e)}
+            value={email}
+          >
+            search by email
+          </button>
         </div>
-        <div className="col-md-8">
-          {loading ? (
-            <>
-              <h2>loading clients...</h2>
-            </>
-          ) : (
-            <>
-              {noData ? (
-                <>{noDataMesagge}</>
-              ) : (
-                <>
-                  <table className="table table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">Email</th>
-                        <th scope="col">role</th>
+      </div>
+      <div className="col-md-8">
+        {loading ? (
+          <>
+            <h2>loading clients...</h2>
+          </>
+        ) : (
+          <>
+            {noData ? (
+              <>{noDataMesagge}</>
+            ) : (
+              <>
+                <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Email</th>
+                      <th scope="col">role</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {clientsData.map((el, index) => (
+                      <tr key={index} onClick={() => handleClient(el)}>
+                        <td>{el.email}</td>
+                        <td>{el.roles}</td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {clientsData.map((el, index) => (
-                        <tr key={index} onClick={() => handleClient(el)}>
-                          <td>{el.email}</td>
-                          <td>{el.roles}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </>
-              )}
-            </>
-          )}
-        </div>
+                    ))}
+                  </tbody>
+                </table>
+              </>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
