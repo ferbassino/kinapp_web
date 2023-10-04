@@ -127,7 +127,6 @@ function EditorClients() {
                   <table className="table table-hover">
                     <thead>
                       <tr>
-                        <th scope="col">id</th>
                         <th scope="col">Email</th>
                         <th scope="col">role</th>
                       </tr>
@@ -135,10 +134,8 @@ function EditorClients() {
                     <tbody>
                       {clientsData.map((el, index) => (
                         <tr key={index} onClick={() => handleClient(el)}>
-                          <td>{index + 1}</td>
-                          <td>{el.id}</td>
                           <td>{el.email}</td>
-                          <td>{el.roles[0]}</td>
+                          <td>{el.roles}</td>
                         </tr>
                       ))}
                     </tbody>

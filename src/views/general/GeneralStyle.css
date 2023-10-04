@@ -15,8 +15,8 @@
 rgba(226,117,96,1)
 #e27560 */
 .header {
-    background-color: #1b1b33;
-     color:#e27560 ;
+     background-color:  #e27560;
+    color:#1b1b33 ;
      padding: 3rem 2rem;
       text-align: center;
     
@@ -25,16 +25,16 @@ rgba(226,117,96,1)
 
 
 .section-header{
-    background-color: #1b1b33;
-    color:#e27560 ;
+    background-color:  #e27560;
+    color:#1b1b33 ;
     padding: 2rem 2rem;
       text-align: center;
 }
-h3 {
+h4 {
 padding: 1rem;
 
 }
-h4{
+h6{
     padding-bottom: 2rem;
     padding-left: 2rem;
     padding-right: 2rem;

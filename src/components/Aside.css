@@ -9,8 +9,14 @@ li{
     padding: 0.5rem;
 }
 li:hover{
-    color: #e27560;
-    background-color:#1b1b33 ;
+    color: #1b1b33;
+    background-color: #e27560;
+    
+    
+}
+.orange-header {
+    color: #1b1b33;
+    background-color: #e27560;
     
     
 }

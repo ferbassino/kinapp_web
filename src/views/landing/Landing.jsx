@@ -5,14 +5,7 @@ import webApp from "./assets/web_app.png";
 import umico from "./assets/umico.png";
 import dataBase from "./assets/database.png";
 import anyWhere from "./assets/anywhere.png";
-import jornadas from "./assets/jornadas.png";
 import hero from "./assets/hero.png";
-import cap_1 from "./assets/cap_1.jpeg";
-import cap_2 from "./assets/cap_2.jpeg";
-import cap_3 from "./assets/cap_3.jpeg";
-import cap_4 from "./assets/cap_4.jpeg";
-import cap_5 from "./assets/cap_5.jpeg";
-import cap_6 from "./assets/cap_6.jpeg";
 import logo from "../../logo.svg";
 import icon from "./assets/icon.png";
 import apkImage from "./assets/apk_image.jpeg";
@@ -39,7 +32,7 @@ function Landing() {
       <Container>
         <Navbar
           expand="lg"
-          className="bg-body-tertiary   "
+          className="bg-body-tertiary"
           style={{
             background:
               "linear-gradient(90deg, rgba(36,31,0,1) 0%, rgba(226,117,96,1) 0%, rgba(255,183,0,0.6279761904761905) 100%)",
@@ -49,34 +42,38 @@ function Landing() {
           <Container className="">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse
-              id="basic-navbar-nav"
-              // className="d-flex justify-content-between"
+            // id="basic-navbar-nav"
+            // className="justify-content-between"
             >
               <Nav className="me-auto">
-                <Nav.Link href="#environment" className="mx-3">
-                  <h4 style={{ color: "#042c54" }}>
+                <Nav.Link href="#environment">
+                  <h5 style={{ color: "#042c54" }} className="mx-4">
                     {t("landing.nav.environment")}
-                  </h4>
+                  </h5>
                 </Nav.Link>
-                <Nav.Link href="#possibility" className="mx-3">
-                  <h4 style={{ color: "#042c54" }}>
+                <Nav.Link href="#possibility">
+                  <h5 style={{ color: "#042c54" }} className="mx-4">
                     {t("landing.nav.possibility")}
-                  </h4>
+                  </h5>
                 </Nav.Link>
-                <Nav.Link href="#web" className="mx-3">
-                  <h4 style={{ color: "#042c54" }}>{t("landing.nav.web")}</h4>
+                <Nav.Link href="#web">
+                  <h5 style={{ color: "#042c54" }} className="mx-4">
+                    {t("landing.nav.web")}
+                  </h5>
                 </Nav.Link>
-                <Nav.Link href="#events" className="mx-3">
-                  <h4 style={{ color: "#042c54" }}>
+                <Nav.Link href="#events">
+                  <h5 style={{ color: "#042c54" }} className="mx-4">
                     {t("landing.nav.events")}
-                  </h4>
+                  </h5>
                 </Nav.Link>
-                <Nav.Link href="#contact" className="mx-3">
-                  <h4 style={{ color: "#042c54" }}>
+                <Nav.Link href="#contact">
+                  <h5 style={{ color: "#042c54" }} className="mx-4">
                     {t("landing.nav.contact")}
-                  </h4>
+                  </h5>
                 </Nav.Link>
-                <SelectLanguage />
+                <Nav.Link>
+                  <SelectLanguage />
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

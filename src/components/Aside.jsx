@@ -149,19 +149,19 @@ const Aside = (props) => {
         </>
       ) : null}
 
-      <table className="table table-hover">
+      {/* <table className="table table-hover">
         <thead>
           <tr>
             <th scope="col">{t("aside.others")}</th>
           </tr>
         </thead>
-      </table>
+      </table> */}
 
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <Link to="/jornadas" className="nav-link">
           {t("aside.jornadas")}
         </Link>
-      </li>
+      </li> */}
 
       {/* <tr>
             <td>opcion 2</td>

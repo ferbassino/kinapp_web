@@ -10,7 +10,7 @@ const SelectLanguage = () => {
   ];
   const [t, i18n] = useTranslation("global");
   return (
-    <div className="mx-5">
+    <div className="mx-5 w-50">
       <Select
         options={options}
         placeholder={t("landing.nav.language")}

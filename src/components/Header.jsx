@@ -1,11 +1,8 @@
 import React from "react";
-
+import "./Header.css";
 const Header = ({ title }) => {
   return (
-    <div
-      className="p-3 m-2 bg-secondary text-white text-center"
-      style={{ marginTop: 10 }}
-    >
+    <div className=" header-div p-3 m-2  text-center">
       <h1>{title}</h1>
     </div>
   );
