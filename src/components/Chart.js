@@ -26,11 +26,7 @@ ChartJS.register(
 const options = {
   // fill: true,
   responsive: true,
-  // scales: {
-  //   y: {
-  //     min: 0,
-  //   },
-  // },
+  aspectRatio: 1.5,
   plugins: {
     legend: {
       display: true,

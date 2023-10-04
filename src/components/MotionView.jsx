@@ -21,6 +21,9 @@ const MotionView = ({ dataTest = [] }) => {
     dataTest.testTime
   );
 
+  const maxY = Math.max(...accY);
+  const minY = Math.min(...accY);
+
   const [translationVisible, setTraslationVisible] = useState(false);
   const [fallVisible, setFallVisible] = useState(false);
   const [rotacionVisible, setRotacionVisible] = useState(false);
@@ -100,6 +103,8 @@ const MotionView = ({ dataTest = [] }) => {
       <Header title={"Datos crudos del dispositivo"} />
 
       <Chart
+        maxY={maxY}
+        minY={minY}
         x={accX}
         xName="aceleración en x"
         xColor="red"
