@@ -50,29 +50,34 @@ function Landing() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse
               id="basic-navbar-nav"
-              className="d-flex justify-content-between"
+              // className="d-flex justify-content-between"
             >
-              <Nav.Link href="#environment" className="mx-3">
-                <h4 style={{ color: "#042c54" }}>
-                  {t("landing.nav.environment")}
-                </h4>
-              </Nav.Link>
-              <Nav.Link href="#possibility" className="mx-3">
-                <h4 style={{ color: "#042c54" }}>
-                  {t("landing.nav.possibility")}
-                </h4>
-              </Nav.Link>
-              <Nav.Link href="#web" className="mx-3">
-                <h4 style={{ color: "#042c54" }}>{t("landing.nav.web")}</h4>
-              </Nav.Link>
-              <Nav.Link href="#events" className="mx-3">
-                <h4 style={{ color: "#042c54" }}>{t("landing.nav.events")}</h4>
-              </Nav.Link>
-              <Nav.Link href="#contact" className="mx-3">
-                <h4 style={{ color: "#042c54" }}>{t("landing.nav.contact")}</h4>
-              </Nav.Link>
-
-              <SelectLanguage />
+              <Nav className="me-auto">
+                <Nav.Link href="#environment" className="mx-3">
+                  <h4 style={{ color: "#042c54" }}>
+                    {t("landing.nav.environment")}
+                  </h4>
+                </Nav.Link>
+                <Nav.Link href="#possibility" className="mx-3">
+                  <h4 style={{ color: "#042c54" }}>
+                    {t("landing.nav.possibility")}
+                  </h4>
+                </Nav.Link>
+                <Nav.Link href="#web" className="mx-3">
+                  <h4 style={{ color: "#042c54" }}>{t("landing.nav.web")}</h4>
+                </Nav.Link>
+                <Nav.Link href="#events" className="mx-3">
+                  <h4 style={{ color: "#042c54" }}>
+                    {t("landing.nav.events")}
+                  </h4>
+                </Nav.Link>
+                <Nav.Link href="#contact" className="mx-3">
+                  <h4 style={{ color: "#042c54" }}>
+                    {t("landing.nav.contact")}
+                  </h4>
+                </Nav.Link>
+                <SelectLanguage />
+              </Nav>
             </Navbar.Collapse>
           </Container>
         </Navbar>
@@ -272,7 +277,7 @@ function Landing() {
                   {t("landing.events.title")}
                 </h1>
               </Col>
-              <Row>
+              {/* <Row>
                 <Col sm={6}>
                   <img
                     src={jornadas}
@@ -351,7 +356,7 @@ function Landing() {
                     style={{ width: "12rem", margin: "0.3rem" }}
                   />
                 </Row>
-              </Row>
+              </Row> */}
             </Col>
           </Row>
         </Container>
