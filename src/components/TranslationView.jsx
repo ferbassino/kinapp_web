@@ -7,6 +7,7 @@ import SubTitle from "./SubTitle";
 import SubTitle2 from "./Subtitle2";
 import { useEffect } from "react";
 import repsAnalisis from "../auxiliaries/repsAnalisis";
+import ChartAxis from "./ChartAxis";
 
 const TranslationView = ({ accY = [], accT = [], testTime = 0, masa = 0 }) => {
   const [dinamicaVisible, setDinamicaVisible] = useState(false);
@@ -48,10 +49,10 @@ const TranslationView = ({ accY = [], accT = [], testTime = 0, masa = 0 }) => {
       <Header title={"Análisis cinemático"} />
       <Title text="Aceleración del dispositivo en 'y'" />
       <SubTitle text="Distancia [m]" value={distancia.toFixed(2)} />
-      <Chart
-        x={arrayATraslacion}
-        xColor={"#fa020f"}
-        xName={"Aceleración ´y´"}
+      <ChartAxis
+        y={arrayATraslacion}
+        yColor={"#fa020f"}
+        yName={"a-y"}
         t={arrayTTraslacion}
       />
 
@@ -59,13 +60,13 @@ const TranslationView = ({ accY = [], accT = [], testTime = 0, masa = 0 }) => {
       <Chart
         x={arrayATraslacion}
         xColor={"#fa020f"}
-        xName={"Aceleración"}
+        xName={"a"}
         y={arrayVTraslacion}
         yColor={"#0307ff"}
-        yName={"Velocidad"}
+        yName={"v"}
         z={arrayDTraslacion}
         zColor={"#00ba09"}
-        zName={"Posición"}
+        zName={"p"}
         t={arrayTTraslacion}
       />
       <Title text="Fase propulsiva" />
@@ -73,13 +74,13 @@ const TranslationView = ({ accY = [], accT = [], testTime = 0, masa = 0 }) => {
       <Chart
         x={arrayATraslacionProp}
         xColor={"#fa020f"}
-        xName={"Aceleración"}
+        xName={"a"}
         y={arrayVTraslacionProp}
         yColor={"#0307ff"}
-        yName={"Velocidad"}
+        yName={"v"}
         z={arrayDTraslacionProp}
         zColor={"#00ba09"}
-        zName={"Posición"}
+        zName={"p"}
         t={arrayTTraslacionProp}
       />
       <SubTitle text="Velocidad media [m/s]" value={velMedProp.toFixed(2)} />
@@ -96,13 +97,13 @@ const TranslationView = ({ accY = [], accT = [], testTime = 0, masa = 0 }) => {
           <Chart
             x={arrayVTraslacionProp}
             xColor={"#fa020f"}
-            xName={"Velocidad"}
+            xName={"v"}
             y={arrayFuerza}
             yColor={"#0307ff"}
-            yName={"Fuerza"}
+            yName={"F"}
             z={arrayPotencia}
             zColor={"#00ba09"}
-            zName={"Potencia"}
+            zName={"W"}
             t={arrayTTraslacionProp}
           />
           <SubTitle text="Fuerza media [N]" value={parseInt(fuerzaPromedio)} />

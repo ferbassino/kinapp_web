@@ -1,6 +1,6 @@
 import numbers from "numbers";
 
-export default function jumpProcess(accY, testTime, masa, accT) {
+export default function jumpProcess(accY, testTime, weight, accT) {
   const evT = testTime / 1000;
   const interv = evT / accY.length;
 
@@ -45,22 +45,55 @@ export default function jumpProcess(accY, testTime, masa, accT) {
   // -----------FASE EXCENTRICA array2 (index 1-2)
 
   const arrayY2 = [];
-
+  const arrayY2Ex0 = [];
   arrayY1.map((el, index) => {
-    if (index > index1) arrayY2.push(el);
+    if (index > index1) {
+      arrayY2.push(el);
+      arrayY2Ex0.push(el - modo);
+    }
   });
+  const minExcentrica = Math.min(...arrayY2Ex0);
 
   const index3 = accY.findIndex((el, index) => el < modo && index > index2);
 
   // -----------FASE DE IMPULSO arrayY3 (index 2-3)
 
   const arrayY3 = [];
+  const arrayY30 = [];
 
   accY.map((el, index) => {
     if (index > index2 && index < index3) {
       arrayY3.push(el);
+      arrayY30.push((el - modo) * 9.81);
     }
   });
+
+  const indexInitImpulse = arrayY30.findIndex(
+    (el) => el > Math.abs(minExcentrica)
+  );
+
+  // exentrica mas impulso
+  const arrayExcentImp0 = [];
+  accY.map((el, index) => {
+    if (index > index1 && index < index3) {
+      arrayExcentImp0.push((el - modo) * 9.81);
+    }
+  });
+
+  const arrVelImpulse = [];
+  let velImpulse = 0;
+  for (let i = 0; i < arrayExcentImp0.length - 1; i++) {
+    if (i > 14) {
+      velImpulse +=
+        ((Number(arrayExcentImp0[i]) + Number(arrayExcentImp0[i + 1])) *
+          (accT[i + 1] - accT[i])) /
+        2;
+
+      arrVelImpulse.push(velImpulse);
+    }
+  }
+  console.log(arrayExcentImp0);
+  console.log("velocid por impulso", velImpulse.toFixed(2), "m/s");
 
   // ------------FASE DE VUELO ArrayY4 (index 3-4)
 
@@ -68,18 +101,28 @@ export default function jumpProcess(accY, testTime, masa, accT) {
 
   const arrayY4 = [];
   accY.map((el, index) => {
-    if (index > index3 && index < index4 && el < 5) {
+    if (index > index3 && index < index4) {
       arrayY4.push(el);
     }
   });
 
   // Análisis cinemático de la fase de vuelo
 
-  const tV = arrayY4.length * interv;
+  const tV = (arrayY4.length + 2) * interv;
 
   const alturaVuelo = (1 / 8) * 9.81 * Math.pow(tV, 2);
 
   const velD = Math.sqrt(2 * 9.81 * alturaVuelo);
+  console.log("velocidad por altura", velD.toFixed(2), "m/s");
+
+  let error;
+  if (velD < velImpulse) {
+    error = parseInt((velD / velImpulse) * 100 - 100);
+  } else {
+    error = parseInt((velImpulse / velD) * 100 - 100);
+  }
+
+  console.log("error", error, "%");
 
   // ----------FASE DE IMPACTO arrayY5 (index 4-5)
 

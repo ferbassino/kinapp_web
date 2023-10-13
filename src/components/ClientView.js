@@ -21,15 +21,17 @@ const ClientView = ({ id }) => {
   const [editRole, setEditRole] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [testVisible, setTestVisible] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalBody, setModalBody] = useState("");
 
   // modal
   const [show, setShow] = useState(false);
   const handleCancel = () => setShow(false);
   const handleConfirm = () => {
-    setShow(false);
     setConfirmDelete(true);
+    setShow(false);
   };
-
+  console.log("confirm delete", confirmDelete);
   useEffect(() => {
     getClient();
   }, []);
@@ -89,6 +91,17 @@ const ClientView = ({ id }) => {
     });
 
     setEditRole(false);
+  };
+
+  const handleTestDelete = async (el) => {
+    console.log(el._id);
+
+    try {
+      await client.delete(`/api/motion/${el._id}`);
+      window.location.href = window.location.href;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -174,15 +187,34 @@ const ClientView = ({ id }) => {
                     <th scope="col">Date</th>
                     <th scope="col">Hour</th>
                     <th scope="col">test</th>
+                    <th scope="col">action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {arrayDataTests.map((el, index) => (
-                    <tr key={index} onClick={() => handleTest(el)}>
+                    <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{getDate(el.date)}</td>
                       <td>{getHour(el.date)}</td>
                       <td>{el.motionType}</td>
+                      <td>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => handleTest(el)}
+                          // value={email}
+                        >
+                          go test
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="btn btn-primary"
+                          onClick={(e) => handleTestDelete(el)}
+                          // value={email}
+                        >
+                          delete
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -192,8 +224,8 @@ const ClientView = ({ id }) => {
         )}
       </div>
       <ModalComponent
-        title="Delete client"
-        body={`Confirm that you want to delete ${clientData.email}?`}
+        title={modalTitle}
+        body={modalBody}
         show={show}
         handleCancel={handleCancel}
         handleConfirm={handleConfirm}

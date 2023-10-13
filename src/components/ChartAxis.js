@@ -26,7 +26,7 @@ ChartJS.register(
 const options = {
   // fill: true,
   responsive: true,
-  aspectRatio: 1.3,
+  aspectRatio: 1.5,
   plugins: {
     legend: {
       display: true,
@@ -34,15 +34,10 @@ const options = {
   },
 };
 
-const Chart = ({
-  x = [],
+const ChartAxis = ({
   y = [],
-  z = [],
   t = [],
-  xName = "",
   yName = "",
-  zName = "",
-  xColor = "",
   yColor = "",
   zColor = "",
 }) => {
@@ -53,14 +48,6 @@ const Chart = ({
       return {
         datasets: [
           {
-            label: xName,
-            tension: 0.3,
-            data: x,
-            borderColor: xColor,
-            backgroundColor: xColor,
-            pointRadius: 1,
-          },
-          {
             label: yName,
             tension: 0.5,
             data: y,
@@ -68,21 +55,13 @@ const Chart = ({
             backgroundColor: yColor,
             pointRadius: 1,
           },
-          {
-            label: zName,
-            tension: 0.3,
-            data: z,
-            borderColor: zColor,
-            backgroundColor: zColor,
-            pointRadius: 1,
-          },
         ],
         labels,
       };
     },
-    [x, y, z, t]
+    [y, t]
   );
 
   return <Line data={data} options={options} />;
 };
-export default Chart;
+export default ChartAxis;

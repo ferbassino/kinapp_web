@@ -88,11 +88,21 @@ const MotionView = ({ dataTest = [] }) => {
             <td>{dataTest.testTime} ms</td>
           </tr>
 
-          <tr>
-            <td>📝</td>
-            <td>Masa</td>
-            <td>{dataTest.mass} kg</td>
-          </tr>
+          {dataTest.mass ? (
+            <tr>
+              <td>📝</td>
+              <td>Masa</td>
+              <td>{dataTest.mass} kg</td>
+            </tr>
+          ) : null}
+          {dataTest.weight ? (
+            <tr>
+              <td>📝</td>
+              <td>Masa corporal</td>
+              <td>{dataTest.weight} kg</td>
+            </tr>
+          ) : null}
+
           <tr>
             <td>📝</td>
             <td>intervalo del muestreo</td>
@@ -107,10 +117,10 @@ const MotionView = ({ dataTest = [] }) => {
         minY={minY}
         x={accX}
         xName="a-x"
-        xColor="red"
+        xColor="green"
         y={accY}
         yName="a-y"
-        yColor="green"
+        yColor="red"
         z={accZ}
         zName="a-z"
         zColor="blue"
@@ -138,7 +148,12 @@ const MotionView = ({ dataTest = [] }) => {
       ) : null}
       {jumpVisible ? (
         <>
-          <JumpView accY={accY} testTime={testTime} masa={mass} accT={accT} />
+          <JumpView
+            accY={accY}
+            testTime={testTime}
+            weight={dataTest.weight}
+            accT={accT}
+          />
         </>
       ) : null}
     </div>
