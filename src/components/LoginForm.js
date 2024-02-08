@@ -4,8 +4,10 @@ const LoginForm = ({
   handleLogin,
   email,
   password,
+  webCode,
   handleEmail,
   handlePassword,
+  handleWebCode,
 }) => {
   return (
     <>
@@ -32,6 +34,16 @@ const LoginForm = ({
               name="Password"
               placeholder="Password"
               onChange={handlePassword}
+              required
+            />
+            <input
+              className="form-control m-2 col-sm"
+              aria-label="Search"
+              type="number"
+              value={webCode}
+              name="webCode"
+              placeholder="mobile code"
+              onChange={handleWebCode}
               required
             />
 

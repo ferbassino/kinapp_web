@@ -57,6 +57,7 @@ const ClientView = ({ id }) => {
   };
 
   const handleTest = (el) => {
+    console.log(el);
     const id = el._id;
     const res = arrayDataTests.find((el) => el._id === id);
     setDataTest(res);
@@ -94,8 +95,6 @@ const ClientView = ({ id }) => {
   };
 
   const handleTestDelete = async (el) => {
-    console.log(el._id);
-
     try {
       await client.delete(`/api/motion/${el._id}`);
       window.location.href = window.location.href;
@@ -184,9 +183,9 @@ const ClientView = ({ id }) => {
                 <thead>
                   <tr>
                     <th scope="col">Index</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Hour</th>
-                    <th scope="col">test</th>
+                    <th scope="col">Date --- Hour</th>
+                    <th scope="col">Test</th>
+                    <th scope="col">movement</th>
                     <th scope="col">action</th>
                   </tr>
                 </thead>
@@ -194,9 +193,14 @@ const ClientView = ({ id }) => {
                   {arrayDataTests.map((el, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
-                      <td>{getDate(el.date)}</td>
-                      <td>{getHour(el.date)}</td>
+                      <td>
+                        ID:{el._id}---OPPOSITE:{el.opposite}
+                        {/* {getDate(el.date)}---{getHour(el.date)} */}
+                      </td>
                       <td>{el.motionType}</td>
+                      <td>
+                        {el.motion} - {el.side} - {el.segment}
+                      </td>
                       <td>
                         <button
                           className="btn btn-primary"

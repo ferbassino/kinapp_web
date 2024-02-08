@@ -1,0 +1,15 @@
+POST https://kinapp-api.vercel.app/api/posts
+Content-Type: application/json
+
+{
+    "corporalPart":"MMSS",
+    "segment":"Shoulder",
+    "movement":"flexion",
+    "maxAngle":180,
+    "minAngle":170,
+    "averageAngle":175,
+    "arthrology":{"vertebras":"cervicales", "articulaciones":"uncovertebrales"},
+    "myology":{"Musculo1":"complexo mayor", "musculo2":"esplenios"},
+    "neurology":{"nervios":"ramos posteriores"},
+    "observations":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but "
+}

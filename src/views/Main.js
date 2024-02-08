@@ -7,6 +7,7 @@ import Error from "./Error";
 import Client from "./bronze/Client";
 import Introduction from "./general/Introduction";
 import Admin from "./admin/Admin";
+import client from "../api/client";
 //use history nos permite decirle donde queremos que comience a navegar el cliente
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Kinapp from "./Kinapp";
@@ -51,6 +52,7 @@ const Main = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [webCode, setWebCode] = useState("");
   const [user, setUser] = useState(null);
   const [userName, setUserName] = useState("");
   const [roles, setRoles] = useState("");
@@ -109,12 +111,37 @@ const Main = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
+
     try {
       const data = await login({
         email,
         password,
       });
+
+      if (data.mobCode === webCode) {
+        try {
+          const result = await client.put(
+            `user/${data.id}`,
+            {
+              mobCode: "0000",
+            },
+            { new: true }
+          );
+
+          result.json({ updatedUser: result });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert(
+          "el codigo de verificacion no es válido, obtenga uno válido de la aplicación movil"
+        );
+        return;
+      }
+
+      setLoading(true);
+      console.log("mobCode", data.mobCode);
+      console.log("webCode", webCode);
 
       setRoles(data.roles);
       setUser(data);
@@ -139,6 +166,7 @@ const Main = () => {
       );
 
       setEmail("");
+      setWebCode("");
       setPassword("");
       navigate("/");
       setLoading(false);
@@ -348,9 +376,11 @@ const Main = () => {
                 <LoginForm
                   email={email}
                   password={password}
+                  webCode={webCode}
                   handleLogin={handleLogin}
                   handleEmail={(e) => setEmail(e.target.value)}
                   handlePassword={(e) => setPassword(e.target.value)}
+                  handleWebCode={(e) => setWebCode(e.target.value)}
                 />
               </div>
               <Landing />

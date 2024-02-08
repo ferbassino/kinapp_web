@@ -12,14 +12,18 @@ import TranslationView from "./TranslationView";
 import FallView from "./FallView";
 import RotacionView from "./RotacionView";
 import JumpView from "./JumpView";
+import ReactionView from "./ReactionView";
+import { dataReactionProcess } from "../auxiliaries/dataReactionProcess";
 
 const MotionView = ({ dataTest = [] }) => {
   const { mass, testTime } = dataTest;
 
-  const { accX, accY, accZ, accT, accInterval } = dataProcess(
+  const { accX, accY, accZ, accT, accInterval } = dataReactionProcess(
     dataTest.accData,
     dataTest.testTime
   );
+  console.log("accX.lengt en motion view", accX.length);
+  console.log("dataTest.accData, en motion view", dataTest.accData.length);
 
   const maxY = Math.max(...accY);
   const minY = Math.min(...accY);
@@ -29,6 +33,7 @@ const MotionView = ({ dataTest = [] }) => {
   const [rotacionVisible, setRotacionVisible] = useState(false);
   const [jumpVisible, setJumpVisible] = useState(false);
   const [sampleRate, setSampleRate] = useState(0);
+  const [reactionVisible, setReactionVisible] = useState(false);
 
   useEffect(() => {
     const samR = dataTest.testTime / 1000 / accT.length;
@@ -45,6 +50,9 @@ const MotionView = ({ dataTest = [] }) => {
     }
     if (dataTest.motionType === "jump") {
       setJumpVisible(true);
+    }
+    if (dataTest.motionType === "reaction") {
+      setReactionVisible(true);
     }
   }, []);
 
@@ -102,11 +110,19 @@ const MotionView = ({ dataTest = [] }) => {
               <td>{dataTest.weight} kg</td>
             </tr>
           ) : null}
+          {dataTest.side ? (
+            <tr>
+              <td>📝</td>
+              <td>Side</td>
+              <td>{dataTest.side}</td>
+            </tr>
+          ) : null}
 
           <tr>
             <td>📝</td>
             <td>intervalo del muestreo</td>
-            <td>{sampleRate.toFixed(3)} s</td>
+            {/* <td>{sampleRate.toFixed(3)} s</td> */}
+            <td>{sampleRate} s</td>
           </tr>
         </tbody>
       </Table>
@@ -152,6 +168,17 @@ const MotionView = ({ dataTest = [] }) => {
             accY={accY}
             testTime={testTime}
             weight={dataTest.weight}
+            accT={accT}
+          />
+        </>
+      ) : null}
+      {reactionVisible ? (
+        <>
+          <ReactionView
+            accX={accX}
+            accY={accY}
+            accZ={accZ}
+            testTime={testTime}
             accT={accT}
           />
         </>
