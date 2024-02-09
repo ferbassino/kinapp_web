@@ -4,10 +4,6 @@ export const dataProcess = (accArray = [], testTime = 0) => {
   const accZ = [];
   const accT = [];
 
-  console.log("proceso de data");
-  console.log("accArray.lengt", accArray.length);
-  console.log("accX.lengt en data process", accX.length);
-
   let accCount = 0;
   const accInterval = testTime / 1000 / accArray.length;
   accArray.map((el, index) => {

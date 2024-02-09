@@ -4,10 +4,6 @@ const reactionAnalysis = (accX = [], accY = [], accZ = [], testTime = 0) => {
   const testTimeSecond = testTime / 1000;
   const interval = testTimeSecond / accX.length;
 
-  console.log("interval", interval);
-  console.log("testtimeinput", testTime);
-  console.log("accX.lengt", accX.length);
-
   const accXToFixed3 = [];
 
   accX.map((el, index) => {

@@ -92,8 +92,6 @@ export default function jumpProcess(accY, testTime, weight, accT) {
       arrVelImpulse.push(velImpulse);
     }
   }
-  console.log(arrayExcentImp0);
-  console.log("velocid por impulso", velImpulse.toFixed(2), "m/s");
 
   // ------------FASE DE VUELO ArrayY4 (index 3-4)
 
@@ -113,7 +111,6 @@ export default function jumpProcess(accY, testTime, weight, accT) {
   const alturaVuelo = (1 / 8) * 9.81 * Math.pow(tV, 2);
 
   const velD = Math.sqrt(2 * 9.81 * alturaVuelo);
-  console.log("velocidad por altura", velD.toFixed(2), "m/s");
 
   let error;
   if (velD < velImpulse) {

@@ -140,8 +140,6 @@ const Main = () => {
       }
 
       setLoading(true);
-      console.log("mobCode", data.mobCode);
-      console.log("webCode", webCode);
 
       setRoles(data.roles);
       setUser(data);

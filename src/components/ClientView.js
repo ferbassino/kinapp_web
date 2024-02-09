@@ -31,7 +31,7 @@ const ClientView = ({ id }) => {
     setConfirmDelete(true);
     setShow(false);
   };
-  console.log("confirm delete", confirmDelete);
+
   useEffect(() => {
     getClient();
   }, []);
@@ -57,7 +57,6 @@ const ClientView = ({ id }) => {
   };
 
   const handleTest = (el) => {
-    console.log(el);
     const id = el._id;
     const res = arrayDataTests.find((el) => el._id === id);
     setDataTest(res);

@@ -80,7 +80,7 @@ const ClientProfile = () => {
     setSegment(true);
   };
   const handleCardio = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   const handleSegment = (e) => {
     const { value } = e.target;

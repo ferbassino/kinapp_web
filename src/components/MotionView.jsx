@@ -13,17 +13,16 @@ import FallView from "./FallView";
 import RotacionView from "./RotacionView";
 import JumpView from "./JumpView";
 import ReactionView from "./ReactionView";
+import StiffnessView from "./StiffnessView";
 import { dataReactionProcess } from "../auxiliaries/dataReactionProcess";
 
 const MotionView = ({ dataTest = [] }) => {
-  const { mass, testTime } = dataTest;
+  const { weight, testTime } = dataTest;
 
   const { accX, accY, accZ, accT, accInterval } = dataReactionProcess(
     dataTest.accData,
     dataTest.testTime
   );
-  console.log("accX.lengt en motion view", accX.length);
-  console.log("dataTest.accData, en motion view", dataTest.accData.length);
 
   const maxY = Math.max(...accY);
   const minY = Math.min(...accY);
@@ -34,6 +33,7 @@ const MotionView = ({ dataTest = [] }) => {
   const [jumpVisible, setJumpVisible] = useState(false);
   const [sampleRate, setSampleRate] = useState(0);
   const [reactionVisible, setReactionVisible] = useState(false);
+  const [stiffnessVisible, setStiffnessVisible] = useState(false);
 
   useEffect(() => {
     const samR = dataTest.testTime / 1000 / accT.length;
@@ -53,6 +53,9 @@ const MotionView = ({ dataTest = [] }) => {
     }
     if (dataTest.motionType === "reaction") {
       setReactionVisible(true);
+    }
+    if (dataTest.motionType === "stiffness") {
+      setStiffnessVisible(true);
     }
   }, []);
 
@@ -96,11 +99,11 @@ const MotionView = ({ dataTest = [] }) => {
             <td>{dataTest.testTime} ms</td>
           </tr>
 
-          {dataTest.mass ? (
+          {dataTest.weight ? (
             <tr>
               <td>📝</td>
               <td>Masa</td>
-              <td>{dataTest.mass} kg</td>
+              <td>{dataTest.weight} kg</td>
             </tr>
           ) : null}
           {dataTest.weight ? (
@@ -147,7 +150,17 @@ const MotionView = ({ dataTest = [] }) => {
           <TranslationView
             accY={accY}
             accT={accT}
-            masa={mass}
+            weight={weight}
+            testTime={testTime}
+          />
+        </>
+      ) : null}
+      {stiffnessVisible ? (
+        <>
+          <StiffnessView
+            accY={accY}
+            accT={accT}
+            masa={weight}
             testTime={testTime}
           />
         </>
