@@ -1,7 +1,7 @@
 import axios from "axios";
 import client from "../api/client";
 
-export const login = async (email, password) => {
+const login = async (email, password) => {
   try {
     const signInRes = await client.post("/sign-in", {
       email,
@@ -22,6 +22,8 @@ export const login = async (email, password) => {
     return { success: false, error: error.message };
   }
 };
+
+export default login;
 
 // const login = async (credentials) => {
 //   try {
