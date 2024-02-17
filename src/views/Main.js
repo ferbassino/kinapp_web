@@ -49,7 +49,6 @@ import EditorStatistics from "./editor/EditorStatistics";
 import DeviceUseJump from "./general/DeviceUseJump";
 const Main = () => {
   const { navOption } = useNav();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [webCode, setWebCode] = useState("");
