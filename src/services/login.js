@@ -1,34 +1,57 @@
 import axios from "axios";
 import client from "../api/client";
 
-const login = async (credentials) => {
+export const login = async (email, password) => {
   try {
-    const { email, password } = credentials;
-
-    const { data } = await client.post("/sign-in", {
+    const signInRes = await client.post("/sign-in", {
       email,
       password,
     });
-    if (data.success) {
-      return data.user;
-    } else {
-      const res = await client.post("/api/client", {
-        email,
-        password,
-      });
 
-      if (res.data.success) {
-        const obj = res.data.client;
-        return obj;
-      } else {
-        return data.messagge;
-      }
+    if (signInRes.data.success) {
+      const token = signInRes.data.user.token;
+      localStorage.setItem("token", token);
     }
-  } catch (error) {
-    console.log(error);
-  }
 
-  //
+    return signInRes;
+  } catch (error) {
+    if (error?.response?.data) {
+      return error.response.data;
+    }
+    console.log(`error inside signIn method: ${error}`);
+    return { success: false, error: error.message };
+  }
 };
 
-export default login;
+// const login = async (credentials) => {
+//   try {
+//     const { email, password } = credentials;
+
+//     const { data } = await client.post("/sign-in", {
+//       email,
+//       password,
+//     });
+
+//     if (data.success) {
+//       return data.user;
+//     } else {
+//       const res = await client.post("/api/client", {
+//         email,
+//         password,
+//       });
+
+//       if (res.data.success) {
+//         const obj = res.data.client;
+//         return obj;
+//       } else {
+//         return data.messagge;
+//       }
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+
+//   //
+// };
+
+// export default login;

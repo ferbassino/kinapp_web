@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 // import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import icon from "../views/landing/assets/icon.png";
-
 import SelectLanguage from "./SelectLanguage";
 import { useTranslation } from "react-i18next";
+
 const NavBar = ({ handleLogout, userName = "", roles }) => {
   const [t, i18n] = useTranslation("global");
   return (
