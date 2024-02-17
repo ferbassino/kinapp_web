@@ -18,7 +18,7 @@ export const login = async (email, password) => {
     if (error?.response?.data) {
       return error.response.data;
     }
-    console.log(`error inside signIn method: ${error}`);
+    console.log(`signIn method error: ${error}`);
     return { success: false, error: error.message };
   }
 };
