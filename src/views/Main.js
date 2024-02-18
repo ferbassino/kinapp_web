@@ -47,6 +47,7 @@ import EditorMotion from "./editor/EditorMotion";
 import EditorMotions from "./editor/EditorMotions";
 import EditorStatistics from "./editor/EditorStatistics";
 import DeviceUseJump from "./general/DeviceUseJump";
+
 const Main = () => {
   const { navOption } = useNav();
   const [email, setEmail] = useState("");
@@ -64,6 +65,7 @@ const Main = () => {
   const [asideVisible, setAsideVisible] = useState(false);
   const [selectView, setSelectView] = useState("");
   const [loading, setLoading] = useState(false);
+  const [session, setSession] = useState(true);
 
   const navigate = useNavigate();
 
@@ -84,8 +86,16 @@ const Main = () => {
     const loggedUserJSON = window.localStorage.getItem(
       "loggedEvaluationAppUser"
     );
+    const oldDay = localStorage.getItem("session_date");
+    const newDay = Date.now();
+
+    if (newDay - oldDay > 86400000) {
+      handleLogout();
+    }
+
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
+
       setUser(user);
       setRoles(user.roles);
       setUserName(user.userName);
@@ -104,8 +114,9 @@ const Main = () => {
     setEditor(false);
     setBronze(false);
     setRoles("");
-
     window.localStorage.removeItem("loggedEvaluationAppUser");
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("session_date");
   };
 
   const handleLogin = async (e) => {
@@ -135,6 +146,8 @@ const Main = () => {
         alert(
           "el codigo de verificacion no es válido, obtenga uno válido de la aplicación movil"
         );
+        window.localStorage.removeItem("token");
+        window.localStorage.removeItem("session_date");
         return;
       }
 
@@ -156,7 +169,6 @@ const Main = () => {
         }, 5000);
         return;
       }
-
       window.localStorage.setItem(
         "loggedEvaluationAppUser",
         JSON.stringify(data)
