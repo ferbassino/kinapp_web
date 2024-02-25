@@ -86,16 +86,37 @@ const Main = () => {
     const loggedUserJSON = window.localStorage.getItem(
       "loggedEvaluationAppUser"
     );
-    const oldDay = localStorage.getItem("session_date");
-    const newDay = Date.now();
+    // const oldDay = localStorage.getItem("session_date");
+    // const newDay = Date.now();
 
-    if (newDay - oldDay > 86400000) {
-      handleLogout();
-    }
+    // if (newDay - oldDay > 86400000) {
+    //   handleLogout();
+    // }
 
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
+      const getSessionTime = async () => {
+        const response = await client.get(`api/user/${user.id}`);
+        const { sessionDate } = response.data.user;
+        const newDate = Date.now();
+        const timeSessionDifference = newDate - sessionDate;
+        const timeSessionDifferenceOneDay =
+          timeSessionDifference / 1000 / 60 / 60 / 24;
 
+        if (timeSessionDifferenceOneDay > 1) {
+          const result = await client.put(
+            `user/${user.id}`,
+            {
+              sessionDate: "0000",
+            },
+            { new: true }
+          );
+
+          result.json({ updatedUser: result });
+          handleLogout();
+        }
+      };
+      getSessionTime();
       setUser(user);
       setRoles(user.roles);
       setUserName(user.userName);
@@ -107,7 +128,24 @@ const Main = () => {
     }
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const loggedUserJSON = window.localStorage.getItem(
+      "loggedEvaluationAppUser"
+    );
+    const user = JSON.parse(loggedUserJSON);
+    const getSessionTime = async () => {
+      const result = await client.put(
+        `user/${user.id}`,
+        {
+          sessionDate: 1708363550000,
+        },
+        { new: true }
+      );
+
+      result.json({ updatedUser: result });
+    };
+    getSessionTime();
+
     setUser(null);
     setAdmin(false);
     setReader(false);
@@ -130,10 +168,13 @@ const Main = () => {
 
       if (data.mobCode === webCode) {
         try {
+          const newDate = Date.now();
+          console.log("newdate", newDate);
           const result = await client.put(
             `user/${data.id}`,
             {
               mobCode: "0000",
+              sessionDate: newDate,
             },
             { new: true }
           );

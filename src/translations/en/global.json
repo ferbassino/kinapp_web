@@ -40,8 +40,11 @@
             "statisticsText":"Statistics of your evaluations and of all evaluations of the environment."
 
         },
-        "events":{
-            "title":"Find out about upcoming events"
+        "apk":{
+            "title":"Mobile application",
+            "subtitle":"Download our beta version on your android device to access the web app",
+            "instructions": "click on the icon to download"
+
         },
         "footer":{
             "title":"Follow us on Instagram, send an email or a message to receive more information"

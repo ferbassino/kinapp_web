@@ -41,8 +41,11 @@
             "statisticsText":"Accede a las estadísticas de todo el entorno."
 
 
-        },"events":{
-            "title":"Encuentra los siguientes eventos aquí"
+        },"apk":{
+            "title":"Aplicación móvil",
+            "subtitle":"Descarga la versión beta de la aplicación móvil para acceder a la web",
+            "instructions": "click sobre el icono para descargar"
+
         },
         "footer":{
             "title":"Síguenos en Instagram, envíanos un email o un whatsapp para recibir más información."

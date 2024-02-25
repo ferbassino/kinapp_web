@@ -8,11 +8,14 @@ import anyWhere from "./assets/anywhere.png";
 import hero from "./assets/hero.png";
 import logo from "../../logo.svg";
 import icon from "./assets/icon.png";
-import apkImage from "./assets/apk_image.jpeg";
+import apkImage from "./assets/kinapp_512.png";
+import capture1 from "./assets/capture_1.jpeg";
+import capture2 from "./assets/capture_2.jpeg";
+import capture3 from "./assets/capture_3.jpeg";
 import { useTranslation } from "react-i18next";
 import SelectLanguage from "../../components/SelectLanguage";
 
-const apkUrl = "https://kinapp-web.vercel.app/kinapp.apk";
+const apkUrl = "https://play.google.com/apps/test/com.ferbassino.kinapp/1";
 
 function Landing() {
   const [t, i18n] = useTranslation("global");
@@ -271,30 +274,43 @@ function Landing() {
             <Col className="my-5" id="events">
               <Col>
                 <h1 className="my-5" style={{ color: "#042c54" }}>
-                  {t("landing.events.title")}
+                  {t("landing.apk.title")}
                 </h1>
               </Col>
-              {/* <Row>
+              <Row>
                 <Col sm={6}>
-                  <img
-                    src={jornadas}
-                    className="img-fluid shadow-4"
-                    alt="..."
-                  />
+                  <Row
+                    style={{ textAlign: "center", justifyContent: "center" }}
+                  >
+                    <img
+                      src={capture3}
+                      className="img-fluid shadow-4"
+                      alt="..."
+                      style={{ width: "9rem", margin: "0.3rem" }}
+                    />
+                    <img
+                      src={capture1}
+                      className="img-fluid shadow-4"
+                      alt="..."
+                      style={{ width: "9rem", margin: "0.3rem" }}
+                    />
+                    <img
+                      src={capture2}
+                      className="img-fluid shadow-4"
+                      alt="..."
+                      style={{ width: "9rem", margin: "0.3rem" }}
+                    />
+                  </Row>
                 </Col>
                 <Col sm={6}>
                   <Col>
                     <h4 style={{ color: "#042c54", margin: "0.3rem" }}>
-                      El día Jueves 28/09/2023 realizaremos un taller de
-                      análisis biomecánico con unidades inerciales en la ᙭᙭᙭IV
-                      edición de las jornadas de Estudiantes de Kinesiología y
-                      fisiatría de la Universidad de Buenos Aires.
+                      {t("landing.apk.subtitle")}
                     </h4>
                   </Col>
                   <Col style={{ textAlign: "center" }}>
                     <h5 style={{ color: "#042c54", marginTop: "3rem" }}>
-                      Clik sobre la imagen para descargar apk que vamos a
-                      utilizar en el taller 👇
+                      {t("landing.apk.instructions")} 👇
                     </h5>
 
                     <img
@@ -313,47 +329,7 @@ function Landing() {
                     />
                   </Col>
                 </Col>
-                <h5 style={{ color: "#042c54", margin: "1rem" }}>Capturas:</h5>
-                <Row style={{ textAlign: "center", justifyContent: "center" }}>
-                  <img
-                    src={cap_2}
-                    className="img-fluid shadow-4"
-                    alt="..."
-                    style={{ width: "12rem", margin: "0.3rem" }}
-                  />
-                  <img
-                    src={cap_1}
-                    className="img-fluid shadow-4"
-                    alt="..."
-                    style={{ width: "12rem", margin: "0.3rem" }}
-                  />
-                  <img
-                    src={cap_5}
-                    className="img-fluid shadow-4"
-                    alt="..."
-                    style={{ width: "12rem", margin: "0.3rem" }}
-                  />
-                  <img
-                    src={cap_3}
-                    className="img-fluid shadow-4"
-                    alt="..."
-                    style={{ width: "12rem", margin: "0.3rem" }}
-                  />
-
-                  <img
-                    src={cap_6}
-                    className="img-fluid shadow-4"
-                    alt="..."
-                    style={{ width: "12rem", margin: "0.3rem" }}
-                  />
-                  <img
-                    src={cap_4}
-                    className="img-fluid shadow-4"
-                    alt="..."
-                    style={{ width: "12rem", margin: "0.3rem" }}
-                  />
-                </Row>
-              </Row> */}
+              </Row>
             </Col>
           </Row>
         </Container>

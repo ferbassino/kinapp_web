@@ -14,6 +14,7 @@ const login = async (credentials) => {
       localStorage.setItem("token", token);
       localStorage.setItem("session_date", Date.now());
     }
+
     return data.user;
   } catch (error) {
     if (error?.response?.data) {
