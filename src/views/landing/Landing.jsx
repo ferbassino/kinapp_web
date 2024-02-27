@@ -15,7 +15,7 @@ import capture3 from "./assets/capture_3.jpeg";
 import { useTranslation } from "react-i18next";
 import SelectLanguage from "../../components/SelectLanguage";
 
-const apkUrl = "./kinapp.apk";
+const apkUrl = "http://localhost:3000/kinapp.apk";
 function Landing() {
   const [t, i18n] = useTranslation("global");
 
