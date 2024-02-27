@@ -271,7 +271,7 @@ function Landing() {
                 </Row>
               </Col>
             </Row>
-            <Col className="my-5" id="events">
+            {/* <Col className="my-5" id="events">
               <Col>
                 <h1 className="my-5" style={{ color: "#042c54" }}>
                   {t("landing.apk.title")}
@@ -330,7 +330,7 @@ function Landing() {
                   </Col>
                 </Col>
               </Row>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </main>
