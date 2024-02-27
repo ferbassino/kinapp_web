@@ -15,13 +15,13 @@ import capture3 from "./assets/capture_3.jpeg";
 import { useTranslation } from "react-i18next";
 import SelectLanguage from "../../components/SelectLanguage";
 
-const apkUrl = "https://play.google.com/apps/test/com.ferbassino.kinapp/1";
-
+const apkUrl = "./kinapp.apk";
 function Landing() {
   const [t, i18n] = useTranslation("global");
 
   const downloadApkUrl = (apkUrl) => {
     const fileName = apkUrl.split("/").pop();
+    console.log(fileName);
     const aTag = document.createElement("a");
     aTag.href = apkUrl;
     aTag.setAttribute("download", fileName);
