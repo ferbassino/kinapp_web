@@ -11,5 +11,4 @@ export const useNav = create((set) => ({
   goToTests: () => set((state) => ({ navOption: "tests" })),
   goToApps: () => set((state) => ({ navOption: "apps" })),
   goToUserStatistics: () => set((state) => ({ navOption: "userStatistics" })),
-  goToJornadas: () => set((state) => ({ navOption: "jornadas" })),
 }));

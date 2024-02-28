@@ -271,7 +271,7 @@ function Landing() {
                 </Row>
               </Col>
             </Row>
-            {/* <Col className="my-5" id="events">
+            {/* <Col className="my-5" id="app">
               <Col>
                 <h1 className="my-5" style={{ color: "#042c54" }}>
                   {t("landing.apk.title")}
@@ -331,6 +331,54 @@ function Landing() {
                 </Col>
               </Row>
             </Col> */}
+            <Col className="my-5" id="events">
+              <Col>
+                <h1 className="my-5" style={{ color: "#042c54" }}>
+                  {t("landing.events.title")}
+                </h1>
+              </Col>
+              <Row>
+                <Col sm={6}>
+                  <Row
+                    style={{ textAlign: "center", justifyContent: "center" }}
+                  >
+                    <img
+                      src={capture3}
+                      className="img-fluid shadow-4"
+                      alt="..."
+                      style={{ width: "9rem", margin: "0.3rem" }}
+                    />
+                    <img
+                      src={capture1}
+                      className="img-fluid shadow-4"
+                      alt="..."
+                      style={{ width: "9rem", margin: "0.3rem" }}
+                    />
+                    <img
+                      src={capture2}
+                      className="img-fluid shadow-4"
+                      alt="..."
+                      style={{ width: "9rem", margin: "0.3rem" }}
+                    />
+                  </Row>
+                </Col>
+                <Col sm={6}>
+                  <Col>
+                    <h4 style={{ color: "#042c54", margin: "0.3rem" }}>
+                      {t("landing.events.subtitle")}
+                    </h4>
+                  </Col>
+                  <Col style={{ textAlign: "center" }}>
+                    <h5 style={{ color: "#042c54", marginTop: "3rem" }}>
+                      {t("landing.events.instructions")} 👇
+                    </h5>
+                    <h5 style={{ color: "#042c54", marginTop: "3rem" }}>
+                      {t("landing.events.info")} 👇
+                    </h5>
+                  </Col>
+                </Col>
+              </Row>
+            </Col>
           </Row>
         </Container>
       </main>

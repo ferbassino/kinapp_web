@@ -47,6 +47,13 @@
             "instructions": "click sobre el icono para descargar"
 
         },
+        "events":{
+            "title":"Eventos",
+            "subtitle":"Curso de análisis biomecánico con unidades inerciales.",
+            "instructions": "Los dias // realizaremos el curso de análisis biomecánico con unidades inerciales, para mas información hacer clic en el enlace",
+            "info": "Info del curso"
+
+        },
         "footer":{
             "title":"Síguenos en Instagram, envíanos un email o un whatsapp para recibir más información."
         }

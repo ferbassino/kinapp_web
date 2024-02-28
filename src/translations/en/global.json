@@ -44,7 +44,14 @@
             "title":"Mobile application",
             "subtitle":"Download our beta version on your android device to access the web app",
             "instructions": "click on the icon to download"
+            
 
+        },
+        "events":{
+            "title":"Events",
+            "subtitle":"Biomechanical analysis course with inertial units",
+            "instructions": "On // days we will carry out the biomechanical analysis course with inertial units, for more information click on the link",
+"info": "Course info"
         },
         "footer":{
             "title":"Follow us on Instagram, send an email or a message to receive more information"

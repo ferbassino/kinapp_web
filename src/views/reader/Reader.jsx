@@ -81,9 +81,9 @@ const Reader = () => {
       const elbowArr = [];
       const wristArr = [];
       verticalShoulderArray.map((el, index) => {
-        shoulderArr.push([shoulder[index], verticalShoulderArray[index]]);
-        elbowArr.push([elbow[index], verticalElbowArray[index]]);
-        wristArr.push([wrist[index], verticalWristArray[index]]);
+        shoulderArr.push([verticalShoulderArray[index], shoulder[index]]);
+        elbowArr.push([verticalElbowArray[index], elbow[index]]);
+        wristArr.push([verticalWristArray[index], wrist[index]]);
       });
 
       // vectors u/w arrays
@@ -94,6 +94,7 @@ const Reader = () => {
           shoulderArr[index][1] - elbowArr[index][1],
           shoulderArr[index][0] - elbowArr[index][0],
         ]);
+
         wArray.push([
           wristArr[index][1] - elbowArr[index][1],
           wristArr[index][0] - elbowArr[index][0],
@@ -114,12 +115,15 @@ const Reader = () => {
       const wModule = [];
       uArray.map((el, index) => {
         uModule.push(
-          Math.sqrt(Math.pow(uArray[index][0], 2)) +
-            Math.sqrt(Math.pow(uArray[index][1], 2))
+          Math.sqrt(
+            Math.pow(uArray[index][0], 2) + Math.pow(uArray[index][1], 2)
+          )
         );
+
         wModule.push(
-          Math.sqrt(Math.pow(wArray[index][0], 2)) +
-            Math.sqrt(Math.pow(wArray[index][1], 2))
+          Math.sqrt(
+            Math.pow(wArray[index][0], 2) + Math.pow(wArray[index][1], 2)
+          )
         );
       });
 
@@ -132,10 +136,8 @@ const Reader = () => {
 
       moduleProduct.map((el, index) => {
         alpha.push(
-          (
-            (Math.acos(dotProductUW[index] / moduleProduct[index]) * 180) /
+          (Math.acos(dotProductUW[index] / moduleProduct[index]) * 180) /
             Math.PI
-          ).toFixed(2)
         );
       });
       setAlphaAngle(alpha);
@@ -154,7 +156,7 @@ const Reader = () => {
       <ReactFileReader handleFiles={uploadVerticalFile} fileTypes={".csv"}>
         <button className="btn"> Vertical </button>
       </ReactFileReader>
-      <Chart
+      {/* <Chart
         x={verticalShoulderArray}
         xName="Shoulder"
         xColor="red"
@@ -165,11 +167,11 @@ const Reader = () => {
         zName="Wrist"
         zColor="green"
         t={verticalTimeArray}
-      />
+      /> */}
       <ReactFileReader handleFiles={uploadHorizontalFile} fileTypes={".csv"}>
         <button className="btn"> Horizontal </button>
       </ReactFileReader>
-      <Chart
+      {/* <Chart
         x={horizontalShoulderArray}
         xName="Shoulder"
         xColor="red"
@@ -180,7 +182,7 @@ const Reader = () => {
         zName="Wrist"
         zColor="green"
         t={horizontalTimeArray}
-      />
+      /> */}
       <Chart
         x={alphaAngle}
         xName="elbow"
